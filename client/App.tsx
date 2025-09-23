@@ -13,6 +13,9 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Hydropower from "./pages/services/Hydropower";
+import MediumVoltage from "./pages/services/MediumVoltage";
+import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -34,6 +37,9 @@ function RoutesWithAnimation() {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/hydropower" element={<Hydropower />} />
+            <Route path="/services/medium-voltage" element={<MediumVoltage />} />
+            <Route path="/services/sollatek" element={<Sollatek />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
