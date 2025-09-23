@@ -15,13 +15,11 @@ export default function LogosCarousel() {
 
   useEffect(() => {
     if (!emblaApi) return;
-    let raf = 0;
-    const step = () => {
-      emblaApi?.scrollBy(0.5, true);
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    const id = setInterval(() => {
+      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+      else emblaApi.scrollTo(0);
+    }, 2200);
+    return () => clearInterval(id);
   }, [emblaApi]);
 
   return (
