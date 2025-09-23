@@ -59,7 +59,7 @@ const team = [
 export default function About() {
   return (
     <div className="bg-background">
-      {/* Company Overview (removed the previous "About JBRANKY LTD" heading) */}
+      {/* Company Overview */}
       <section className="section">
         <div className="grid gap-10 md:grid-cols-2 items-center">
           <div className="rounded-xl overflow-hidden shadow-sm border">
@@ -83,7 +83,24 @@ export default function About() {
         </div>
       </section>
 
-      {/* Milestones - alternating, larger timeline */}
+      {/* Values as Section 2 */}
+      <section className="section">
+        <h2 className="section-title">Our Values</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            ["Safety First", "Uncompromising commitment to safety and compliance."],
+            ["Integrity", "Transparent processes, honest communication, dependable delivery."],
+            ["Sustainability", "Engineering for efficiency and environmental stewardship."],
+          ].map(([t, d]) => (
+            <div key={t} className="rounded-xl border bg-white p-6 shadow-sm">
+              <div className="font-display text-lg font-bold text-primary">{t}</div>
+              <p className="mt-2 text-foreground/70">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Milestones - alternating timeline */}
       <section className="section">
         <h2 className="section-title">Milestones</h2>
         <div className="relative mt-12">
@@ -179,23 +196,6 @@ export default function About() {
                 </div>
               </DialogContent>
             </Dialog>
-          ))}
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="section">
-        <h2 className="section-title">Our Values</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {[
-            ["Safety First", "Uncompromising commitment to safety and compliance."],
-            ["Integrity", "Transparent processes, honest communication, dependable delivery."],
-            ["Sustainability", "Engineering for efficiency and environmental stewardship."],
-          ].map(([t, d]) => (
-            <div key={t} className="rounded-xl border bg-white p-6 shadow-sm">
-              <div className="font-display text-lg font-bold text-primary">{t}</div>
-              <p className="mt-2 text-foreground/70">{d}</p>
-            </div>
           ))}
         </div>
       </section>
