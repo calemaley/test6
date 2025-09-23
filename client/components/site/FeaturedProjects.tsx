@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
 
 const projects = [
@@ -59,9 +59,12 @@ export default function FeaturedProjects() {
             <DialogContent className="sm:max-w-3xl">
               {active && (
                 <div>
-                  <img src={active.img} alt={active.title} className="mb-4 w-full rounded-lg object-cover" />
-                  <h3 className="font-display text-xl font-bold text-primary">{active.title}</h3>
-                  <p className="mt-2 text-foreground/70">
+                  <DialogHeader>
+                    <DialogTitle>{active.title}</DialogTitle>
+                    <DialogDescription>Project case study preview</DialogDescription>
+                  </DialogHeader>
+                  <img src={active.img} alt={active.title} className="mt-2 mb-4 w-full rounded-lg object-cover" />
+                  <p className="text-foreground/70">
                     Detailed case study content can include scope, timeline, kVA ratings, compliance, safety notes, and outcomes.
                   </p>
                 </div>
