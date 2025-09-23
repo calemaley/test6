@@ -20,7 +20,9 @@ export default function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 border-b border-transparent",
-        scrolled ? "bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-border" : "bg-transparent",
+        scrolled
+          ? "bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-border"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto container-padding flex items-center justify-between h-16">
@@ -29,8 +31,12 @@ export default function Header() {
             JB
           </div>
           <div className="leading-tight">
-            <div className="font-display font-extrabold tracking-tight text-primary text-lg">JBRANKY LTD</div>
-            <div className="text-[11px] uppercase tracking-widest text-foreground/60">Premium Energy Solutions</div>
+            <div className="font-display font-extrabold tracking-tight text-primary text-lg">
+              JBRANKY LTD
+            </div>
+            <div className="text-[11px] uppercase tracking-widest text-foreground/60">
+              Premium Energy Solutions
+            </div>
           </div>
         </Link>
 

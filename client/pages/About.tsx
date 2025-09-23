@@ -9,12 +9,36 @@ import {
 } from "@/components/ui/dialog";
 
 const milestones = [
-  { year: 2012, title: "Founded", desc: "JBRANKY LTD is established to deliver reliable energy solutions." },
-  { year: 2014, title: "First MV Substation", desc: "Designed and commissioned our first 33/11kV substation project." },
-  { year: 2015, title: "Hydropower EPC", desc: "Completed turnkey hydropower installation for a municipal client." },
-  { year: 2019, title: "National Partnerships", desc: "Recognized partner to grid authorities and international OEMs." },
-  { year: 2021, title: "Sollatek Alliance", desc: "Scaled protection deployments across healthcare & data centers." },
-  { year: 2023, title: "50+ Major Projects", desc: "Cross-industry portfolio with safety and performance accolades." },
+  {
+    year: 2012,
+    title: "Founded",
+    desc: "JBRANKY LTD is established to deliver reliable energy solutions.",
+  },
+  {
+    year: 2014,
+    title: "First MV Substation",
+    desc: "Designed and commissioned our first 33/11kV substation project.",
+  },
+  {
+    year: 2015,
+    title: "Hydropower EPC",
+    desc: "Completed turnkey hydropower installation for a municipal client.",
+  },
+  {
+    year: 2019,
+    title: "National Partnerships",
+    desc: "Recognized partner to grid authorities and international OEMs.",
+  },
+  {
+    year: 2021,
+    title: "Sollatek Alliance",
+    desc: "Scaled protection deployments across healthcare & data centers.",
+  },
+  {
+    year: 2023,
+    title: "50+ Major Projects",
+    desc: "Cross-industry portfolio with safety and performance accolades.",
+  },
 ];
 
 const team = [
@@ -71,13 +95,28 @@ export default function About() {
           </div>
           <div>
             <h2 className="section-title">Who we are</h2>
-            <p className="section-subtitle">Engineering excellence across generation, distribution and protection.</p>
+            <p className="section-subtitle">
+              Engineering excellence across generation, distribution and
+              protection.
+            </p>
             <ul className="mt-6 space-y-3 text-foreground/80">
               <li>• Hydropower feasibility, EPC, commissioning and O&M</li>
-              <li>• Large Power & Medium-Voltage: 11–132kV substations, protection, testing</li>
-              <li>• Sollatek protection: stabilizers, surge, power conditioning and monitoring</li>
-              <li>• Safety-first culture aligned to IEC standards and regulatory frameworks</li>
-              <li>• Proven delivery for industrial, commercial and public-sector clients</li>
+              <li>
+                • Large Power & Medium-Voltage: 11–132kV substations,
+                protection, testing
+              </li>
+              <li>
+                • Sollatek protection: stabilizers, surge, power conditioning
+                and monitoring
+              </li>
+              <li>
+                • Safety-first culture aligned to IEC standards and regulatory
+                frameworks
+              </li>
+              <li>
+                • Proven delivery for industrial, commercial and public-sector
+                clients
+              </li>
             </ul>
           </div>
         </div>
@@ -88,12 +127,23 @@ export default function About() {
         <h2 className="section-title">Our Values</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {[
-            ["Safety First", "Uncompromising commitment to safety and compliance."],
-            ["Integrity", "Transparent processes, honest communication, dependable delivery."],
-            ["Sustainability", "Engineering for efficiency and environmental stewardship."],
+            [
+              "Safety First",
+              "Uncompromising commitment to safety and compliance.",
+            ],
+            [
+              "Integrity",
+              "Transparent processes, honest communication, dependable delivery.",
+            ],
+            [
+              "Sustainability",
+              "Engineering for efficiency and environmental stewardship.",
+            ],
           ].map(([t, d]) => (
             <div key={t} className="rounded-xl border bg-white p-6 shadow-sm">
-              <div className="font-display text-lg font-bold text-primary">{t}</div>
+              <div className="font-display text-lg font-bold text-primary">
+                {t}
+              </div>
               <p className="mt-2 text-foreground/70">{d}</p>
             </div>
           ))}
@@ -117,12 +167,18 @@ export default function About() {
                   transition={{ duration: 0.4 }}
                   className={`relative grid items-center gap-6 md:grid-cols-2 ${left ? "" : "md:[&>*:first-child]:order-2"}`}
                 >
-                  <div className={`md:pr-10 ${left ? "text-right" : "text-left md:text-left"}`}>
-                    <div className="font-display text-4xl md:text-5xl font-extrabold text-primary">{m.year}</div>
+                  <div
+                    className={`md:pr-10 ${left ? "text-right" : "text-left md:text-left"}`}
+                  >
+                    <div className="font-display text-4xl md:text-5xl font-extrabold text-primary">
+                      {m.year}
+                    </div>
                   </div>
                   <div className="md:pl-10">
                     <div className="rounded-2xl border bg-white p-6 shadow-sm">
-                      <div className="font-display text-xl font-bold text-primary">{m.title}</div>
+                      <div className="font-display text-xl font-bold text-primary">
+                        {m.title}
+                      </div>
                       <p className="mt-2 text-foreground/70">{m.desc}</p>
                     </div>
                   </div>
@@ -144,13 +200,26 @@ export default function About() {
             />
           </div>
           <div>
-            <div className="font-display text-2xl md:text-3xl font-extrabold text-primary">From the Founder</div>
+            <div className="font-display text-2xl md:text-3xl font-extrabold text-primary">
+              From the Founder
+            </div>
             <p className="mt-3 text-foreground/80 text-lg">
-              Our mission is simple: engineer reliable power that fuels growth and protects what matters. We pair deep technical rigor with a safety-first culture and transparent delivery.
+              Our mission is simple: engineer reliable power that fuels growth
+              and protects what matters. We pair deep technical rigor with a
+              safety-first culture and transparent delivery.
             </p>
             <div className="mt-6 flex items-center gap-4">
-              <svg viewBox="0 0 300 80" className="h-12 w-auto text-foreground/70">
-                <path d="M10 50 C 50 10, 120 90, 180 30 S 280 70, 290 40" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <svg
+                viewBox="0 0 300 80"
+                className="h-12 w-auto text-foreground/70"
+              >
+                <path
+                  d="M10 50 C 50 10, 120 90, 180 30 S 280 70, 290 40"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                />
               </svg>
               <div>
                 <div className="font-display font-bold">John B. Ranky</div>
@@ -164,17 +233,27 @@ export default function About() {
       {/* Meet Our Team */}
       <section className="section">
         <h2 className="section-title">Meet our team</h2>
-        <p className="section-subtitle">Leadership you can trust for complex energy programs.</p>
+        <p className="section-subtitle">
+          Leadership you can trust for complex energy programs.
+        </p>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member) => (
             <Dialog key={member.name}>
               <DialogTrigger asChild>
                 <button className="group overflow-hidden rounded-2xl border bg-white text-left shadow-sm transition hover:shadow-lg">
-                  <img src={member.img} alt={member.name} className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                  />
                   <div className="p-5">
-                    <div className="font-display text-lg font-bold text-primary">{member.name}</div>
-                    <div className="mt-1 text-sm text-foreground/60">{member.role}</div>
+                    <div className="font-display text-lg font-bold text-primary">
+                      {member.name}
+                    </div>
+                    <div className="mt-1 text-sm text-foreground/60">
+                      {member.role}
+                    </div>
                   </div>
                 </button>
               </DialogTrigger>
@@ -184,7 +263,11 @@ export default function About() {
                   <DialogDescription>{member.role}</DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-6 md:grid-cols-[260px,1fr] items-start">
-                  <img src={member.img} alt={member.name} className="w-full rounded-lg object-cover" />
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full rounded-lg object-cover"
+                  />
                   <div>
                     <p className="text-foreground/80">{member.bio}</p>
                     <ul className="mt-4 space-y-2 text-sm text-foreground/70">

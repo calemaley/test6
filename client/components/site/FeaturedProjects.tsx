@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 
 const projects = [
@@ -29,13 +36,15 @@ const projects = [
 ];
 
 export default function FeaturedProjects() {
-  const [active, setActive] = useState<typeof projects[number] | null>(null);
+  const [active, setActive] = useState<(typeof projects)[number] | null>(null);
 
   return (
     <section className="section">
       <div className="flex items-end justify-between gap-6 mb-8">
         <h2 className="section-title">Featured Projects</h2>
-        <a href="/projects" className="hidden md:inline-block btn-secondary">View All Projects</a>
+        <a href="/projects" className="hidden md:inline-block btn-secondary">
+          View All Projects
+        </a>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {projects.map((p) => (
@@ -45,12 +54,23 @@ export default function FeaturedProjects() {
                 onClick={() => setActive(p)}
                 className="group relative overflow-hidden rounded-xl border bg-card text-left shadow-sm"
               >
-                <img src={p.img} alt={p.title} className="h-48 w-full object-cover transition duration-300 group-hover:scale-105" />
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
+                />
                 <div className="p-4">
-                  <div className="font-display font-bold text-primary">{p.title}</div>
+                  <div className="font-display font-bold text-primary">
+                    {p.title}
+                  </div>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {p.tags.map((t) => (
-                      <span key={t} className="text-xs rounded-full bg-accent px-2 py-1 text-foreground/70">{t}</span>
+                      <span
+                        key={t}
+                        className="text-xs rounded-full bg-accent px-2 py-1 text-foreground/70"
+                      >
+                        {t}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -61,11 +81,18 @@ export default function FeaturedProjects() {
                 <div>
                   <DialogHeader>
                     <DialogTitle>{active.title}</DialogTitle>
-                    <DialogDescription>Project case study preview</DialogDescription>
+                    <DialogDescription>
+                      Project case study preview
+                    </DialogDescription>
                   </DialogHeader>
-                  <img src={active.img} alt={active.title} className="mt-2 mb-4 w-full rounded-lg object-cover" />
+                  <img
+                    src={active.img}
+                    alt={active.title}
+                    className="mt-2 mb-4 w-full rounded-lg object-cover"
+                  />
                   <p className="text-foreground/70">
-                    Detailed case study content can include scope, timeline, kVA ratings, compliance, safety notes, and outcomes.
+                    Detailed case study content can include scope, timeline, kVA
+                    ratings, compliance, safety notes, and outcomes.
                   </p>
                 </div>
               )}

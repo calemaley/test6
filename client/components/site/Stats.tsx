@@ -42,15 +42,21 @@ export default function Stats() {
       <div className="rounded-2xl bg-gradient-to-br from-primary to-blue-600 text-white p-8 md:p-12">
         <div className="grid gap-8 md:grid-cols-3 text-center">
           <div ref={years.ref}>
-            <div className="font-display text-5xl font-extrabold">{years.value}+</div>
+            <div className="font-display text-5xl font-extrabold">
+              {years.value}+
+            </div>
             <div className="mt-2 text-white/80">Years in business</div>
           </div>
           <div ref={projects.ref}>
-            <div className="font-display text-5xl font-extrabold">{projects.value}+</div>
+            <div className="font-display text-5xl font-extrabold">
+              {projects.value}+
+            </div>
             <div className="mt-2 text-white/80">Projects delivered</div>
           </div>
           <div ref={uptime.ref}>
-            <div className="font-display text-5xl font-extrabold">{uptime.value}%</div>
+            <div className="font-display text-5xl font-extrabold">
+              {uptime.value}%
+            </div>
             <div className="mt-2 text-white/80">Equipment uptime</div>
           </div>
         </div>

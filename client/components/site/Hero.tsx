@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const videoSrc = "https://videos.pexels.com/video-files/6133235/6133235-hd_1920_1080_30fps.mp4";
+const videoSrc =
+  "https://videos.pexels.com/video-files/6133235/6133235-hd_1920_1080_30fps.mp4";
 
 export default function Hero() {
   return (
@@ -31,7 +32,8 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.7 }}
           className="mt-4 text-white/85 max-w-2xl text-base md:text-lg"
         >
-          Hydropower plant solutions, large power & medium-voltage systems, and Sollatek products for total equipment protection.
+          Hydropower plant solutions, large power & medium-voltage systems, and
+          Sollatek products for total equipment protection.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,8 +41,12 @@ export default function Hero() {
           transition={{ delay: 0.35, duration: 0.7 }}
           className="mt-8 flex flex-wrap items-center gap-4"
         >
-          <Link to="/contact" className="btn-primary text-base">Request a Quote</Link>
-          <Link to="/services" className="btn-secondary text-base">Our Services</Link>
+          <Link to="/contact" className="btn-primary text-base">
+            Request a Quote
+          </Link>
+          <Link to="/services" className="btn-secondary text-base">
+            Our Services
+          </Link>
         </motion.div>
       </div>
     </section>

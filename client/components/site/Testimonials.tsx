@@ -32,7 +32,11 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", dragFree: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    dragFree: false,
+  });
   const [selected, setSelected] = useState(0);
   const [snapCount, setSnapCount] = useState(0);
 
@@ -51,28 +55,51 @@ export default function Testimonials() {
     };
   }, [emblaApi, onSelect]);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((i: number) => emblaApi && emblaApi.scrollTo(i), [emblaApi]);
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi],
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi],
+  );
+  const scrollTo = useCallback(
+    (i: number) => emblaApi && emblaApi.scrollTo(i),
+    [emblaApi],
+  );
 
   return (
     <section className="section">
       <div className="text-center mb-10">
         <h2 className="section-title">What our clients say</h2>
-        <p className="section-subtitle">Verified testimonials from long-term industrial, healthcare and public-sector partners.</p>
+        <p className="section-subtitle">
+          Verified testimonials from long-term industrial, healthcare and
+          public-sector partners.
+        </p>
       </div>
       <div className="relative">
-        <button aria-label="Previous" onClick={scrollPrev} className="absolute -left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-white p-2 shadow hover:bg-accent">
+        <button
+          aria-label="Previous"
+          onClick={scrollPrev}
+          className="absolute -left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-white p-2 shadow hover:bg-accent"
+        >
           <ChevronLeft className="h-5 w-5" />
         </button>
-        <button aria-label="Next" onClick={scrollNext} className="absolute -right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-white p-2 shadow hover:bg-accent">
+        <button
+          aria-label="Next"
+          onClick={scrollNext}
+          className="absolute -right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-white p-2 shadow hover:bg-accent"
+        >
           <ChevronRight className="h-5 w-5" />
         </button>
 
         <div className="embla" ref={emblaRef}>
           <div className="embla__container flex gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="embla__slide flex-[0_0_92%] md:flex-[0_0_48%] lg:flex-[0_0_40%]">
+              <div
+                key={i}
+                className="embla__slide flex-[0_0_92%] md:flex-[0_0_48%] lg:flex-[0_0_40%]"
+              >
                 <motion.blockquote
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -81,8 +108,12 @@ export default function Testimonials() {
                   className="h-full rounded-2xl border bg-white p-8 shadow-md"
                 >
                   <Quote className="h-8 w-8 text-secondary" />
-                  <p className="mt-4 text-xl leading-relaxed text-foreground/90">“{t.quote}”</p>
-                  <footer className="mt-6 text-sm font-semibold text-foreground/70">{t.author}</footer>
+                  <p className="mt-4 text-xl leading-relaxed text-foreground/90">
+                    “{t.quote}”
+                  </p>
+                  <footer className="mt-6 text-sm font-semibold text-foreground/70">
+                    {t.author}
+                  </footer>
                 </motion.blockquote>
               </div>
             ))}
