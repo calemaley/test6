@@ -36,7 +36,7 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-1">
           {[
-            ["/about", "About"],
+            ["/about", "Who We Are"],
             ["/services", "Services"],
             ["/projects", "Projects"],
             ["/blog", "Blog"],
