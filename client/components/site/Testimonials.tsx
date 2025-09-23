@@ -24,13 +24,11 @@ export default function Testimonials() {
 
   useEffect(() => {
     if (!emblaApi) return;
-    let raf = 0;
-    const step = () => {
-      emblaApi?.scrollBy(0.25, true);
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    const id = setInterval(() => {
+      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+      else emblaApi.scrollTo(0);
+    }, 3200);
+    return () => clearInterval(id);
   }, [emblaApi]);
 
   return (
