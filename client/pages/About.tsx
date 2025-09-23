@@ -1,50 +1,189 @@
 import { motion } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const milestones = [
   { year: 2012, title: "Founded", desc: "JBRANKY LTD is established to deliver reliable energy solutions." },
-  { year: 2015, title: "First Hydropower EPC", desc: "Completed turnkey hydropower installation for a municipal client." },
-  { year: 2019, title: "National Partnerships", desc: "Became a recognized partner to grid authorities and OEMs." },
-  { year: 2023, title: "Healthcare Protection", desc: "Deployed Sollatek protection across multi-site hospital network." },
+  { year: 2014, title: "First MV Substation", desc: "Designed and commissioned our first 33/11kV substation project." },
+  { year: 2015, title: "Hydropower EPC", desc: "Completed turnkey hydropower installation for a municipal client." },
+  { year: 2019, title: "National Partnerships", desc: "Recognized partner to grid authorities and international OEMs." },
+  { year: 2021, title: "Sollatek Alliance", desc: "Scaled protection deployments across healthcare & data centers." },
+  { year: 2023, title: "50+ Major Projects", desc: "Cross-industry portfolio with safety and performance accolades." },
+];
+
+const team = [
+  {
+    name: "John B. Ranky",
+    role: "Founder & CEO",
+    img: "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Electrical engineer with 18+ years in hydropower and MV systems. Leads strategy, partnerships and safety culture.",
+  },
+  {
+    name: "Amaka Okoye",
+    role: "Head of Hydropower",
+    img: "https://images.pexels.com/photos/3775536/pexels-photo-3775536.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Leads feasibility, EPC and O&M programs with a focus on efficiency gains and environmental stewardship.",
+  },
+  {
+    name: "Tunde Adebayo",
+    role: "MV Protection Lead",
+    img: "https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Specialist in relay settings, testing and commissioning for 11–132kV networks.",
+  },
+  {
+    name: "Grace Ibeh",
+    role: "Projects Director",
+    img: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Drives on-time delivery through rigorous planning, QA/QC and stakeholder alignment.",
+  },
+  {
+    name: "Samuel Umeh",
+    role: "Lead Commissioning Engineer",
+    img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Commissioning expert for generation and substation assets with deep safety compliance.",
+  },
+  {
+    name: "Farida Bello",
+    role: "Head of Operations",
+    img: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    bio: "Oversees multi-site operations, logistics and performance optimization programs.",
+  },
 ];
 
 export default function About() {
   return (
     <div className="bg-background">
+      {/* Company Overview (removed the previous "About JBRANKY LTD" heading) */}
       <section className="section">
         <div className="grid gap-10 md:grid-cols-2 items-center">
-          <div>
-            <h1 className="section-title">About JBRANKY LTD</h1>
-            <p className="section-subtitle">Innovation, reliability and safety in every watt.</p>
-            <p className="mt-6 text-foreground/80">
-              We are a premium energy solutions company specializing in hydropower plant systems, large power and medium-voltage infrastructure, and Sollatek power-protection products. Our multidisciplinary teams deliver feasibility, EPC, testing and lifecycle maintenance.
-            </p>
-          </div>
           <div className="rounded-xl overflow-hidden shadow-sm border">
-            <img src="https://images.pexels.com/photos/8294552/pexels-photo-8294552.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Team at work" className="w-full h-full object-cover" />
+            <img
+              src="https://images.pexels.com/photos/6294902/pexels-photo-6294902.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Field team at hydropower station"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h2 className="section-title">Who we are</h2>
+            <p className="section-subtitle">Engineering excellence across generation, distribution and protection.</p>
+            <ul className="mt-6 space-y-3 text-foreground/80">
+              <li>• Hydropower feasibility, EPC, commissioning and O&M</li>
+              <li>• Large Power & Medium-Voltage: 11–132kV substations, protection, testing</li>
+              <li>• Sollatek protection: stabilizers, surge, power conditioning and monitoring</li>
+              <li>• Safety-first culture aligned to IEC standards and regulatory frameworks</li>
+              <li>• Proven delivery for industrial, commercial and public-sector clients</li>
+            </ul>
           </div>
         </div>
       </section>
 
+      {/* Milestones - alternating, larger timeline */}
       <section className="section">
         <h2 className="section-title">Milestones</h2>
-        <div className="mt-8 relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
-          <div className="space-y-10">
-            {milestones.map((m, i) => (
-              <motion.div key={m.year} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 * i }} className="relative md:grid md:grid-cols-2 md:gap-10">
-                <div className="md:text-right md:pr-10">
-                  <div className="font-display text-primary text-3xl font-extrabold">{m.year}</div>
-                  <div className="font-semibold">{m.title}</div>
-                </div>
-                <div className="md:pl-10">
-                  <p className="text-foreground/70">{m.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+        <div className="relative mt-12">
+          <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-border" />
+          <div className="space-y-12">
+            {milestones.map((m, i) => {
+              const left = i % 2 === 0;
+              return (
+                <motion.div
+                  key={m.year}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.4 }}
+                  className={`relative grid items-center gap-6 md:grid-cols-2 ${left ? "" : "md:[&>*:first-child]:order-2"}`}
+                >
+                  <div className={`md:pr-10 ${left ? "text-right" : "text-left md:text-left"}`}>
+                    <div className="font-display text-4xl md:text-5xl font-extrabold text-primary">{m.year}</div>
+                  </div>
+                  <div className="md:pl-10">
+                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+                      <div className="font-display text-xl font-bold text-primary">{m.title}</div>
+                      <p className="mt-2 text-foreground/70">{m.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
+      {/* Founder Section */}
+      <section className="section">
+        <div className="grid gap-8 md:grid-cols-[320px,1fr] items-center">
+          <div className="rounded-2xl overflow-hidden border shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Founder portrait"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <div className="font-display text-2xl md:text-3xl font-extrabold text-primary">From the Founder</div>
+            <p className="mt-3 text-foreground/80 text-lg">
+              Our mission is simple: engineer reliable power that fuels growth and protects what matters. We pair deep technical rigor with a safety-first culture and transparent delivery.
+            </p>
+            <div className="mt-6 flex items-center gap-4">
+              <svg viewBox="0 0 300 80" className="h-12 w-auto text-foreground/70">
+                <path d="M10 50 C 50 10, 120 90, 180 30 S 280 70, 290 40" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
+              </svg>
+              <div>
+                <div className="font-display font-bold">John B. Ranky</div>
+                <div className="text-sm text-foreground/60">Founder & CEO</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team */}
+      <section className="section">
+        <h2 className="section-title">Meet our team</h2>
+        <p className="section-subtitle">Leadership you can trust for complex energy programs.</p>
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {team.map((member) => (
+            <Dialog key={member.name}>
+              <DialogTrigger asChild>
+                <button className="group overflow-hidden rounded-2xl border bg-white text-left shadow-sm transition hover:shadow-lg">
+                  <img src={member.img} alt={member.name} className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
+                  <div className="p-5">
+                    <div className="font-display text-lg font-bold text-primary">{member.name}</div>
+                    <div className="mt-1 text-sm text-foreground/60">{member.role}</div>
+                  </div>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>{member.name}</DialogTitle>
+                  <DialogDescription>{member.role}</DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-6 md:grid-cols-[260px,1fr] items-start">
+                  <img src={member.img} alt={member.name} className="w-full rounded-lg object-cover" />
+                  <div>
+                    <p className="text-foreground/80">{member.bio}</p>
+                    <ul className="mt-4 space-y-2 text-sm text-foreground/70">
+                      <li>• 20+ delivered programs across hydropower and MV</li>
+                      <li>• IEC, NFPA and local regulatory compliance</li>
+                      <li>• Strong stakeholder and vendor management</li>
+                    </ul>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          ))}
+        </div>
+      </section>
+
+      {/* Values */}
       <section className="section">
         <h2 className="section-title">Our Values</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
