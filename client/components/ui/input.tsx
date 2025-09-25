@@ -2,8 +2,15 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, type, ...props }, ref) => {
+    const normalizedProps: React.InputHTMLAttributes<HTMLInputElement> = {
+      ...props,
+    };
+    if (Object.prototype.hasOwnProperty.call(normalizedProps, "value") && normalizedProps.value === undefined) {
+      normalizedProps.value = "";
+    }
+
     return (
       <input
         type={type}
@@ -12,7 +19,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           className,
         )}
         ref={ref}
-        {...props}
+        {...normalizedProps}
       />
     );
   },
