@@ -33,8 +33,8 @@ const testimonials = [
 
 export default function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "center",
+    loop: false,
+    align: "start",
     dragFree: false,
   });
   const [selected, setSelected] = useState(0);
@@ -93,12 +93,12 @@ export default function Testimonials() {
           <ChevronRight className="h-5 w-5" />
         </button>
 
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container flex gap-6">
+        <div className="embla overflow-hidden" ref={emblaRef}>
+          <div className="embla__container flex gap-4 md:gap-6 px-2">
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="embla__slide flex-[0_0_92%] md:flex-[0_0_48%] lg:flex-[0_0_40%]"
+                className="embla__slide min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_40%]"
               >
                 <motion.blockquote
                   initial={{ opacity: 0, y: 16 }}
