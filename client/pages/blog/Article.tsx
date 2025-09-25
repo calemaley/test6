@@ -85,7 +85,7 @@ export default function Article() {
               whileInView={{ opacity: 1, y: 0, skewY: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.5, delay: 0.03 }}
-              className="text-foreground/90"
+              className={`bg-gradient-to-r ${gradients[i % gradients.length]} bg-clip-text text-transparent opacity-90 drop-shadow-sm`}
             >
               {p}
             </motion.p>
