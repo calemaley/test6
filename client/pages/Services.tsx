@@ -1,5 +1,6 @@
 import ServiceCard from "@/components/site/ServiceCard";
 import { motion } from "framer-motion";
+import SectionReveal from "@/components/site/SectionReveal";
 
 const vids = {
   hydro1: "https://videos.pexels.com/video-files/6133235/6133235-hd_1920_1080_30fps.mp4",
@@ -23,101 +24,109 @@ export default function Services() {
     <div className="bg-background">
       {/* Page Title */}
       <section className="section">
-        <h1 className="section-title">What We Do</h1>
-        <p className="section-subtitle">Hydropower • Large Power & Medium Voltage • Sollatek Protection</p>
+        <SectionReveal>
+          <h1 className="section-title">What We Do</h1>
+          <p className="section-subtitle">Hydropower • Large Power & Medium Voltage • Sollatek Protection</p>
+        </SectionReveal>
       </section>
 
       {/* Hydropower – 3 Sections */}
       <section className="section">
-        <div className="flex items-end justify-between mb-6">
-          <h2 className="section-title">Hydropower Plant</h2>
-          <span className="text-sm text-foreground/60">Feasibility • EPC • O&M</span>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          <ServiceCard
-            title="Feasibility & Studies"
-            blurb="Hydrology, yield, grid interconnect, EIA and ROI modeling for bankable decisions."
-            media={{ type: "video", src: vids.hydro1 }}
-            gallery={[imgs.hydroA, imgs.hydroB]}
-            detailVideo={vids.hydro2}
-          />
-          <ServiceCard
-            title="EPC Delivery"
-            blurb="Civil and electro-mechanical works, protection & controls, QA/QC and commissioning."
-            media={{ type: "image", src: imgs.hydroA }}
-            gallery={[imgs.hydroB, imgs.hydroA]}
-            detailVideo={vids.hydro2}
-          />
-          <ServiceCard
-            title="Operations & Maintenance"
-            blurb="Preventive programs, spares, performance tuning and lifecycle asset management."
-            media={{ type: "video", src: vids.hydro2 }}
-            gallery={[imgs.hydroA, imgs.hydroB]}
-            detailVideo={vids.hydro1}
-          />
-        </div>
+        <SectionReveal>
+          <div className="flex items-end justify-between mb-6">
+            <h2 className="section-title">Hydropower Plant</h2>
+            <span className="text-sm text-foreground/60">Feasibility • EPC • O&M</span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <ServiceCard
+              title="Feasibility & Studies"
+              blurb="Hydrology, yield, grid interconnect, EIA and ROI modeling for bankable decisions."
+              media={{ type: "video", src: vids.hydro1 }}
+              gallery={[imgs.hydroA, imgs.hydroB]}
+              detailVideo={vids.hydro2}
+            />
+            <ServiceCard
+              title="EPC Delivery"
+              blurb="Civil and electro-mechanical works, protection & controls, QA/QC and commissioning."
+              media={{ type: "image", src: imgs.hydroA }}
+              gallery={[imgs.hydroB, imgs.hydroA]}
+              detailVideo={vids.hydro2}
+            />
+            <ServiceCard
+              title="Operations & Maintenance"
+              blurb="Preventive programs, spares, performance tuning and lifecycle asset management."
+              media={{ type: "video", src: vids.hydro2 }}
+              gallery={[imgs.hydroA, imgs.hydroB]}
+              detailVideo={vids.hydro1}
+            />
+          </div>
+        </SectionReveal>
       </section>
 
       {/* Large Power & Medium Voltage – 3 Sections */}
       <section className="section">
-        <div className="flex items-end justify-between mb-6">
-          <h2 className="section-title">Large Power & Medium Voltage ⚡</h2>
-          <span className="text-sm text-foreground/60">Design • Integration • Testing</span>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          <ServiceCard
-            title="Substation Design"
-            blurb="11–132kV layouts, grounding, protection coordination and SCADA."
-            media={{ type: "image", src: imgs.mvA }}
-            gallery={[imgs.mvA, imgs.mvB]}
-            detailVideo={vids.mv1}
-          />
-          <ServiceCard
-            title="Grid Integration"
-            blurb="Interface studies, interconnect applications and utility approvals."
-            media={{ type: "video", src: vids.mv1 }}
-            gallery={[imgs.mvA, imgs.mvB]}
-            detailVideo={vids.mv2}
-          />
-          <ServiceCard
-            title="Testing & Commissioning"
-            blurb="Primary/secondary injection, relay settings, FAT/SAT and handover."
-            media={{ type: "video", src: vids.mv2 }}
-            gallery={[imgs.mvB, imgs.mvA]}
-            detailVideo={vids.mv1}
-          />
-        </div>
+        <SectionReveal>
+          <div className="flex items-end justify-between mb-6">
+            <h2 className="section-title">Large Power & Medium Voltage ⚡</h2>
+            <span className="text-sm text-foreground/60">Design • Integration • Testing</span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <ServiceCard
+              title="Substation Design"
+              blurb="11–132kV layouts, grounding, protection coordination and SCADA."
+              media={{ type: "image", src: imgs.mvA }}
+              gallery={[imgs.mvA, imgs.mvB]}
+              detailVideo={vids.mv1}
+            />
+            <ServiceCard
+              title="Grid Integration"
+              blurb="Interface studies, interconnect applications and utility approvals."
+              media={{ type: "video", src: vids.mv1 }}
+              gallery={[imgs.mvA, imgs.mvB]}
+              detailVideo={vids.mv2}
+            />
+            <ServiceCard
+              title="Testing & Commissioning"
+              blurb="Primary/secondary injection, relay settings, FAT/SAT and handover."
+              media={{ type: "video", src: vids.mv2 }}
+              gallery={[imgs.mvB, imgs.mvA]}
+              detailVideo={vids.mv1}
+            />
+          </div>
+        </SectionReveal>
       </section>
 
       {/* Sollatek – 3 Sections */}
       <section className="section">
-        <div className="flex items-end justify-between mb-6">
-          <h2 className="section-title">Sollatek Products – 100% Protection</h2>
-          <span className="text-sm text-foreground/60">Stabilizers • Surge • Conditioning</span>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          <ServiceCard
-            title="Voltage Stabilizers"
-            blurb="Single/three-phase units ensuring steady voltage for sensitive loads."
-            media={{ type: "image", src: imgs.sollaA }}
-            gallery={[imgs.sollaA, imgs.sollaB]}
-            detailVideo={vids.solla1}
-          />
-          <ServiceCard
-            title="Surge Protection"
-            blurb="Protection against spikes, transients and sags for mission-critical equipment."
-            media={{ type: "video", src: vids.solla1 }}
-            gallery={[imgs.sollaA, imgs.sollaB]}
-            detailVideo={vids.solla1}
-          />
-          <ServiceCard
-            title="Power Conditioning"
-            blurb="Filtering, regulation and monitoring for clean, reliable power 24/7."
-            media={{ type: "image", src: imgs.sollaB }}
-            gallery={[imgs.sollaB, imgs.sollaA]}
-            detailVideo={vids.solla1}
-          />
-        </div>
+        <SectionReveal>
+          <div className="flex items-end justify-between mb-6">
+            <h2 className="section-title">Sollatek Products – 100% Protection</h2>
+            <span className="text-sm text-foreground/60">Stabilizers • Surge • Conditioning</span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <ServiceCard
+              title="Voltage Stabilizers"
+              blurb="Single/three-phase units ensuring steady voltage for sensitive loads."
+              media={{ type: "image", src: imgs.sollaA }}
+              gallery={[imgs.sollaA, imgs.sollaB]}
+              detailVideo={vids.solla1}
+            />
+            <ServiceCard
+              title="Surge Protection"
+              blurb="Protection against spikes, transients and sags for mission-critical equipment."
+              media={{ type: "video", src: vids.solla1 }}
+              gallery={[imgs.sollaA, imgs.sollaB]}
+              detailVideo={vids.solla1}
+            />
+            <ServiceCard
+              title="Power Conditioning"
+              blurb="Filtering, regulation and monitoring for clean, reliable power 24/7."
+              media={{ type: "image", src: imgs.sollaB }}
+              gallery={[imgs.sollaB, imgs.sollaA]}
+              detailVideo={vids.solla1}
+            />
+          </div>
+        </SectionReveal>
       </section>
     </div>
   );
