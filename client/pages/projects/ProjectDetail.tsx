@@ -8,7 +8,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import SnakeCursor from "@/components/site/cursors/SnakeCursor";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -27,8 +26,7 @@ export default function ProjectDetail() {
 
   return (
     <div className="bg-background">
-      <section className="section cursor-none relative">
-        <SnakeCursor />
+      <section className="section">
         <div className="flex items-center justify-between gap-4">
           <h1 className="section-title">{project.title}</h1>
           <Link to="/projects" className="btn-secondary">

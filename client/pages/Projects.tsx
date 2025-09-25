@@ -41,7 +41,6 @@ const allProjects: Project[] = [
   },
 ];
 
-import SnakeCursor from "@/components/site/cursors/SnakeCursor";
 import SectionReveal from "@/components/site/SectionReveal";
 
 export default function Projects() {
@@ -56,8 +55,7 @@ export default function Projects() {
 
   return (
     <div className="bg-background">
-      <section className="section cursor-none relative">
-        <SnakeCursor />
+      <section className="section">
         <SectionReveal>
           <h1 className="section-title">Projects & Case Studies</h1>
           <div className="mt-6 flex flex-wrap gap-3">

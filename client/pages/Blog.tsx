@@ -27,7 +27,6 @@ const posts = [
   },
 ] as const;
 
-import SnakeCursor from "@/components/site/cursors/SnakeCursor";
 import SectionReveal from "@/components/site/SectionReveal";
 
 export default function Blog() {
@@ -44,8 +43,7 @@ export default function Blog() {
   );
 
   return (
-    <section className="section cursor-none relative">
-      <SnakeCursor />
+    <section className="section">
       <SectionReveal>
         <h1 className="section-title">Insights & News</h1>
         <div className="mt-6 flex flex-wrap gap-3 items-center">
