@@ -8,21 +8,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Sun, Moon, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [dark, setDark] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    const d = localStorage.getItem("theme:dark") === "1";
-    setDark(d);
-    document.documentElement.classList.toggle("dark", d);
     return () => window.removeEventListener("scroll", onScroll);
   }, [location.pathname]);
 
@@ -78,36 +74,12 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <button
-            aria-label="Toggle theme"
-            onClick={() => {
-              const next = !dark;
-              setDark(next);
-              localStorage.setItem("theme:dark", next ? "1" : "0");
-              document.documentElement.classList.toggle("dark", next);
-            }}
-            className="rounded-full border p-2 hover:bg-accent transition"
-          >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
           <Button asChild size="lg">
             <Link to="/contact">Request a Quote</Link>
           </Button>
         </div>
 
         <div className="md:hidden flex items-center gap-2">
-          <button
-            aria-label="Toggle theme"
-            onClick={() => {
-              const next = !dark;
-              setDark(next);
-              localStorage.setItem("theme:dark", next ? "1" : "0");
-              document.documentElement.classList.toggle("dark", next);
-            }}
-            className="rounded-full border p-2 hover:bg-accent transition"
-          >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
           <Sheet>
             <SheetTrigger asChild>
               <button aria-label="Open menu" className="rounded-md border p-2">
