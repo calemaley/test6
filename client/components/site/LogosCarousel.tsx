@@ -188,7 +188,7 @@ export default function LogosCarousel() {
           Trusted by industry leaders
         </p>
       </div>
-      <div className="embla" ref={emblaRef}>
+      <div className="embla overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex gap-6">
           {logos.map((l) => (
             <div
