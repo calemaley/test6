@@ -41,6 +41,8 @@ const allProjects: Project[] = [
   },
 ];
 
+import SnakeCursor from "@/components/site/cursors/SnakeCursor";
+
 export default function Projects() {
   const [filter, setFilter] = useState<"All" | Project["category"]>("All");
   const filtered = useMemo(
@@ -53,7 +55,8 @@ export default function Projects() {
 
   return (
     <div className="bg-background">
-      <section className="section">
+      <section className="section cursor-none relative">
+        <SnakeCursor />
         <h1 className="section-title">Projects & Case Studies</h1>
         <div className="mt-6 flex flex-wrap gap-3">
           {["All", "Hydropower", "Medium-Voltage", "Sollatek"].map((c) => (
