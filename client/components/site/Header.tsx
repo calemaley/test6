@@ -65,16 +65,51 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-2">
+          <button
+            aria-label="Toggle theme"
+            onClick={() => {
+              const next = !dark; setDark(next);
+              localStorage.setItem("theme:dark", next ? "1" : "0");
+              document.documentElement.classList.toggle("dark", next);
+            }}
+            className="rounded-full border p-2 hover:bg-accent transition"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <Button asChild size="lg">
             <Link to="/contact">Request a Quote</Link>
           </Button>
         </div>
 
-        <div className="md:hidden">
-          <Button asChild variant="secondary">
-            <Link to="/contact">Quote</Link>
-          </Button>
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            aria-label="Toggle theme"
+            onClick={() => {
+              const next = !dark; setDark(next);
+              localStorage.setItem("theme:dark", next ? "1" : "0");
+              document.documentElement.classList.toggle("dark", next);
+            }}
+            className="rounded-full border p-2 hover:bg-accent transition"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button aria-label="Open menu" className="rounded-md border p-2"><Menu className="h-5 w-5" /></button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-72">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 grid gap-2">
+                {[["/about","Who We Are"],["/services","What We Do"],["/projects","Projects"],["/blog","Blog"],["/contact","Contact"]].map(([to,label]) => (
+                  <Link key={to} to={to} className="rounded-md px-3 py-2 hover:bg-accent text-left">{label}</Link>
+                ))}
+                <Link to="/contact" className="btn-primary mt-2">Request a Quote</Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
