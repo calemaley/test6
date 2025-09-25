@@ -27,6 +27,8 @@ const posts = [
   },
 ] as const;
 
+import SnakeCursor from "@/components/site/cursors/SnakeCursor";
+
 export default function Blog() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState("All");
@@ -41,7 +43,8 @@ export default function Blog() {
   );
 
   return (
-    <section className="section">
+    <section className="section cursor-none relative">
+      <SnakeCursor />
       <h1 className="section-title">Insights & News</h1>
       <div className="mt-6 flex flex-wrap gap-3 items-center">
         <input
