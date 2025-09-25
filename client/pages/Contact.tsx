@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { saveSubmission } from "@/lib/submissions";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -47,9 +48,16 @@ export default function Contact() {
             : "metrics:general";
       const prev = Number(localStorage.getItem(key) || "0");
       localStorage.setItem(key, String(prev + 1));
+      saveSubmission({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        type: values.type,
+        service: values.service,
+        message: values.message,
+      });
     } catch {}
     toast.success("Thanks! We'll get back to you shortly.");
-    console.log("Contact submission", values);
   };
 
   return (
