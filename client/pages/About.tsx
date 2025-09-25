@@ -146,7 +146,10 @@ export default function About() {
                 "Engineering for efficiency and environmental stewardship.",
               ],
             ].map(([t, d], i) => (
-              <div key={t} className="relative overflow-hidden rounded-xl border p-0 shadow-sm hover-card">
+              <div
+                key={t}
+                className="relative overflow-hidden rounded-xl border p-0 shadow-sm hover-card"
+              >
                 <video
                   className="absolute inset-0 h-full w-full object-cover"
                   src={valueVideos[i % valueVideos.length]}

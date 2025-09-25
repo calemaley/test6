@@ -8,7 +8,10 @@ export interface TextareaProps
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, ...props }, ref) => {
     const normalizedProps: TextareaProps = { ...props };
-    if (Object.prototype.hasOwnProperty.call(normalizedProps, "value") && normalizedProps.value === undefined) {
+    if (
+      Object.prototype.hasOwnProperty.call(normalizedProps, "value") &&
+      normalizedProps.value === undefined
+    ) {
       normalizedProps.value = "";
     }
     return (
