@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
 const articles: Record<string, { title: string; hero: string }> = {
   "hydropower-efficiency-myths": {
@@ -57,6 +58,12 @@ export default function Article() {
   return (
     <article className="bg-background">
       <section className="section">
+        <div className="mb-4">
+          <Link to="/blog" className="inline-flex items-center gap-2 rounded-md border bg-white px-3 py-1.5 text-sm hover:bg-accent transition">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Blog
+          </Link>
+        </div>
         <AnimatedTitle text={meta.title} />
         <p className="section-subtitle">Long-form article with immersive visuals and motion.</p>
         <img src={meta.hero} alt={meta.title} className="mt-6 w-full h-80 object-cover rounded-2xl border" />
