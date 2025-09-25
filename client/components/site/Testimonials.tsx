@@ -31,6 +31,13 @@ const testimonials = [
   },
 ];
 
+const videoUrls = [
+  "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fc639d8b88a3e448cbf81657d2db8e10f?alt=media&token=bb363018-09d5-42af-9391-d532002b2802&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+  "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fb119b8ffe279469db3e1f3e2a4ef3082?alt=media&token=0603722e-5e04-4194-aa67-f66d30d68071&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+  "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F92876b0001ec4e33a91008a26064e29e?alt=media&token=2c4351fc-6f28-4e3d-80cb-57a5b9e81ce0&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+  "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fd81021f04e0546dc91811231bd63c1a8?alt=media&token=c6be6a9f-84f2-4f49-823e-7e9f6ad13d05&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+];
+
 export default function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -105,15 +112,27 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.45 }}
-                  className="h-full rounded-2xl border bg-white p-8 shadow-md"
+                  className="relative h-full overflow-hidden rounded-2xl border shadow-md p-0 hover-card"
                 >
-                  <Quote className="h-8 w-8 text-secondary" />
-                  <p className="mt-4 text-xl leading-relaxed text-foreground/90">
-                    “{t.quote}”
-                  </p>
-                  <footer className="mt-6 text-sm font-semibold text-foreground/70">
-                    {t.author}
-                  </footer>
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover"
+                    src={videoUrls[i % videoUrls.length]}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="relative z-10 p-8">
+                    <Quote className="h-8 w-8 text-white/90" />
+                    <p className="mt-4 text-xl leading-relaxed text-white/90">
+                      “{t.quote}”
+                    </p>
+                    <footer className="mt-6 text-sm font-semibold text-white/80">
+                      {t.author}
+                    </footer>
+                  </div>
                 </motion.blockquote>
               </div>
             ))}

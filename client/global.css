@@ -157,4 +157,7 @@
   .section-subtitle {
     @apply mt-2 text-base md:text-lg text-foreground/70;
   }
+  .hover-card {
+    @apply transition-transform duration-300 will-change-transform hover:-translate-y-1 hover:shadow-xl hover:ring-1 hover:ring-primary/20;
+  }
 }

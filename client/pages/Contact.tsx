@@ -213,26 +213,36 @@ export default function Contact() {
             </Form>
           </div>
 
-          <div className="rounded-xl border bg-white p-6 shadow-sm">
-            <div className="font-display text-lg font-bold text-primary">
-              Our Offices
-            </div>
-            <div className="mt-2 text-foreground/70 text-sm">
-              Nairobi, Kenya • Mombasa • Kisumu
-            </div>
-            <div className="mt-6 h-64 w-full rounded-lg overflow-hidden">
-              <iframe
-                title="JBRANKY Kenya Map"
-                className="h-full w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31909.39486296024!2d36.802128!3d-1.292066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d3d7d859bf%3A0x8c6f8f8b0b9e3bdf!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1710000000000"
-              />
-            </div>
-            <div className="mt-6 text-sm text-foreground/70">
-              Phone: +254 000 000 000
-              <br />
-              Email: info@jbranky.com
+          <div className="relative overflow-hidden rounded-xl border p-0 shadow-sm hover-card">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              src="https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F84d2b5a9c4ad428083fc212ef5b5748f?alt=media&token=b538b043-9da4-4a1c-a6b3-73d392e67712&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="relative z-10 p-6 text-white">
+              <div className="font-display text-lg font-bold">Our Offices</div>
+              <div className="mt-2 text-sm/6 text-white/85">
+                Nairobi, Kenya • Mombasa • Kisumu
+              </div>
+              <div className="mt-6 h-64 w-full rounded-lg overflow-hidden">
+                <iframe
+                  title="JBRANKY Kenya Map"
+                  className="h-full w-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31909.39486296024!2d36.802128!3d-1.292066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d3d7d859bf%3A0x8c6f8f8b0b9e3bdf!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1710000000000"
+                />
+              </div>
+              <div className="mt-6 text-sm text-white/85">
+                Phone: +254 000 000 000
+                <br />
+                Email: info@jbranky.com
+              </div>
             </div>
           </div>
         </div>

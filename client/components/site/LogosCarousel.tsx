@@ -195,7 +195,7 @@ export default function LogosCarousel() {
               key={l.name}
               className="embla__slide flex-[0_0_180px] grid place-items-center"
             >
-              <div className="rounded-md bg-white p-2 shadow-sm border">
+              <div className="rounded-md bg-white p-2 shadow-sm border hover-card">
                 {l.svg}
               </div>
             </div>

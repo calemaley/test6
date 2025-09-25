@@ -52,7 +52,7 @@ export default function FeaturedProjects() {
             <DialogTrigger asChild>
               <button
                 onClick={() => setActive(p)}
-                className="group relative overflow-hidden rounded-xl border bg-card text-left shadow-sm"
+                className="group relative overflow-hidden rounded-xl border bg-card text-left shadow-sm hover-card"
               >
                 <img
                   src={p.img}

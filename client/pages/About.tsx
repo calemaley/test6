@@ -126,27 +126,49 @@ export default function About() {
       <section className="section">
         <h2 className="section-title">Our Values</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {[
-            [
-              "Safety First",
-              "Uncompromising commitment to safety and compliance.",
-            ],
-            [
-              "Integrity",
-              "Transparent processes, honest communication, dependable delivery.",
-            ],
-            [
-              "Sustainability",
-              "Engineering for efficiency and environmental stewardship.",
-            ],
-          ].map(([t, d]) => (
-            <div key={t} className="rounded-xl border bg-white p-6 shadow-sm">
-              <div className="font-display text-lg font-bold text-primary">
-                {t}
+          {(() => {
+            const valueVideos = [
+              "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fb0cb66bee8f84f67bc3186df000d51f0?alt=media&token=ff1b4c9f-a82a-4935-9701-19169263d925&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+              "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Ffe405992740c48ef8509551d1540740a?alt=media&token=19498474-7147-472f-a39f-fdca8d52738d&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+              "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F3c1e6b6305504db0b5ec3e554e1a91e1?alt=media&token=d96c977d-d7a5-421b-a74f-5d04e2af369c&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+            ];
+            return [
+              [
+                "Safety First",
+                "Uncompromising commitment to safety and compliance.",
+              ],
+              [
+                "Integrity",
+                "Transparent processes, honest communication, dependable delivery.",
+              ],
+              [
+                "Sustainability",
+                "Engineering for efficiency and environmental stewardship.",
+              ],
+            ].map(([t, d], i) => (
+              <div
+                key={t}
+                className="relative overflow-hidden rounded-xl border p-0 shadow-sm hover-card"
+              >
+                <video
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src={valueVideos[i % valueVideos.length]}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-black/55" />
+                <div className="relative z-10 p-6">
+                  <div className="font-display text-lg font-bold text-white">
+                    {t}
+                  </div>
+                  <p className="mt-2 text-white/85">{d}</p>
+                </div>
               </div>
-              <p className="mt-2 text-foreground/70">{d}</p>
-            </div>
-          ))}
+            ));
+          })()}
         </div>
       </section>
 
@@ -155,7 +177,7 @@ export default function About() {
         <h2 className="section-title">Milestones</h2>
         <div className="relative mt-12">
           <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-border" />
-          <div className="space-y-12">
+          <div className="space-y-16 md:space-y-24">
             {milestones.map((m, i) => {
               const left = i % 2 === 0;
               return (
@@ -175,11 +197,33 @@ export default function About() {
                     </div>
                   </div>
                   <div className="md:pl-10">
-                    <div className="rounded-2xl border bg-white p-6 shadow-sm">
-                      <div className="font-display text-xl font-bold text-primary">
-                        {m.title}
+                    <div className="relative overflow-hidden rounded-2xl border p-0 shadow-sm hover-card">
+                      <video
+                        className="absolute inset-0 h-full w-full object-cover"
+                        src={(() => {
+                          const vids = [
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F14896cdbcbe74b8791e325a74957eca3?alt=media&token=8990d292-f1df-4be8-96d2-2d4df0832e24&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Ff3617627b7cd430c9a39247dc35b39ae?alt=media&token=f366edb1-9805-4da2-a82c-e64db39532b7&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F2d6473d7bc364923a1e41851481e628a?alt=media&token=bff2a154-4265-4518-bf09-3d92048cec2c&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F27cad907f55b4932abf1b0ed48cfdbe3?alt=media&token=75cd9513-2305-4e1d-9c61-6a6386e914cd&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F9080cdfb990a41d1ab1e57063ad5ba81?alt=media&token=bb2f337b-d20d-4d96-8cfd-0b3f7efbc1a2&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                            "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Ff966f09f828f4b93974e3b0ff80e7bec?alt=media&token=3f38f61e-9d01-4799-a60b-47277c10a638&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
+                          ];
+                          return vids[i % vids.length];
+                        })()}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                      />
+                      <div className="absolute inset-0 bg-black/55" />
+                      <div className="relative z-10 p-6">
+                        <div className="font-display text-xl font-bold text-white">
+                          {m.title}
+                        </div>
+                        <p className="mt-2 text-white/85">{m.desc}</p>
                       </div>
-                      <p className="mt-2 text-foreground/70">{m.desc}</p>
                     </div>
                   </div>
                 </motion.div>

@@ -2,8 +2,18 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t bg-gradient-to-b from-white to-accent/20">
-      <div className="section grid gap-10 md:grid-cols-4">
+    <footer className="relative mt-16 border-t">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src="https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F212a653dec1843f6a172265347b7b3f6?alt=media&token=e12a5d46-63be-4656-9b71-1b348f01643c&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+      <div className="absolute inset-0 bg-white/85 dark:bg-black/60" />
+      <div className="relative z-10 section grid gap-10 md:grid-cols-4">
         <div className="transition hover:-translate-y-0.5">
           <div className="font-display text-2xl font-extrabold text-primary">
             JBRANKY LTD
@@ -58,7 +68,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t">
-        <div className="container mx-auto container-padding py-6 text-xs text-foreground/60 flex items-center justify-between">
+        <div className="relative z-10 container mx-auto container-padding py-6 text-xs text-foreground/60 flex items-center justify-between">
           <span>
             © {new Date().getFullYear()} JBRANKY LTD. All rights reserved.
           </span>

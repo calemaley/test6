@@ -39,25 +39,37 @@ export default function Stats() {
 
   return (
     <section className="section">
-      <div className="rounded-2xl bg-gradient-to-br from-primary to-blue-600 text-white p-8 md:p-12">
-        <div className="grid gap-8 md:grid-cols-3 text-center">
-          <div ref={years.ref}>
-            <div className="font-display text-5xl font-extrabold">
-              {years.value}+
+      <div className="relative overflow-hidden rounded-2xl text-white">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fc639d8b88a3e448cbf81657d2db8e10f?alt=media&token=bb363018-09d5-42af-9391-d532002b2802&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-blue-600/80" />
+        <div className="relative p-8 md:p-12">
+          <div className="grid gap-8 md:grid-cols-3 text-center">
+            <div ref={years.ref}>
+              <div className="font-display text-5xl font-extrabold">
+                {years.value}+
+              </div>
+              <div className="mt-2 text-white/80">Years in business</div>
             </div>
-            <div className="mt-2 text-white/80">Years in business</div>
-          </div>
-          <div ref={projects.ref}>
-            <div className="font-display text-5xl font-extrabold">
-              {projects.value}+
+            <div ref={projects.ref}>
+              <div className="font-display text-5xl font-extrabold">
+                {projects.value}+
+              </div>
+              <div className="mt-2 text-white/80">Projects delivered</div>
             </div>
-            <div className="mt-2 text-white/80">Projects delivered</div>
-          </div>
-          <div ref={uptime.ref}>
-            <div className="font-display text-5xl font-extrabold">
-              {uptime.value}%
+            <div ref={uptime.ref}>
+              <div className="font-display text-5xl font-extrabold">
+                {uptime.value}%
+              </div>
+              <div className="mt-2 text-white/80">Equipment uptime</div>
             </div>
-            <div className="mt-2 text-white/80">Equipment uptime</div>
           </div>
         </div>
       </div>
