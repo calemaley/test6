@@ -2,7 +2,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 import CookieConsent from "./CookieConsent";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Layout() {
   return (
@@ -13,7 +12,6 @@ export default function Layout() {
       </main>
       <Footer />
       <CookieConsent />
-      <ThemeToggle />
     </div>
   );
 }
