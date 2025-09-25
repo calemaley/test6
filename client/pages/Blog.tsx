@@ -1,10 +1,30 @@
 import { useMemo, useState } from "react";
 
 const posts = [
-  { id: "b1", slug: "hydropower-efficiency-myths", title: "Hydropower Efficiency Myths", category: "Hydropower" },
-  { id: "b2", slug: "mv-substation-safety-checklist", title: "MV Substation Safety Checklist", category: "Medium-Voltage" },
-  { id: "b3", slug: "why-sollatek-for-hospitals", title: "Why Sollatek for Hospitals", category: "Sollatek" },
-  { id: "b4", slug: "grid-scale-storage-trends", title: "Grid-Scale Storage Trends", category: "Industry" },
+  {
+    id: "b1",
+    slug: "hydropower-efficiency-myths",
+    title: "Hydropower Efficiency Myths",
+    category: "Hydropower",
+  },
+  {
+    id: "b2",
+    slug: "mv-substation-safety-checklist",
+    title: "MV Substation Safety Checklist",
+    category: "Medium-Voltage",
+  },
+  {
+    id: "b3",
+    slug: "why-sollatek-for-hospitals",
+    title: "Why Sollatek for Hospitals",
+    category: "Sollatek",
+  },
+  {
+    id: "b4",
+    slug: "grid-scale-storage-trends",
+    title: "Grid-Scale Storage Trends",
+    category: "Industry",
+  },
 ] as const;
 
 export default function Blog() {
@@ -50,9 +70,15 @@ export default function Blog() {
             href={`/blog/${(p as any).slug}`}
             className="block rounded-xl border bg-white p-6 shadow-sm hover:shadow-lg"
           >
-            <h3 className="font-display text-lg font-bold text-primary">{p.title}</h3>
-            <p className="mt-2 text-foreground/70 text-sm">Category: {p.category}</p>
-            <div className="mt-4 text-secondary font-semibold">Read article →</div>
+            <h3 className="font-display text-lg font-bold text-primary">
+              {p.title}
+            </h3>
+            <p className="mt-2 text-foreground/70 text-sm">
+              Category: {p.category}
+            </p>
+            <div className="mt-4 text-secondary font-semibold">
+              Read article →
+            </div>
           </a>
         ))}
       </div>

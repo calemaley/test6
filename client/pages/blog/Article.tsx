@@ -46,8 +46,9 @@ const gradients = [
   "from-emerald-500 to-primary",
 ];
 
-const paragraphs = Array.from({ length: 60 }).map((_, i) =>
-  `In the evolving landscape of modern energy, JBRANKY LTD champions resilient infrastructure and protection-first design. Section ${i + 1}: we examine grid dynamics, hydrological variance, relay coordination, and practical lessons learned in the field. Our teams combine scientific rigor with operational pragmatism—turning complex constraints into measurable outcomes.`,
+const paragraphs = Array.from({ length: 60 }).map(
+  (_, i) =>
+    `In the evolving landscape of modern energy, JBRANKY LTD champions resilient infrastructure and protection-first design. Section ${i + 1}: we examine grid dynamics, hydrological variance, relay coordination, and practical lessons learned in the field. Our teams combine scientific rigor with operational pragmatism—turning complex constraints into measurable outcomes.`,
 );
 
 export default function Article() {
@@ -57,7 +58,9 @@ export default function Article() {
     return (
       <section className="section">
         <h1 className="section-title">Article not found</h1>
-        <Link to="/blog" className="btn-secondary mt-4">Back to Blog</Link>
+        <Link to="/blog" className="btn-secondary mt-4">
+          Back to Blog
+        </Link>
       </section>
     );
   }
@@ -66,14 +69,23 @@ export default function Article() {
     <article className="bg-background">
       <section className="section">
         <div className="mb-4">
-          <Link to="/blog" className="inline-flex items-center gap-2 rounded-md border bg-white px-3 py-1.5 text-sm hover:bg-accent transition">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 rounded-md border bg-white px-3 py-1.5 text-sm hover:bg-accent transition"
+          >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
           </Link>
         </div>
         <AnimatedTitle text={meta.title} />
-        <p className="section-subtitle">Long-form article with immersive visuals and motion.</p>
-        <img src={meta.hero} alt={meta.title} className="mt-6 w-full h-80 object-cover rounded-2xl border" />
+        <p className="section-subtitle">
+          Long-form article with immersive visuals and motion.
+        </p>
+        <img
+          src={meta.hero}
+          alt={meta.title}
+          className="mt-6 w-full h-80 object-cover rounded-2xl border"
+        />
       </section>
 
       <section className="section">

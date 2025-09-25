@@ -80,8 +80,12 @@ export default function Projects() {
                 className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
               />
               <div className="p-4">
-                <div className="font-display font-bold text-primary">{p.title}</div>
-                <div className="mt-1 text-xs text-foreground/60">{p.category}</div>
+                <div className="font-display font-bold text-primary">
+                  {p.title}
+                </div>
+                <div className="mt-1 text-xs text-foreground/60">
+                  {p.category}
+                </div>
               </div>
             </Link>
           ))}

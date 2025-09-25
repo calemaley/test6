@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Sun, Moon, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -75,7 +81,8 @@ export default function Header() {
           <button
             aria-label="Toggle theme"
             onClick={() => {
-              const next = !dark; setDark(next);
+              const next = !dark;
+              setDark(next);
               localStorage.setItem("theme:dark", next ? "1" : "0");
               document.documentElement.classList.toggle("dark", next);
             }}
@@ -92,7 +99,8 @@ export default function Header() {
           <button
             aria-label="Toggle theme"
             onClick={() => {
-              const next = !dark; setDark(next);
+              const next = !dark;
+              setDark(next);
               localStorage.setItem("theme:dark", next ? "1" : "0");
               document.documentElement.classList.toggle("dark", next);
             }}
@@ -102,17 +110,33 @@ export default function Header() {
           </button>
           <Sheet>
             <SheetTrigger asChild>
-              <button aria-label="Open menu" className="rounded-md border p-2"><Menu className="h-5 w-5" /></button>
+              <button aria-label="Open menu" className="rounded-md border p-2">
+                <Menu className="h-5 w-5" />
+              </button>
             </SheetTrigger>
             <SheetContent side="left" className="w-72">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 grid gap-2">
-                {[["/about","Who We Are"],["/services","What We Do"],["/projects","Projects"],["/blog","Blog"],["/contact","Contact"]].map(([to,label]) => (
-                  <Link key={to} to={to} className="rounded-md px-3 py-2 hover:bg-accent text-left">{label}</Link>
+                {[
+                  ["/about", "Who We Are"],
+                  ["/services", "What We Do"],
+                  ["/projects", "Projects"],
+                  ["/blog", "Blog"],
+                  ["/contact", "Contact"],
+                ].map(([to, label]) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="rounded-md px-3 py-2 hover:bg-accent text-left"
+                  >
+                    {label}
+                  </Link>
                 ))}
-                <Link to="/contact" className="btn-primary mt-2">Request a Quote</Link>
+                <Link to="/contact" className="btn-primary mt-2">
+                  Request a Quote
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>

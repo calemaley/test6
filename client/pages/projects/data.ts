@@ -29,7 +29,8 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/417192/pexels-photo-417192.jpeg?auto=compress&cs=tinysrgb&w=1600",
       "https://images.pexels.com/photos/34085/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1600",
     ],
-    summary: "Design and commissioning of 132/33kV substation with modern protection.",
+    summary:
+      "Design and commissioning of 132/33kV substation with modern protection.",
   },
   {
     id: "p3",
@@ -64,7 +65,8 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/635438/pexels-photo-635438.jpeg?auto=compress&cs=tinysrgb&w=1600",
       "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1600",
     ],
-    summary: "Rehabilitation of hydropower intake and penstock for improved yield.",
+    summary:
+      "Rehabilitation of hydropower intake and penstock for improved yield.",
   },
 ];
 
