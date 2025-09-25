@@ -11,9 +11,11 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  if (isAuthed()) {
-    navigate("/admin-rank/dashboard", { replace: true });
-  }
+  useEffect(() => {
+    if (isAuthed()) {
+      navigate("/admin-rank/dashboard", { replace: true });
+    }
+  }, [navigate]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
