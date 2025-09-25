@@ -19,6 +19,7 @@ import Article from "./pages/blog/Article";
 import MediumVoltage from "./pages/services/MediumVoltage";
 import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
+import AdminRanky from "./pages/AdminRanky";
 import { AnimatePresence, motion } from "framer-motion";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ function RoutesWithAnimation() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<Article />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/Ranky/" element={<AdminRanky />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
