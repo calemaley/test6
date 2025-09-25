@@ -88,8 +88,8 @@ export default function About() {
         <div className="grid gap-10 md:grid-cols-2 items-center">
           <div className="rounded-xl overflow-hidden shadow-sm border">
             <img
-              src="https://images.pexels.com/photos/6294902/pexels-photo-6294902.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="Field team at hydropower station"
+              src="https://images.pexels.com/photos/417192/pexels-photo-417192.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Substation equipment and engineers"
               className="w-full h-full object-cover"
             />
           </div>
