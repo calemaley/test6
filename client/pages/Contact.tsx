@@ -30,6 +30,8 @@ const schema = z.object({
   message: z.string().min(10),
 });
 
+import SectionReveal from "@/components/site/SectionReveal";
+
 export default function Contact() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -62,10 +64,11 @@ export default function Contact() {
 
   return (
     <section className="section">
-      <h1 className="section-title">Contact & Quote</h1>
-      <p className="section-subtitle">We respond within 1 business day.</p>
+      <SectionReveal>
+        <h1 className="section-title">Contact & Quote</h1>
+        <p className="section-subtitle">We respond within 1 business day.</p>
 
-      <div className="mt-8 grid gap-8 md:grid-cols-2">
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border bg-white p-6 shadow-sm">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -227,7 +230,8 @@ export default function Contact() {
             Email: info@jbranky.com
           </div>
         </div>
-      </div>
+        </div>
+      </SectionReveal>
     </section>
   );
 }
