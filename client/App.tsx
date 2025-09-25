@@ -14,6 +14,8 @@ import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Hydropower from "./pages/services/Hydropower";
+import ProjectDetail from "./pages/projects/ProjectDetail";
+import Article from "./pages/blog/Article";
 import MediumVoltage from "./pages/services/MediumVoltage";
 import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
@@ -44,7 +46,9 @@ function RoutesWithAnimation() {
             />
             <Route path="/services/sollatek" element={<Sollatek />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Article />} />
             <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

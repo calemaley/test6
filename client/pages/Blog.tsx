@@ -1,15 +1,11 @@
 import { useMemo, useState } from "react";
 
 const posts = [
-  { id: "b1", title: "Hydropower Efficiency Myths", category: "Hydropower" },
-  {
-    id: "b2",
-    title: "MV Substation Safety Checklist",
-    category: "Medium-Voltage",
-  },
-  { id: "b3", title: "Why Sollatek for Hospitals", category: "Sollatek" },
-  { id: "b4", title: "Grid-Scale Storage Trends", category: "Industry" },
-];
+  { id: "b1", slug: "hydropower-efficiency-myths", title: "Hydropower Efficiency Myths", category: "Hydropower" },
+  { id: "b2", slug: "mv-substation-safety-checklist", title: "MV Substation Safety Checklist", category: "Medium-Voltage" },
+  { id: "b3", slug: "why-sollatek-for-hospitals", title: "Why Sollatek for Hospitals", category: "Sollatek" },
+  { id: "b4", slug: "grid-scale-storage-trends", title: "Grid-Scale Storage Trends", category: "Industry" },
+] as const;
 
 export default function Blog() {
   const [query, setQuery] = useState("");
@@ -49,18 +45,15 @@ export default function Blog() {
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {filtered.map((p) => (
-          <article
+          <a
             key={p.id}
-            className="rounded-xl border bg-white p-6 shadow-sm"
+            href={`/blog/${(p as any).slug}`}
+            className="block rounded-xl border bg-white p-6 shadow-sm hover:shadow-lg"
           >
-            <h3 className="font-display text-lg font-bold text-primary">
-              {p.title}
-            </h3>
-            <p className="mt-2 text-foreground/70 text-sm">
-              Category: {p.category}
-            </p>
-            <button className="mt-4 btn-secondary">Read more</button>
-          </article>
+            <h3 className="font-display text-lg font-bold text-primary">{p.title}</h3>
+            <p className="mt-2 text-foreground/70 text-sm">Category: {p.category}</p>
+            <div className="mt-4 text-secondary font-semibold">Read article →</div>
+          </a>
         ))}
       </div>
     </section>

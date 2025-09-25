@@ -50,7 +50,6 @@ const allProjects: Project[] = [
 
 export default function Projects() {
   const [filter, setFilter] = useState<"All" | Project["category"]>("All");
-  const [active, setActive] = useState<Project | null>(null);
   const filtered = useMemo(
     () =>
       filter === "All"
@@ -77,48 +76,21 @@ export default function Projects() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p) => (
-            <Dialog key={p.id}>
-              <DialogTrigger asChild>
-                <button
-                  onClick={() => setActive(p)}
-                  className="group overflow-hidden rounded-xl border bg-card text-left shadow-sm"
-                >
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
-                  />
-                  <div className="p-4">
-                    <div className="font-display font-bold text-primary">
-                      {p.title}
-                    </div>
-                    <div className="mt-1 text-xs text-foreground/60">
-                      {p.category}
-                    </div>
-                  </div>
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-3xl">
-                {active && (
-                  <div>
-                    <DialogHeader>
-                      <DialogTitle>{active.title}</DialogTitle>
-                      <DialogDescription>
-                        Project case study preview
-                      </DialogDescription>
-                    </DialogHeader>
-                    <img
-                      src={active.img}
-                      alt={active.title}
-                      className="mt-2 mb-4 w-full rounded-lg object-cover"
-                    />
-                    <p className="text-foreground/70">
-                      Scope, challenges, and outcomes with performance metrics.
-                    </p>
-                  </div>
-                )}
-              </DialogContent>
-            </Dialog>
+            <Link
+              key={p.id}
+              to={`/projects/${p.id}`}
+              className="group overflow-hidden rounded-xl border bg-card text-left shadow-sm hover:shadow-lg"
+            >
+              <img
+                src={p.img}
+                alt={p.title}
+                className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
+              />
+              <div className="p-4">
+                <div className="font-display font-bold text-primary">{p.title}</div>
+                <div className="mt-1 text-xs text-foreground/60">{p.category}</div>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
