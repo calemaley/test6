@@ -42,6 +42,7 @@ const allProjects: Project[] = [
 ];
 
 import SnakeCursor from "@/components/site/cursors/SnakeCursor";
+import SectionReveal from "@/components/site/SectionReveal";
 
 export default function Projects() {
   const [filter, setFilter] = useState<"All" | Project["category"]>("All");
