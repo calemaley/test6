@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
@@ -19,47 +19,10 @@ import Article from "./pages/blog/Article";
 import MediumVoltage from "./pages/services/MediumVoltage";
 import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
-import AdminRanky from "./pages/AdminRanky";
-import { AnimatePresence, motion } from "framer-motion";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
-
-function RoutesWithAnimation() {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.25 }}
-      >
-        <Routes location={location}>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/hydropower" element={<Hydropower />} />
-            <Route
-              path="/services/medium-voltage"
-              element={<MediumVoltage />}
-            />
-            <Route path="/services/sollatek" element={<Sollatek />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<Article />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/Ranky/" element={<AdminRanky />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -67,7 +30,25 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <RoutesWithAnimation />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/hydropower" element={<Hydropower />} />
+            <Route path="/services/medium-voltage" element={<MediumVoltage />} />
+            <Route path="/services/sollatek" element={<Sollatek />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Article />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin-rank" element={<AdminLogin />} />
+            <Route path="/admin-rank/dashboard" element={<AdminDashboard />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
