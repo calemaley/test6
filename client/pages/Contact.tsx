@@ -199,7 +199,15 @@ export default function Contact() {
           <div className="mt-2 text-foreground/70 text-sm">
             Nairobi, Kenya • Mombasa • Kisumu
           </div>
-          <div className="mt-6 h-64 w-full rounded-lg bg-[url('https://tile.openstreetmap.org/5/16/16.png')] bg-cover bg-center" />
+          <div className="mt-6 h-64 w-full rounded-lg overflow-hidden">
+            <iframe
+              title="JBRANKY Kenya Map"
+              className="h-full w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31909.39486296024!2d36.802128!3d-1.292066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d3d7d859bf%3A0x8c6f8f8b0b9e3bdf!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1710000000000"
+            />
+          </div>
           <div className="mt-6 text-sm text-foreground/70">
             Phone: +254 000 000 000
             <br />
