@@ -1,12 +1,5 @@
 import { useMemo, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 type Project = {
   id: string;
