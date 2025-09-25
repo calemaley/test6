@@ -38,6 +38,11 @@ export default function Contact() {
   const watchType = form.watch("type");
 
   const onSubmit = (values: z.infer<typeof schema>) => {
+    try {
+      const key = values.type === "consultation" ? "metrics:consultation" : values.type === "service" ? "metrics:service" : "metrics:general";
+      const prev = Number(localStorage.getItem(key) || "0");
+      localStorage.setItem(key, String(prev + 1));
+    } catch {}
     toast.success("Thanks! We'll get back to you shortly.");
     console.log("Contact submission", values);
   };

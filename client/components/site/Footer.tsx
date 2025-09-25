@@ -44,7 +44,7 @@ export default function Footer() {
           <ul className="space-y-2 text-foreground/70 text-sm">
             <li>Phone: +234 000 000 0000</li>
             <li>Email: info@jbranky.com</li>
-            <li>HQ: Lagos, Nigeria</li>
+            <li>HQ: Nairobi, Kenya</li>
           </ul>
         </div>
         <div>
