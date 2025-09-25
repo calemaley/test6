@@ -15,7 +15,9 @@ export interface Submission {
 const STORAGE_KEY = "jbranky:submissions";
 const AUTH_KEY = "jbranky:admin:auth";
 
-export function saveSubmission(s: Omit<Submission, "id" | "createdAt" | "reviewed">) {
+export function saveSubmission(
+  s: Omit<Submission, "id" | "createdAt" | "reviewed">,
+) {
   const all = getSubmissions();
   const item: Submission = {
     id: crypto.randomUUID(),

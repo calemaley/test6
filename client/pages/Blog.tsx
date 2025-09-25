@@ -58,11 +58,15 @@ export default function Blog() {
             onChange={(e) => setCat(e.target.value)}
             className="rounded-md border px-3 py-2"
           >
-            {["All", "Hydropower", "Medium-Voltage", "Sollatek", "Industry"].map(
-              (c) => (
-                <option key={c}>{c}</option>
-              ),
-            )}
+            {[
+              "All",
+              "Hydropower",
+              "Medium-Voltage",
+              "Sollatek",
+              "Industry",
+            ].map((c) => (
+              <option key={c}>{c}</option>
+            ))}
           </select>
         </div>
 

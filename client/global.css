@@ -106,7 +106,9 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    cursor: url("/bee-cursor.svg") 2 2, auto;
+    cursor:
+      url("/bee-cursor.svg") 2 2,
+      auto;
     font-family:
       "Open Sans",
       system-ui,

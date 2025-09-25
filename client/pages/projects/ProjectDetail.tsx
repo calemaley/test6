@@ -8,7 +8,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = id ? getProject(id) : null;

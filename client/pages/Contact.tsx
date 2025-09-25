@@ -69,110 +69,82 @@ export default function Contact() {
         <p className="section-subtitle">We respond within 1 business day.</p>
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-        <div className="rounded-xl border bg-white p-6 shadow-sm">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Jane Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-xl border bg-white p-6 shadow-sm">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Full name</FormLabel>
                       <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="you@company.com"
-                          {...field}
-                        />
+                        <Input placeholder="Jane Doe" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="you@company.com"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <Input placeholder="+234 ..." {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
                 <FormField
                   control={form.control}
-                  name="phone"
+                  name="type"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone</FormLabel>
-                      <FormControl>
-                        <Input placeholder="+234 ..." {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Inquiry type</FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="service">
-                            Request Service
-                          </SelectItem>
-                          <SelectItem value="consultation">
-                            Book Consultation
-                          </SelectItem>
-                          <SelectItem value="general">
-                            General Inquiry
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {watchType !== "general" && (
-                <FormField
-                  control={form.control}
-                  name="service"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Service</FormLabel>
+                      <FormLabel>Inquiry type</FormLabel>
                       <FormControl>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder="Choose a service" />
+                            <SelectValue placeholder="Select type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="hydropower">
-                              Hydropower
+                            <SelectItem value="service">
+                              Request Service
                             </SelectItem>
-                            <SelectItem value="mv">Large Power & MV</SelectItem>
-                            <SelectItem value="sollatek">
-                              Sollatek Protection
+                            <SelectItem value="consultation">
+                              Book Consultation
+                            </SelectItem>
+                            <SelectItem value="general">
+                              General Inquiry
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -181,55 +153,88 @@ export default function Contact() {
                     </FormItem>
                   )}
                 />
-              )}
 
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        rows={5}
-                        placeholder="Tell us about your project..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                {watchType !== "general" && (
+                  <FormField
+                    control={form.control}
+                    name="service"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Service</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Choose a service" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="hydropower">
+                                Hydropower
+                              </SelectItem>
+                              <SelectItem value="mv">
+                                Large Power & MV
+                              </SelectItem>
+                              <SelectItem value="sollatek">
+                                Sollatek Protection
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 )}
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={5}
+                          placeholder="Tell us about your project..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <button type="submit" className="btn-primary">
+                  Submit
+                </button>
+              </form>
+            </Form>
+          </div>
+
+          <div className="rounded-xl border bg-white p-6 shadow-sm">
+            <div className="font-display text-lg font-bold text-primary">
+              Our Offices
+            </div>
+            <div className="mt-2 text-foreground/70 text-sm">
+              Nairobi, Kenya • Mombasa • Kisumu
+            </div>
+            <div className="mt-6 h-64 w-full rounded-lg overflow-hidden">
+              <iframe
+                title="JBRANKY Kenya Map"
+                className="h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31909.39486296024!2d36.802128!3d-1.292066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d3d7d859bf%3A0x8c6f8f8b0b9e3bdf!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1710000000000"
               />
-
-              <button type="submit" className="btn-primary">
-                Submit
-              </button>
-            </form>
-          </Form>
-        </div>
-
-        <div className="rounded-xl border bg-white p-6 shadow-sm">
-          <div className="font-display text-lg font-bold text-primary">
-            Our Offices
+            </div>
+            <div className="mt-6 text-sm text-foreground/70">
+              Phone: +254 000 000 000
+              <br />
+              Email: info@jbranky.com
+            </div>
           </div>
-          <div className="mt-2 text-foreground/70 text-sm">
-            Nairobi, Kenya • Mombasa • Kisumu
-          </div>
-          <div className="mt-6 h-64 w-full rounded-lg overflow-hidden">
-            <iframe
-              title="JBRANKY Kenya Map"
-              className="h-full w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31909.39486296024!2d36.802128!3d-1.292066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d3d7d859bf%3A0x8c6f8f8b0b9e3bdf!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1710000000000"
-            />
-          </div>
-          <div className="mt-6 text-sm text-foreground/70">
-            Phone: +254 000 000 000
-            <br />
-            Email: info@jbranky.com
-          </div>
-        </div>
         </div>
       </SectionReveal>
     </section>

@@ -38,7 +38,10 @@ export default function AdminLogin() {
       <h1 className="section-title">Admin Login</h1>
       <p className="section-subtitle">Restricted access</p>
 
-      <form onSubmit={onSubmit} className="mt-8 space-y-4 rounded-xl border bg-white p-6 shadow-sm">
+      <form
+        onSubmit={onSubmit}
+        className="mt-8 space-y-4 rounded-xl border bg-white p-6 shadow-sm"
+      >
         <div className="space-y-2">
           <Label htmlFor="username">Username</Label>
           <Input

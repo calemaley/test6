@@ -19,7 +19,10 @@ if (typeof window !== "undefined") {
   window.console.error = (...args: any[]) => {
     try {
       const first = args[0];
-      if (typeof first === "string" && MESSAGES.some((m) => first.includes(m))) {
+      if (
+        typeof first === "string" &&
+        MESSAGES.some((m) => first.includes(m))
+      ) {
         return;
       }
     } catch {}

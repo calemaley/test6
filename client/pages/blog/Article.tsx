@@ -51,7 +51,6 @@ const paragraphs = Array.from({ length: 60 }).map(
     `In the evolving landscape of modern energy, JBRANKY LTD champions resilient infrastructure and protection-first design. Section ${i + 1}: we examine grid dynamics, hydrological variance, relay coordination, and practical lessons learned in the field. Our teams combine scientific rigor with operational pragmatism—turning complex constraints into measurable outcomes.`,
 );
 
-
 export default function Article() {
   const { slug } = useParams();
   const meta = slug ? articles[slug] : undefined;

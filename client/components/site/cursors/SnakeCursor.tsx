@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export default function SnakeCursor({ segments = 14, color = "#16a34a" }: { segments?: number; color?: string }) {
+export default function SnakeCursor({
+  segments = 14,
+  color = "#16a34a",
+}: {
+  segments?: number;
+  color?: string;
+}) {
   const [mounted, setMounted] = useState(false);
   const target = useRef({ x: 0, y: 0 });
   const pts = useRef<Array<{ x: number; y: number }>>([]);
@@ -9,7 +15,10 @@ export default function SnakeCursor({ segments = 14, color = "#16a34a" }: { segm
   const nodes = useMemo(() => Array.from({ length: segments }), [segments]);
 
   useEffect(() => {
-    pts.current = Array.from({ length: segments }).map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+    pts.current = Array.from({ length: segments }).map(() => ({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    }));
     const onMove = (e: MouseEvent) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
