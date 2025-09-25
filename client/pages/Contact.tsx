@@ -197,11 +197,11 @@ export default function Contact() {
             Our Offices
           </div>
           <div className="mt-2 text-foreground/70 text-sm">
-            Lagos, Nigeria • Abuja • Port Harcourt
+            Nairobi, Kenya • Mombasa • Kisumu
           </div>
           <div className="mt-6 h-64 w-full rounded-lg bg-[url('https://tile.openstreetmap.org/5/16/16.png')] bg-cover bg-center" />
           <div className="mt-6 text-sm text-foreground/70">
-            Phone: +234 000 000 0000
+            Phone: +254 000 000 000
             <br />
             Email: info@jbranky.com
           </div>
