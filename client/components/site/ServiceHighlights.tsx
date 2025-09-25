@@ -39,7 +39,7 @@ export default function ServiceHighlights() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.05 * i, duration: 0.5 }}
-            className="group rounded-xl border bg-white p-6 shadow-sm hover:shadow-lg transition"
+            className="group rounded-xl border bg-white p-6 shadow-sm transition hover-card"
           >
             <div
               className={`mb-4 h-12 w-12 rounded-lg bg-gradient-to-br ${color} grid place-items-center text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition`}

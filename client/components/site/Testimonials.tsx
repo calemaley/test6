@@ -112,7 +112,7 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.45 }}
-                  className="relative h-full overflow-hidden rounded-2xl border shadow-md p-0"
+                  className="relative h-full overflow-hidden rounded-2xl border shadow-md p-0 hover-card"
                 >
                   <video
                     className="absolute inset-0 h-full w-full object-cover"

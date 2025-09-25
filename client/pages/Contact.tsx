@@ -213,7 +213,7 @@ export default function Contact() {
             </Form>
           </div>
 
-          <div className="relative overflow-hidden rounded-xl border p-0 shadow-sm">
+          <div className="relative overflow-hidden rounded-xl border p-0 shadow-sm hover-card">
             <video
               className="absolute inset-0 h-full w-full object-cover"
               src="https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F84d2b5a9c4ad428083fc212ef5b5748f?alt=media&token=b538b043-9da4-4a1c-a6b3-73d392e67712&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e"
