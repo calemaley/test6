@@ -40,9 +40,9 @@ export default function FeaturedProjects() {
 
   return (
     <section className="section">
-      <div className="flex items-end justify-between gap-6 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-6 mb-8">
         <h2 className="section-title">Featured Projects</h2>
-        <a href="/projects" className="hidden md:inline-block btn-secondary">
+        <a href="/projects" className="inline-block btn-secondary mt-3 sm:mt-0">
           View All Projects
         </a>
       </div>
