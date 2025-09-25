@@ -58,42 +58,44 @@ export default function Projects() {
     <div className="bg-background">
       <section className="section cursor-none relative">
         <SnakeCursor />
-        <h1 className="section-title">Projects & Case Studies</h1>
-        <div className="mt-6 flex flex-wrap gap-3">
-          {["All", "Hydropower", "Medium-Voltage", "Sollatek"].map((c) => (
-            <button
-              key={c}
-              onClick={() => setFilter(c as any)}
-              className={`rounded-full border px-4 py-2 text-sm ${filter === c ? "bg-primary text-white" : "bg-white hover:bg-accent"}`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        <SectionReveal>
+          <h1 className="section-title">Projects & Case Studies</h1>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {["All", "Hydropower", "Medium-Voltage", "Sollatek"].map((c) => (
+              <button
+                key={c}
+                onClick={() => setFilter(c as any)}
+                className={`rounded-full border px-4 py-2 text-sm ${filter === c ? "bg-primary text-white" : "bg-white hover:bg-accent"}`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => (
-            <Link
-              key={p.id}
-              to={`/projects/${p.id}`}
-              className="group overflow-hidden rounded-xl border bg-card text-left shadow-sm hover:shadow-lg"
-            >
-              <img
-                src={p.img}
-                alt={p.title}
-                className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
-              />
-              <div className="p-4">
-                <div className="font-display font-bold text-primary">
-                  {p.title}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((p) => (
+              <Link
+                key={p.id}
+                to={`/projects/${p.id}`}
+                className="group overflow-hidden rounded-xl border bg-card text-left shadow-sm hover:shadow-lg"
+              >
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+                <div className="p-4">
+                  <div className="font-display font-bold text-primary">
+                    {p.title}
+                  </div>
+                  <div className="mt-1 text-xs text-foreground/60">
+                    {p.category}
+                  </div>
                 </div>
-                <div className="mt-1 text-xs text-foreground/60">
-                  {p.category}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        </SectionReveal>
       </section>
     </div>
   );
