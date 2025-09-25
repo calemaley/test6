@@ -155,7 +155,7 @@ export default function About() {
         <h2 className="section-title">Milestones</h2>
         <div className="relative mt-12">
           <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-border" />
-          <div className="space-y-12">
+          <div className="space-y-16 md:space-y-24">
             {milestones.map((m, i) => {
               const left = i % 2 === 0;
               return (
