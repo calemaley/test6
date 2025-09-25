@@ -14,6 +14,9 @@ export default function Header() {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    const d = localStorage.getItem("theme:dark") === "1";
+    setDark(d);
+    document.documentElement.classList.toggle("dark", d);
     return () => window.removeEventListener("scroll", onScroll);
   }, [location.pathname]);
 
