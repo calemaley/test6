@@ -120,6 +120,12 @@
       "Segoe UI Emoji";
   }
 
+  a, button, [role="button"], .btn-primary, .btn-secondary {
+    cursor:
+      url("/bee-cursor.svg") 2 2,
+      pointer;
+  }
+
   h1,
   h2,
   h3,
