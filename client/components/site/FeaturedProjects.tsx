@@ -10,28 +10,28 @@ import { useState } from "react";
 
 const projects = [
   {
-    id: "hydro-alpha",
-    title: "Hydropower Plant – Alpha Dam",
-    img: "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tags: ["Hydropower", "Installation"],
+    id: "mv-transformer-yard",
+    title: "MV Transformer Yard & Cable Management",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F22f861ea4024480ab66572fc732eafee?format=webp&width=1200",
+    tags: ["Medium-Voltage", "Construction"],
   },
   {
-    id: "mv-substation",
-    title: "132kV Substation Upgrade",
-    img: "https://images.pexels.com/photos/417192/pexels-photo-417192.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tags: ["Medium-Voltage", "Testing"],
+    id: "solar-array",
+    title: "Solar PV Field Installation",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F78d103c562394236b50aaca6d58d8527?format=webp&width=1200",
+    tags: ["Solar", "EPC"],
   },
   {
-    id: "sollatek-hq",
-    title: "Hospital Equipment Protection – Sollatek",
-    img: "https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tags: ["Sollatek", "Protection"],
+    id: "control-panel-wiring",
+    title: "Control Panel Wiring & Commissioning",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fac12e975352a4cfdb7515339a8f3e37f?format=webp&width=1200",
+    tags: ["Commissioning", "Testing"],
   },
   {
-    id: "grid-integration",
-    title: "Industrial Grid Integration",
-    img: "https://images.pexels.com/photos/34085/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1200",
-    tags: ["Large Power", "Integration"],
+    id: "site-team-setup",
+    title: "Site Team – Switchgear & Protection",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fcceb1714a00b45bb8f7584e434f5ac68?format=webp&width=1200",
+    tags: ["Team", "Execution"],
   },
 ];
 
