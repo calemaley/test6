@@ -157,6 +157,15 @@ const logos = [
       </svg>
     ),
   },
+  {
+    name: "YETU Smart Grid",
+    svg: (
+      <svg viewBox="0 0 200 48" className="h-10 w-[180px] text-primary">
+        <rect rx="8" width="200" height="48" fill="currentColor" opacity="0.08" />
+        <text x="20" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill="#0A2A4F">YETU Smart Grid</text>
+      </svg>
+    ),
+  },
 ];
 
 export default function LogosCarousel() {
