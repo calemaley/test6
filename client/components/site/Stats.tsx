@@ -33,8 +33,8 @@ function useCountUp(target: number, duration = 1400) {
 }
 
 export default function Stats() {
-  const years = useCountUp(12);
-  const projects = useCountUp(250);
+  const years = useCountUp(8);
+  const projects = useCountUp(6);
   const uptime = useCountUp(99);
 
   return (

@@ -52,8 +52,8 @@ export default function Footer() {
         <div className="transition hover:-translate-y-0.5">
           <div className="font-semibold mb-3">Contact</div>
           <ul className="space-y-2 text-foreground/70 text-sm">
-            <li>Phone: +254 000 000 000</li>
-            <li>Email: info@jbranky.com</li>
+            <li>Phone: 0726502349</li>
+            <li>Email: Jbrankyltd8@gmail.com</li>
             <li>HQ: Nairobi, Kenya</li>
           </ul>
         </div>

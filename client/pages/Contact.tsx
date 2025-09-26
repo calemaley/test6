@@ -239,9 +239,9 @@ export default function Contact() {
                 />
               </div>
               <div className="mt-6 text-sm text-white/85">
-                Phone: +254 000 000 000
+                Phone: 0726502349
                 <br />
-                Email: info@jbranky.com
+                Email: Jbrankyltd8@gmail.com
               </div>
             </div>
           </div>
