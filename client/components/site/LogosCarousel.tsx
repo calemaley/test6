@@ -142,24 +142,18 @@ const logos = [
     name: "HydroPro",
     svg: (
       <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
+        <rect rx="8" width="160" height="48" fill="currentColor" opacity="0.08" />
         <path d="M28 12c6 6 6 18 0 24C22 30 22 18 28 12z" fill="currentColor" />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="14"
-          fill="#0A2A4F"
-        >
-          HydroPro
-        </text>
+        <text x="56" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill="#0A2A4F">HydroPro</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Sollatek East Africa Limited",
+    svg: (
+      <svg viewBox="0 0 200 48" className="h-10 w-[180px] text-primary">
+        <rect rx="8" width="200" height="48" fill="currentColor" opacity="0.08" />
+        <text x="12" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="13" fill="#0A2A4F">Sollatek East Africa Limited</text>
       </svg>
     ),
   },
