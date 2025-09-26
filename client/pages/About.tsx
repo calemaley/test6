@@ -10,73 +10,42 @@ import {
 
 const milestones = [
   {
-    year: 2012,
-    title: "Founded",
-    desc: "JBRANKY LTD is established to deliver reliable energy solutions.",
-  },
-  {
-    year: 2014,
-    title: "First MV Substation",
-    desc: "Designed and commissioned our first 33/11kV substation project.",
-  },
-  {
-    year: 2015,
-    title: "Hydropower EPC",
-    desc: "Completed turnkey hydropower installation for a municipal client.",
-  },
-  {
-    year: 2019,
-    title: "National Partnerships",
-    desc: "Recognized partner to grid authorities and international OEMs.",
-  },
-  {
-    year: 2021,
-    title: "Sollatek Alliance",
-    desc: "Scaled protection deployments across healthcare & data centers.",
-  },
-  {
-    year: 2023,
-    title: "50+ Major Projects",
-    desc: "Cross-industry portfolio with safety and performance accolades.",
+    year: 2025,
+    title: "Commissioned Projects Successfully",
+    desc: "All delivered programs have been commissioned to client expectations, including KPLC reactive power projects under Chint; electrical design, terminations, testing and commissioning for Magiro Hydropower; KTDA hydro projects under Jiangxi Water and Hydropower Construction K Limited.",
   },
 ];
 
 const team = [
   {
-    name: "John B. Ranky",
-    role: "Founder & CEO",
+    name: "JOSEPH MICHIEKA",
+    role: "PROJECTS MANAGER / DIRECTOR",
     img: "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Electrical engineer with 18+ years in hydropower and MV systems. Leads strategy, partnerships and safety culture.",
+    bio: "Leads project delivery, stakeholder coordination and commissioning oversight across hydropower and MV programs.",
   },
   {
-    name: "Amaka Okoye",
-    role: "Head of Hydropower",
+    name: "LILIAN MUTHURI",
+    role: "ACCOUNTANT / DIRECTOR",
     img: "https://images.pexels.com/photos/3775536/pexels-photo-3775536.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Leads feasibility, EPC and O&M programs with a focus on efficiency gains and environmental stewardship.",
+    bio: "Oversees finance, compliance and efficient allocation of project resources.",
   },
   {
-    name: "Tunde Adebayo",
-    role: "MV Protection Lead",
+    name: "NORMAN ODERO",
+    role: "ELECTRICAL ENGINEER",
     img: "https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Specialist in relay settings, testing and commissioning for 11–132kV networks.",
+    bio: "Electrical design, terminations, testing and commissioning across MV systems and hydropower.",
   },
   {
-    name: "Grace Ibeh",
-    role: "Projects Director",
+    name: "GODFREY MWENDA",
+    role: "CIVIL ENGINEER",
     img: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Drives on-time delivery through rigorous planning, QA/QC and stakeholder alignment.",
+    bio: "Civil works leadership for intakes, penstocks, powerhouses and substation civils.",
   },
   {
-    name: "Samuel Umeh",
-    role: "Lead Commissioning Engineer",
+    name: "Emmanuel Ouya",
+    role: "IT MANAGER",
     img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Commissioning expert for generation and substation assets with deep safety compliance.",
-  },
-  {
-    name: "Farida Bello",
-    role: "Head of Operations",
-    img: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    bio: "Oversees multi-site operations, logistics and performance optimization programs.",
+    bio: "IT systems, reliability and productivity tooling that support engineering delivery.",
   },
 ];
 
@@ -125,25 +94,20 @@ export default function About() {
       {/* Values as Section 2 */}
       <section className="section">
         <h2 className="section-title">Our Values</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
           {(() => {
             const valueVideos = [
               "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fb0cb66bee8f84f67bc3186df000d51f0?alt=media&token=ff1b4c9f-a82a-4935-9701-19169263d925&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
               "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Ffe405992740c48ef8509551d1540740a?alt=media&token=19498474-7147-472f-a39f-fdca8d52738d&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
-              "https://cdn.builder.io/o/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F3c1e6b6305504db0b5ec3e554e1a91e1?alt=media&token=d96c977d-d7a5-421b-a74f-5d04e2af369c&apiKey=3bf22d05ba0448ba84dcc33dbdacf26e",
             ];
             return [
               [
-                "Safety First",
-                "Uncompromising commitment to safety and compliance.",
+                "Innovation",
+                "We are passionate about creating new ideas for power solutions.",
               ],
               [
-                "Integrity",
-                "Transparent processes, honest communication, dependable delivery.",
-              ],
-              [
-                "Sustainability",
-                "Engineering for efficiency and environmental stewardship.",
+                "Excellence",
+                "We vow to do our best to exceed our customers' expectations.",
               ],
             ].map(([t, d], i) => (
               <div
