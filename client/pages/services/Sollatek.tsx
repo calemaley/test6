@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 
 const sollatekProducts = [
   {
@@ -115,13 +116,15 @@ export default function Sollatek() {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/contact" className="btn-primary">
+        <div className="mt-8">
+          <Link
+            to="/contact"
+            className="group relative inline-flex items-center gap-2 rounded-xl px-6 py-3 text-white bg-gradient-to-r from-primary to-secondary shadow-lg ring-1 ring-primary/30 transition hover:-translate-y-0.5 hover:shadow-xl after:absolute after:inset-0 after:bg-white/10 after:opacity-0 group-hover:after:opacity-100 after:transition"
+          >
+            <Sparkles className="h-5 w-5" />
             Purchase Inquiry
           </Link>
-          <Link to="/services" className="btn-secondary">
-            Explore All Services
-          </Link>
+          <p className="mt-2 text-xs text-foreground/60">Fast response — sizing guidance and pricing included.</p>
         </div>
       </section>
     </div>
