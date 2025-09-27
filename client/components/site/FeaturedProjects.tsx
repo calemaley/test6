@@ -10,28 +10,28 @@ import { useState } from "react";
 
 const projects = [
   {
-    id: "mv-transformer-yard",
-    title: "MV Transformer Yard & Cable Management",
-    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F22f861ea4024480ab66572fc732eafee?format=webp&width=1200",
+    id: "switchyard-walkway",
+    title: "Switchyard Walkway & Bays",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F33aea13ea9494ee69c6c338a8d498329?format=webp&width=1200",
     tags: ["Medium-Voltage", "Construction"],
   },
   {
-    id: "solar-array",
-    title: "Solar PV Field Installation",
-    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F78d103c562394236b50aaca6d58d8527?format=webp&width=1200",
-    tags: ["Solar", "EPC"],
+    id: "control-panel-assembly",
+    title: "Control Panel Assembly",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fd28622a6527a4177b39f9bd581ebf55b?format=webp&width=1200",
+    tags: ["Commissioning", "Wiring"],
   },
   {
-    id: "control-panel-wiring",
-    title: "Control Panel Wiring & Commissioning",
-    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fac12e975352a4cfdb7515339a8f3e37f?format=webp&width=1200",
-    tags: ["Commissioning", "Testing"],
+    id: "field-cable-jointing",
+    title: "Field Cable Jointing",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fa83e596cd398406589662ab8548e3500?format=webp&width=1200",
+    tags: ["MV Cables", "Execution"],
   },
   {
-    id: "site-team-setup",
-    title: "Site Team – Switchgear & Protection",
-    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fcceb1714a00b45bb8f7584e434f5ac68?format=webp&width=1200",
-    tags: ["Team", "Execution"],
+    id: "transformer-yard-equipment",
+    title: "Transformer Yard Equipment",
+    img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F41cf144db0c04ec085ea6ce20c2565d7?format=webp&width=1200",
+    tags: ["Switchyard", "Assets"],
   },
 ];
 
@@ -91,8 +91,7 @@ export default function FeaturedProjects() {
                     className="mt-2 mb-4 w-full rounded-lg object-cover"
                   />
                   <p className="text-foreground/70">
-                    Detailed case study content can include scope, timeline, kVA
-                    ratings, compliance, safety notes, and outcomes.
+                    Highlights from our field execution, installation quality, and safety-first delivery.
                   </p>
                 </div>
               )}
