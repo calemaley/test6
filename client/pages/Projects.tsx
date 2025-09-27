@@ -87,7 +87,6 @@ export default function Projects() {
   return (
     <div className="bg-background">
       <section className="section">
-        <SectionReveal>
           <h1 className="section-title">Gallery</h1>
           <p className="mt-2 text-foreground/70">
             A visual look at our recent field works, installations, testing and commissioning.
@@ -97,7 +96,6 @@ export default function Projects() {
               <MediaCard key={i} item={m} />
             ))}
           </div>
-        </SectionReveal>
       </section>
     </div>
   );
