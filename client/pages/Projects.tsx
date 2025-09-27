@@ -1,5 +1,5 @@
 import SectionReveal from "@/components/site/SectionReveal";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 type MediaItem =
   | { type: "image"; src: string; alt: string }
@@ -354,6 +354,7 @@ function MediaCard({ item }: { item: MediaItem }) {
         </button>
       </DialogTrigger>
       <DialogContent className="max-w-6xl bg-transparent border-none p-0 shadow-none">
+        <DialogTitle className="sr-only">{item.alt}</DialogTitle>
         {item.type === "image" ? (
           <img
             src={item.src}
