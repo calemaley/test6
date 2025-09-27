@@ -52,7 +52,7 @@ export default function Header() {
           {[
             ["/about", "Who We Are"],
             ["/services", "What We Do"],
-            ["/projects", "Projects"],
+            ["/projects", "Gallery"],
             ["/blog", "Blog"],
             ["/contact", "Contact"],
           ].map(([to, label]) => (
@@ -94,7 +94,7 @@ export default function Header() {
                 {[
                   ["/about", "Who We Are"],
                   ["/services", "What We Do"],
-                  ["/projects", "Projects"],
+                  ["/projects", "Gallery"],
                   ["/blog", "Blog"],
                   ["/contact", "Contact"],
                 ].map(([to, label]) => (
