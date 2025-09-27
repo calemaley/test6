@@ -91,7 +91,8 @@ export default function FeaturedProjects() {
                     className="mt-2 mb-4 w-full rounded-lg object-cover"
                   />
                   <p className="text-foreground/70">
-                    Highlights from our field execution, installation quality, and safety-first delivery.
+                    Highlights from our field execution, installation quality,
+                    and safety-first delivery.
                   </p>
                 </div>
               )}
