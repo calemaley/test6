@@ -1,25 +1,7 @@
-import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-
-const articles: Record<string, { title: string; hero: string }> = {
-  "hydropower-efficiency-myths": {
-    title: "Hydropower Efficiency Myths",
-    hero: "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  },
-  "mv-substation-safety-checklist": {
-    title: "MV Substation Safety Checklist",
-    hero: "https://images.pexels.com/photos/417192/pexels-photo-417192.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  },
-  "why-sollatek-for-hospitals": {
-    title: "Why Sollatek for Hospitals",
-    hero: "https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  },
-  "grid-scale-storage-trends": {
-    title: "Grid-Scale Storage Trends",
-    hero: "https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  },
-};
+import { Link, useParams } from "react-router-dom";
+import { articleContent } from "./content";
 
 function AnimatedTitle({ text }: { text: string }) {
   return (
@@ -46,14 +28,29 @@ const gradients = [
   "from-emerald-500 to-primary",
 ];
 
-const paragraphs = Array.from({ length: 60 }).map(
-  (_, i) =>
-    `In the evolving landscape of modern energy, JBRANKY LTD champions resilient infrastructure and protection-first design. Section ${i + 1}: we examine grid dynamics, hydrological variance, relay coordination, and practical lessons learned in the field. Our teams combine scientific rigor with operational pragmatism—turning complex constraints into measurable outcomes.`,
-);
+function parseBlocks(body: string) {
+  const raw = body
+    .replace(/\r\n?/g, "\n")
+    .split(/\n\n+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return raw.map((block) => {
+    if (block.startsWith("## ")) return { type: "h2", text: block.slice(3) } as const;
+    if (block.startsWith("> ")) return { type: "quote", text: block.slice(2) } as const;
+    if (block.includes("\n- ") || block.startsWith("- ")) {
+      const items = block
+        .split("\n")
+        .filter((l) => l.startsWith("- "))
+        .map((l) => l.slice(2));
+      return { type: "ul", items } as const;
+    }
+    return { type: "p", text: block } as const;
+  });
+}
 
 export default function Article() {
   const { slug } = useParams();
-  const meta = slug ? articles[slug] : undefined;
+  const meta = slug ? articleContent[slug] : undefined;
   if (!meta) {
     return (
       <section className="section">
@@ -79,7 +76,7 @@ export default function Article() {
         </div>
         <AnimatedTitle text={meta.title} />
         <p className="section-subtitle">
-          Long-form article with immersive visuals and motion.
+          Expert analysis, practical checklists, and implementation advice.
         </p>
         <img
           src={meta.hero}
@@ -90,28 +87,71 @@ export default function Article() {
 
       <section className="section">
         <div className="prose prose-lg max-w-none">
-          {paragraphs.map((p, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 20, skewY: 3 }}
-              whileInView={{ opacity: 1, y: 0, skewY: 0 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.5, delay: 0.03 }}
-              className={`bg-gradient-to-r ${gradients[i % gradients.length]} bg-clip-text text-transparent opacity-90 drop-shadow-sm`}
-            >
-              {p}
-            </motion.p>
-          ))}
+          {parseBlocks(meta.body).map((b, i) => {
+            if (b.type === "h2")
+              return (
+                <motion.h2
+                  key={`h2-${i}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  className="mt-10 mb-3 font-display text-2xl text-primary"
+                >
+                  {b.text}
+                </motion.h2>
+              );
+            if (b.type === "ul")
+              return (
+                <motion.ul
+                  key={`ul-${i}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  className="list-disc pl-6"
+                >
+                  {b.items.map((it, j) => (
+                    <li key={j}>{it}</li>
+                  ))}
+                </motion.ul>
+              );
+            if (b.type === "quote")
+              return (
+                <motion.blockquote
+                  key={`q-${i}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  className="border-l-4 pl-4 italic text-foreground/80"
+                >
+                  {b.text}
+                </motion.blockquote>
+              );
+            return (
+              <motion.p
+                key={`p-${i}`}
+                initial={{ opacity: 0, y: 20, skewY: 3 }}
+                whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.03 }}
+                className={`bg-gradient-to-r ${gradients[i % gradients.length]} bg-clip-text text-transparent opacity-90 drop-shadow-sm`}
+              >
+                {b.text}
+              </motion.p>
+            );
+          })}
 
-          <motion.img
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            src={meta.hero}
-            alt="related visual"
-            className="my-8 w-full rounded-xl border shadow-sm"
-          />
+          {(meta.images ?? []).map((img, k) => (
+            <motion.img
+              key={`img-${k}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+              src={img.src}
+              alt={img.alt}
+              className="my-8 w-full rounded-xl border shadow-sm"
+            />
+          ))}
         </div>
       </section>
     </article>
