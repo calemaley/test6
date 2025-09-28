@@ -16,7 +16,7 @@ const services = [
   },
   {
     title: "Sollatek Protection",
-    desc: "Voltage stabilizers, surge protection and power conditioning systems.",
+    desc: "industry leader in voltage protection, Energy saving and solar energy products and systems",
     Icon: ShieldCheck,
     color: "from-emerald-400 to-secondary",
   },
@@ -52,7 +52,7 @@ export default function ServiceHighlights() {
             <p className="mt-2 text-sm text-foreground/70">{desc}</p>
             {title === "Sollatek Protection" && (
               <p className="mt-2 text-xs font-semibold text-secondary">
-                industry leader in voltage protection, Energy saving and solar energy products and systems
+                Genuine Sollatek products • 5-year warranty
               </p>
             )}
           </motion.div>
