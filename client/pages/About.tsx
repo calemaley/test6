@@ -191,9 +191,9 @@ export default function About() {
         <div className="grid gap-8 md:grid-cols-[320px,1fr] items-center">
           <div className="rounded-2xl overflow-hidden border shadow-sm">
             <img
-              src="https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="https://cdn.builder.io/api/v1/image/assets%2F1caa239000c64be293c5785261ff0be9%2F211cd9ef441540fcafbe24bb728b2943?format=webp&width=800"
               alt="Founder portrait"
-              className="w-full h-full object-cover"
+              className="w-full h-80 md:h-[420px] object-cover object-center"
             />
           </div>
           <div>
@@ -219,7 +219,7 @@ export default function About() {
                 />
               </svg>
               <div>
-                <div className="font-display font-bold">John B. Ranky</div>
+                <div className="font-display font-bold">CHARLES</div>
                 <div className="text-sm text-foreground/60">Founder & CEO</div>
               </div>
             </div>
