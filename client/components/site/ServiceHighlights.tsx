@@ -52,7 +52,7 @@ export default function ServiceHighlights() {
             <p className="mt-2 text-sm text-foreground/70">{desc}</p>
             {title === "Sollatek Protection" && (
               <p className="mt-2 text-xs font-semibold text-secondary">
-                Genuine Sollatek products • 5-year warranty
+                industry leader in voltage protection, Energy saving and solar energy products and systems
               </p>
             )}
           </motion.div>
