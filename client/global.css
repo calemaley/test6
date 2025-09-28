@@ -106,9 +106,7 @@
 
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden;
-    cursor:
-      url("/bee-cursor.svg") 2 2,
-      auto;
+    cursor: none;
     font-family:
       "Open Sans",
       system-ui,
@@ -121,9 +119,7 @@
   }
 
   a, button, [role="button"], .btn-primary, .btn-secondary {
-    cursor:
-      url("/bee-cursor.svg") 2 2,
-      pointer;
+    cursor: none;
   }
 
   h1,
