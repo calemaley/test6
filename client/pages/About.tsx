@@ -10,7 +10,7 @@ import {
 
 const milestones = [
   {
-    year: 2025,
+    year: "2018-2025",
     title: "Commissioned Projects Successfully",
     desc: "All delivered programs have been commissioned to client expectations, including KPLC reactive power projects under Chint; electrical design, terminations, testing and commissioning for Magiro Hydropower; KTDA hydro projects under Jiangxi Water and Hydropower Construction K Limited.",
   },
