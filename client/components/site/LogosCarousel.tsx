@@ -3,167 +3,43 @@ import { useEffect } from "react";
 
 const logos = [
   {
-    name: "ISO 9001",
+    name: "YETU",
     svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
-        <circle cx="28" cy="24" r="12" fill="currentColor" />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="16"
-          fill="#0A2A4F"
-        >
-          ISO 9001
-        </text>
-      </svg>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F1caa239000c64be293c5785261ff0be9%2Fbc689f03b21944faacc4cc286fed9672?format=webp&width=800"
+        alt="YETU logo"
+        className="h-10 w-auto object-contain md:h-12"
+      />
     ),
   },
   {
-    name: "IEC Certified",
+    name: "Sollatek",
     svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
-        <path d="M20 14h16v20H20z" fill="currentColor" />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="16"
-          fill="#0A2A4F"
-        >
-          IEC
-        </text>
-      </svg>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F1caa239000c64be293c5785261ff0be9%2Fea5a6d477beb44f188a58d91e59a8595?format=webp&width=800"
+        alt="Sollatek logo"
+        className="h-10 w-auto object-contain md:h-12"
+      />
     ),
   },
   {
-    name: "Govt Vendor",
+    name: "GNC",
     svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
-        <polygon points="24,12 36,24 24,36 12,24" fill="currentColor" />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="14"
-          fill="#0A2A4F"
-        >
-          Govt Vendor
-        </text>
-      </svg>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F1caa239000c64be293c5785261ff0be9%2Fa458a1e985fd47a5ac1c3fcc34c49523?format=webp&width=800"
+        alt="GNC logo"
+        className="h-10 w-auto object-contain md:h-12"
+      />
     ),
   },
   {
-    name: "Energy Safe",
+    name: "CHINT",
     svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
-        <path
-          d="M20 32c8-6 16-6 24 0"
-          stroke="currentColor"
-          strokeWidth="4"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="14"
-          fill="#0A2A4F"
-        >
-          Energy Safe
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "PowerGrid Partner",
-    svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect
-          rx="8"
-          width="160"
-          height="48"
-          fill="currentColor"
-          opacity="0.08"
-        />
-        <path
-          d="M16 16h20M16 24h20M16 32h20"
-          stroke="currentColor"
-          strokeWidth="4"
-          strokeLinecap="round"
-        />
-        <text
-          x="56"
-          y="30"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="700"
-          fontSize="12"
-          fill="#0A2A4F"
-        >
-          PowerGrid Partner
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "HydroPro",
-    svg: (
-      <svg viewBox="0 0 160 48" className="h-10 w-[150px] text-primary">
-        <rect rx="8" width="160" height="48" fill="currentColor" opacity="0.08" />
-        <path d="M28 12c6 6 6 18 0 24C22 30 22 18 28 12z" fill="currentColor" />
-        <text x="56" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill="#0A2A4F">HydroPro</text>
-      </svg>
-    ),
-  },
-  {
-    name: "Sollatek East Africa Limited",
-    svg: (
-      <svg viewBox="0 0 200 48" className="h-10 w-[180px] text-primary">
-        <rect rx="8" width="200" height="48" fill="currentColor" opacity="0.08" />
-        <text x="12" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="13" fill="#0A2A4F">Sollatek East Africa Limited</text>
-      </svg>
-    ),
-  },
-  {
-    name: "YETU Smart Grid",
-    svg: (
-      <svg viewBox="0 0 200 48" className="h-10 w-[180px] text-primary">
-        <rect rx="8" width="200" height="48" fill="currentColor" opacity="0.08" />
-        <text x="20" y="30" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill="#0A2A4F">YETU Smart Grid</text>
-      </svg>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F1caa239000c64be293c5785261ff0be9%2F8c4f5733d3834f0faf843c1ca459093c?format=webp&width=800"
+        alt="CHINT logo"
+        className="h-10 w-auto object-contain md:h-12"
+      />
     ),
   },
 ];
