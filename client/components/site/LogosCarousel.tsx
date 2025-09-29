@@ -53,6 +53,7 @@ export default function LogosCarousel() {
 
   useEffect(() => {
     if (!emblaApi) return;
+    if (logos.length <= 4) return; // keep centered, no auto-scroll
     const id = setInterval(() => {
       if (emblaApi.canScrollNext()) emblaApi.scrollNext();
       else emblaApi.scrollTo(0);
