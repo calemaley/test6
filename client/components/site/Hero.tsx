@@ -6,7 +6,7 @@ const videoSrc =
 
 export default function Hero() {
   return (
-    <section className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
+    <section id="hero" className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src={videoSrc}
