@@ -68,7 +68,7 @@ export default function LogosCarousel() {
         </p>
       </div>
       <div className="embla overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex gap-6">
+        <div className="embla__container flex gap-6 justify-center w-full">
           {logos.map((l) => (
             <div
               key={l.name}
