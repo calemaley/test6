@@ -70,8 +70,8 @@ export default function About() {
             </p>
             <ul className="mt-6 space-y-3 text-foreground/80">
               <li>• Hydropower feasibility, EPC, commissioning and O&M</li>
-              <li>• Large Power & Medium-Voltage: 11–132kV substations, protection, testing</li>
-              <li>• Sollatek protection: stabilizers, surge, power conditioning and monitoring</li>
+              <li>• Large Power & Medium-Voltage: KTDA projects and Jiangxi Water & Hydropower Construction projects</li>
+              <li>• Sollatek protection: regulator, svs, avs, fridge guard, tv guard, volt guard</li>
               <li>• Safety-first culture aligned to IEC standards and regulatory frameworks</li>
               <li>• Trusted industry partner: Sollatek East Africa Limited</li>
               <li>• Projects delivered: Chint projects, Magiro projects, Hydrobox projects, Jiangxi Water & Hydropower Construction, KTDA projects, Como Energy</li>
