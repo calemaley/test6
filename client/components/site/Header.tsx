@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [brandVisible, setBrandVisible] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,6 +21,24 @@ export default function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setBrandVisible(true);
+      return;
+    }
+    const hero = document.getElementById("hero");
+    if (!hero) {
+      setBrandVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setBrandVisible(entry.isIntersecting),
+      { root: null, threshold: 0.1 },
+    );
+    io.observe(hero);
+    return () => io.disconnect();
   }, [location.pathname]);
 
   const linkBase = "px-4 py-2 text-sm font-semibold transition-colors";
@@ -34,7 +53,7 @@ export default function Header() {
       )}
     >
       <div className="container mx-auto container-padding flex items-center justify-between min-h-[72px] py-2">
-        <Link to="/" className="flex flex-col items-center gap-1 group">
+        <Link to="/" className={cn("flex flex-col items-center gap-1 group transition duration-300", brandVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none")}>
           <div className="h-9 w-9 rounded-md overflow-hidden shadow shadow-primary/30 group-hover:scale-105 transition">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F4c350b19b54540f2905c5c8ee1e18122?format=webp&width=128"
