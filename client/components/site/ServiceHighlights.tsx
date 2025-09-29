@@ -4,13 +4,13 @@ import { Bolt, ShieldCheck, Waves } from "lucide-react";
 const services = [
   {
     title: "Hydropower Plant Solutions",
-    desc: "Feasibility, installation, operations & maintenance for reliable generation.",
+    desc: "design termination installation testing and commission and maintenance",
     Icon: Waves,
     color: "from-primary to-blue-400",
   },
   {
     title: "Large Power & Medium-Voltage",
-    desc: "Industrial infrastructure, grid integration and comprehensive testing.",
+    desc: "testing installation and commissioning",
     Icon: Bolt,
     color: "from-secondary to-emerald-400",
   },
