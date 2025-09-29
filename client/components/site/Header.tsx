@@ -33,8 +33,8 @@ export default function Header() {
           : "bg-transparent",
       )}
     >
-      <div className="container mx-auto container-padding flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-3 group">
+      <div className="container mx-auto container-padding flex items-center justify-between min-h-[72px] py-2">
+        <Link to="/" className="flex flex-col items-start gap-1 group">
           <div className="h-9 w-9 rounded-md overflow-hidden shadow shadow-primary/30 group-hover:scale-105 transition">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2F4c350b19b54540f2905c5c8ee1e18122?format=webp&width=128"
@@ -42,12 +42,13 @@ export default function Header() {
               className="h-full w-full object-contain bg-transparent"
             />
           </div>
-          <div className="leading-tight">
+          <div className="leading-tight mt-1">
             <div className="font-display font-extrabold tracking-tight text-primary text-lg">
               JBRANKY LTD
             </div>
             <div className="text-[11px] uppercase tracking-widest text-foreground/60">
-              Premium Energy Solutions
+              <div>Powering Possibilities</div>
+              <div>Empowering Lives</div>
             </div>
           </div>
         </Link>
