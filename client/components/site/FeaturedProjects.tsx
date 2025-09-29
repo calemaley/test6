@@ -17,13 +17,13 @@ const projects = [
   },
   {
     id: "control-panel-assembly",
-    title: "Control Panel Assembly",
+    title: "Field Cable Jointing",
     img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fd28622a6527a4177b39f9bd581ebf55b?format=webp&width=1200",
     tags: ["Commissioning", "Wiring"],
   },
   {
     id: "field-cable-jointing",
-    title: "Field Cable Jointing",
+    title: "Control Panel Assembly",
     img: "https://cdn.builder.io/api/v1/image/assets%2F3bf22d05ba0448ba84dcc33dbdacf26e%2Fa83e596cd398406589662ab8548e3500?format=webp&width=1200",
     tags: ["MV Cables", "Execution"],
   },
