@@ -69,13 +69,13 @@ export default function LogosCarousel() {
         </p>
       </div>
       <div className="embla overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex gap-6 justify-center w-full">
+        <div className="embla__container flex flex-wrap justify-center gap-6 md:flex-nowrap w-full">
           {logos.map((l) => (
             <div
               key={l.name}
-              className="embla__slide flex-[0_0_180px] grid place-items-center"
+              className="embla__slide flex-[0_0_68%] xs:flex-[0_0_48%] sm:flex-[0_0_40%] md:flex-[0_0_180px] max-w-[200px] grid place-items-center"
             >
-              <div className="rounded-md bg-white p-2 shadow-sm border hover-card">
+              <div className="w-full rounded-md bg-white p-3 shadow-sm border hover-card flex items-center justify-center">
                 {l.svg}
               </div>
             </div>
