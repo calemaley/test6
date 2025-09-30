@@ -74,7 +74,8 @@ export default function Header() {
               JBRANKY LTD
             </div>
             <div className="text-[11px] uppercase tracking-widest text-foreground/60">
-              Premium Energy Solutions
+              <span className="block">Powering Possibilities</span>
+              <span className="block">Empowering Lives</span>
             </div>
           </div>
         </Link>
