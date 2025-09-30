@@ -73,7 +73,7 @@ export default function LogosCarousel() {
           {logos.map((l) => (
             <div
               key={l.name}
-              className="embla__slide flex-[0_0_68%] xs:flex-[0_0_48%] sm:flex-[0_0_40%] md:flex-[0_0_180px] max-w-[200px] grid place-items-center"
+              className="embla__slide flex-[0_0_70%] sm:flex-[0_0_45%] md:flex-[0_0_180px] max-w-[200px] grid place-items-center"
             >
               <div className="w-full rounded-md bg-white p-3 shadow-sm border hover-card flex items-center justify-center">
                 {l.svg}
