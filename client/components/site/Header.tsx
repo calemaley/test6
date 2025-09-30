@@ -52,11 +52,11 @@ export default function Header() {
           : "bg-transparent",
       )}
     >
-      <div className="container mx-auto container-padding flex items-center justify-between min-h-[72px] py-2">
+      <div className="container mx-auto container-padding flex items-center justify-between h-16">
         <Link
           to="/"
           className={cn(
-            "flex flex-col items-center gap-1 group transition duration-300",
+            "flex items-center gap-3 group transition duration-300",
             brandVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-1 pointer-events-none",
@@ -69,13 +69,12 @@ export default function Header() {
               className="h-full w-full object-contain bg-transparent"
             />
           </div>
-          <div className="leading-tight mt-1 text-center">
+          <div className="leading-tight">
             <div className="font-display font-extrabold tracking-tight text-primary text-lg">
               JBRANKY LTD
             </div>
             <div className="text-[11px] uppercase tracking-widest text-foreground/60">
-              <div>Powering Possibilities</div>
-              <div>Empowering Lives</div>
+              Premium Energy Solutions
             </div>
           </div>
         </Link>
