@@ -21,13 +21,14 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     try {
-      const ok = login(username.trim(), password);
-      if (ok) {
-        toast.success("Welcome back, Admin");
-        navigate("/admin-rank/dashboard", { replace: true });
-      } else {
-        toast.error("Invalid credentials");
-      }
+      await login(username.trim(), password);
+      toast.success("Welcome back, Admin");
+      navigate("/admin-rank/dashboard", { replace: true });
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        error instanceof Error ? error.message : "Invalid credentials",
+      );
     } finally {
       setLoading(false);
     }
