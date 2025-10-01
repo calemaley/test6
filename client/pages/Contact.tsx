@@ -40,7 +40,7 @@ export default function Contact() {
 
   const watchType = form.watch("type");
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
+  const onSubmit = async (values: z.infer<typeof schema>) => {
     try {
       const key =
         values.type === "consultation"
@@ -50,16 +50,27 @@ export default function Contact() {
             : "metrics:general";
       const prev = Number(localStorage.getItem(key) || "0");
       localStorage.setItem(key, String(prev + 1));
-      saveSubmission({
+      await saveSubmission({
         name: values.name,
         email: values.email,
-        phone: values.phone,
+        phone: values.phone ?? "",
         type: values.type,
-        service: values.service,
+        service: values.service ?? "",
         message: values.message,
       });
-    } catch {}
-    toast.success("Thanks! We'll get back to you shortly.");
+      toast.success("Thanks! We'll get back to you shortly.");
+      form.reset({
+        name: "",
+        email: "",
+        phone: "",
+        type: "service",
+        service: undefined,
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("We couldn't submit your request. Please try again.");
+    }
   };
 
   return (
