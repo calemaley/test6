@@ -258,11 +258,13 @@ function Th({ children }: { children: React.ReactNode }) {
 function Td({
   children,
   className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <td className={`px-3 py-2 ${className}`}>{children}</td>;
+  ...rest
+}: React.HTMLAttributes<HTMLTableCellElement>) {
+  return (
+    <td className={`px-3 py-2 ${className}`} {...rest}>
+      {children}
+    </td>
+  );
 }
 
 function StatCard({ title, value }: { title: string; value: number }) {
