@@ -140,11 +140,21 @@ export async function fetchCurrentUser() {
   return apiFetch("/auth/users/me/", { method: "GET" });
 }
 
-export async function saveSubmission(
-  payload: Omit<ApiRequest, "id" | "status" | "created_at"> & { status?: SubmissionStatus },
-) {
+export interface CreateSubmissionPayload {
+  name: string;
+  email: string;
+  phone?: string | null;
+  type: string;
+  service?: string | null;
+  message: string;
+  status?: SubmissionStatus;
+}
+
+export async function saveSubmission(payload: CreateSubmissionPayload) {
   const body = {
     ...payload,
+    phone: payload.phone ?? "",
+    service: payload.service ?? "",
     status: payload.status ?? "new",
   };
   await apiFetch<ApiRequest>("/api/requests/", {
