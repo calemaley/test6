@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   getSubmissions,
@@ -249,7 +250,7 @@ export default function AdminDashboard() {
   );
 }
 
-function Th({ children }: { children: React.ReactNode }) {
+function Th({ children }: { children: ReactNode }) {
   return (
     <th className="px-3 py-2 font-semibold text-foreground/80">{children}</th>
   );
@@ -259,7 +260,7 @@ function Td({
   children,
   className = "",
   ...rest
-}: React.HTMLAttributes<HTMLTableCellElement>) {
+}: HTMLAttributes<HTMLTableCellElement>) {
   return (
     <td className={`px-3 py-2 ${className}`} {...rest}>
       {children}
