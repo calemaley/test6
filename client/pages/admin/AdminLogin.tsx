@@ -45,44 +45,65 @@ export default function AdminLogin() {
   };
 
   return (
-    <section className="section max-w-md">
-      <h1 className="section-title">Admin Login</h1>
-      <p className="section-subtitle">Restricted access</p>
-
-      <form
-        onSubmit={onSubmit}
-        className="mt-8 space-y-4 rounded-xl border bg-white p-6 shadow-sm"
-      >
-        <div className="space-y-2">
-          <Label htmlFor="username">Username</Label>
-          <Input
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter username"
-            autoComplete="username"
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-            autoComplete="current-password"
-            required
-          />
-        </div>
-        <button className="btn-primary w-full" disabled={loading}>
-          {loading ? "Signing in..." : "Sign In"}
-        </button>
-        <div className="text-xs text-foreground/60">
-          Hint: Username JBRANKY, Password admin@123
-        </div>
-      </form>
-    </section>
+    <div className="mx-auto w-full max-w-xl">
+      <Card className="border-white/10 bg-white/95 shadow-xl backdrop-blur">
+        <CardHeader className="space-y-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <ShieldCheck className="h-6 w-6" />
+          </div>
+          <div>
+            <CardTitle className="text-2xl font-semibold text-slate-900">
+              Welcome back
+            </CardTitle>
+            <CardDescription className="text-base">
+              Sign in to access the JBRANKY operations console and manage new
+              leads in real-time.
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={onSubmit} className="space-y-5">
+            <div className="space-y-1.5">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="admin username"
+                autoComplete="username"
+                required
+              />
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Password</Label>
+                <span className="text-xs text-muted-foreground">
+                  Minimum 8 characters
+                </span>
+              </div>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing you in..." : "Sign in"}
+            </Button>
+          </form>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Need an account?{" "}
+            <Link to="signup" className="font-medium text-primary hover:underline">
+              Create one now
+            </Link>
+            .
+          </p>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
