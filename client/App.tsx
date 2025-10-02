@@ -22,7 +22,9 @@ import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminLatestLead from "./pages/admin/AdminLatestLead";
+import AdminSubmissions from "./pages/admin/AdminSubmissions";
+import AdminNewToday from "./pages/admin/AdminNewToday";
+import AdminActiveAdmins from "./pages/admin/AdminActiveAdmins";
 import AdminTeam from "./pages/admin/AdminTeam";
 import AdminSignup from "./pages/admin/AdminSignup";
 import AdminAuthLayout from "./components/admin/AdminAuthLayout";
@@ -62,7 +64,9 @@ const App = () => (
           </Route>
           <Route path="/admin-rank/dashboard" element={<AdminAppLayout />}>
             <Route index element={<AdminDashboard />} />
-            <Route path="latest-lead" element={<AdminLatestLead />} />
+            <Route path="recent" element={<AdminSubmissions />} />
+            <Route path="new-today" element={<AdminNewToday />} />
+            <Route path="active-admins" element={<AdminActiveAdmins />} />
             <Route path="team" element={<AdminTeam />} />
           </Route>
         </Routes>

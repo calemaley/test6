@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
-import { LayoutDashboard, LogOut, Menu, ShieldCheck, X, Mail, Users } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, ShieldCheck, X, Users, Clock3, ListChecks } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import SnakeCursor from "@/components/site/cursors/SnakeCursor";
@@ -15,9 +15,19 @@ const NAV_LINKS: Array<{ to: string; label: string; icon: LucideIcon }> = [
     icon: LayoutDashboard,
   },
   {
-    to: "/admin-rank/dashboard/latest-lead",
-    label: "Latest lead",
-    icon: Mail,
+    to: "/admin-rank/dashboard/recent",
+    label: "Recent submissions",
+    icon: ListChecks,
+  },
+  {
+    to: "/admin-rank/dashboard/new-today",
+    label: "New today",
+    icon: Clock3,
+  },
+  {
+    to: "/admin-rank/dashboard/active-admins",
+    label: "Active admins",
+    icon: Users,
   },
   {
     to: "/admin-rank/dashboard/team",
