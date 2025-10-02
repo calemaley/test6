@@ -556,10 +556,12 @@ function SubmissionsPanel({
 function SubmissionRow({
   submission,
   onToggleReviewed,
+  onDelete,
   updating,
 }: {
   submission: Submission;
   onToggleReviewed: (submission: Submission) => void;
+  onDelete: (submission: Submission) => void;
   updating: boolean;
 }) {
   const createdAt = new Date(submission.createdAt);
