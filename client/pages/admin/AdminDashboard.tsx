@@ -539,6 +539,7 @@ function SubmissionsPanel({
                       key={submission.id}
                       submission={submission}
                       onToggleReviewed={onToggleReviewed}
+                      onDelete={onDelete}
                       updating={updatingId === submission.id}
                     />
                   ))
