@@ -33,9 +33,9 @@ export function createServer() {
         else headers.set(key, value);
       });
 
-      let body: BodyInit | undefined;
+      let body: RequestInit["body"];
       const method = req.method?.toUpperCase() ?? "GET";
-      if (! ["GET", "HEAD"].includes(method)) {
+      if (!["GET", "HEAD"].includes(method)) {
         if (req.is("application/json") && req.body && typeof req.body === "object") {
           body = JSON.stringify(req.body);
           if (!headers.has("Content-Type")) {
