@@ -431,6 +431,7 @@ function SubmissionsPanel({
   searchTerm,
   onSearchChange,
   onToggleReviewed,
+  onDelete,
   updatingId,
 }: {
   items: Submission[];
