@@ -142,7 +142,6 @@ export default function AdminDashboard() {
       };
     }
 
-    const now = new Date();
     let reviewed = 0;
     let service = 0;
     let consultation = 0;
