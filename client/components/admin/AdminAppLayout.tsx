@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { LayoutDashboard, LogOut, Menu, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import SnakeCursor from "@/components/site/cursors/SnakeCursor";
 import { cn } from "@/lib/utils";
 import { isAuthed, logout } from "@/lib/submissions";
 
@@ -37,7 +38,8 @@ export default function AdminAppLayout() {
 
   return (
     <div className="flex min-h-screen bg-slate-100 text-slate-900">
-      <aside className="hidden w-72 flex-col border-r border-slate-200 bg-slate-950 text-white lg:flex">
+      <SnakeCursor />
+      <aside className="hidden w-80 flex-col border-r border-slate-200 bg-slate-950 text-white lg:flex">
         <AdminSidebarContent />
       </aside>
 
@@ -51,7 +53,7 @@ export default function AdminAppLayout() {
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-72 translate-x-[-100%] border-r border-slate-200 bg-slate-950 text-white transition-transform lg:hidden",
+          "fixed inset-y-0 left-0 z-50 w-80 translate-x-[-100%] border-r border-slate-200 bg-slate-950 text-white transition-transform lg:hidden",
           sidebarOpen && "translate-x-0",
         )}
       >
@@ -108,7 +110,7 @@ export default function AdminAppLayout() {
             Sign out
           </Button>
         </header>
-        <main className="flex-1 overflow-y-auto bg-slate-50 px-4 py-8 lg:px-8">
+        <main className="flex-1 overflow-y-auto bg-slate-50 px-6 py-10 md:px-8 lg:px-12">
           <Outlet />
         </main>
       </div>
@@ -135,7 +137,7 @@ function AdminSidebarContent() {
           <SidebarLink key={item.to} {...item} />
         ))}
       </nav>
-      <div className="px-6 pb-10 text-xs text-white/50">
+      <div className="px-8 pb-10 text-xs text-white/50">
         Organized operations for the JBRANKY team.
       </div>
     </div>
@@ -155,7 +157,7 @@ function SidebarLink({ to, label, icon: Icon }: (typeof NAV_LINKS)[number]) {
         )
       }
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-4 w-4" aria-hidden="true" />
       <span>{label}</span>
     </NavLink>
   );
