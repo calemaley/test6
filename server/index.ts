@@ -33,6 +33,15 @@ export function createServer() {
         else headers.set(key, value);
       });
 
+      const serviceToken = process.env.ADMIN_PROXY_TOKEN?.trim();
+      const needsServiceToken = upstreamPath.startsWith("/api/requests");
+      if (serviceToken && needsServiceToken && !headers.has("Authorization")) {
+        const headerValue = serviceToken.startsWith("Token ")
+          ? serviceToken
+          : `Token ${serviceToken}`;
+        headers.set("Authorization", headerValue);
+      }
+
       let body: RequestInit["body"];
       const method = req.method?.toUpperCase() ?? "GET";
       if (!["GET", "HEAD"].includes(method)) {
