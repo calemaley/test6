@@ -611,16 +611,39 @@ function SubmissionRow({
         <StatusBadge submission={submission} />
       </td>
       <td className="px-4 py-4 text-right">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => onToggleReviewed(submission)}
-          disabled={updating}
-        >
-          {updating && <Loader2 className="h-4 w-4 animate-spin" />}
-          Mark as {submission.reviewed ? "new" : "reviewed"}
-        </Button>
+        <div className="flex items-center justify-end gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => onToggleReviewed(submission)}
+            disabled={updating}
+          >
+            {updating && <Loader2 className="h-4 w-4 animate-spin" />}
+            Mark as {submission.reviewed ? "new" : "reviewed"}
+          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" size="sm" disabled={updating}>
+                <Trash2 className="h-4 w-4" /> Delete
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete this submission?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently remove the selected submission.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={() => onDelete(submission)}>
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </td>
     </tr>
   );
