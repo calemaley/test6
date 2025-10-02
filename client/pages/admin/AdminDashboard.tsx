@@ -44,7 +44,6 @@ import {
 type InquiryFilter = "all" | "service" | "consultation" | "general";
 type StatusFilter = "all" | "new" | "reviewed";
 
-displayName
 const TYPE_FILTERS: Array<{ value: InquiryFilter; label: string }> = [
   { value: "all", label: "All inquiries" },
   { value: "service", label: "Service requests" },
