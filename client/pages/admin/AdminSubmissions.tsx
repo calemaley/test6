@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { format, formatDistanceToNow, isToday } from "date-fns";
 import { toast } from "sonner";
 import {
@@ -32,6 +32,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { cn } from "@/lib/utils";
 
 function labelForType(submission: Submission) {
   switch (submission.normalizedType) {
@@ -59,7 +60,11 @@ function formatService(value: string) {
   }
 }
 
-function StatusBadge({ submission }: { submission: Submission }) {
+function SubmissionStatusBadge({
+  submission,
+}: {
+  submission: Submission;
+}) {
   if (submission.reviewed) {
     return (
       <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">
@@ -67,6 +72,7 @@ function StatusBadge({ submission }: { submission: Submission }) {
       </Badge>
     );
   }
+
   return (
     <Badge variant="outline" className="border-amber-300 text-amber-600">
       Awaiting review
@@ -88,19 +94,21 @@ export default function AdminSubmissions() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [updatingId, setUpdatingId] = useState<number | null>(null);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const filtered = useMemo(() => {
     const normalizedQuery = searchTerm.trim().toLowerCase();
-    return (submissions ?? []).filter((s) => {
-      if (statusParam === "reviewed" && !s.reviewed) return false;
-      if (statusParam === "new" && s.reviewed) return false;
+    return (submissions ?? []).filter((submission) => {
+      if (statusParam === "reviewed" && !submission.reviewed) return false;
+      if (statusParam === "new" && submission.reviewed) return false;
       if (dateParam === "today") {
-        if (!isToday(new Date(s.createdAt))) return false;
+        if (!isToday(new Date(submission.createdAt))) return false;
       }
       if (!normalizedQuery) return true;
-      const hay =
-        `${s.name} ${s.email} ${s.message} ${s.service ?? ""}`.toLowerCase();
-      return hay.includes(normalizedQuery);
+      const haystack = `${submission.name} ${submission.email} ${
+        submission.message
+      } ${submission.service ?? ""}`.toLowerCase();
+      return haystack.includes(normalizedQuery);
     });
   }, [submissions, statusParam, dateParam, searchTerm]);
 
@@ -124,9 +132,11 @@ export default function AdminSubmissions() {
           ? "Submission marked as reviewed"
           : "Submission marked as new",
       );
-    } catch (e) {
+    } catch (error) {
       toast.error(
-        e instanceof Error ? e.message : "Unable to update submission status.",
+        error instanceof Error
+          ? error.message
+          : "Unable to update submission status.",
       );
     } finally {
       setUpdatingId(null);
@@ -141,12 +151,12 @@ export default function AdminSubmissions() {
       queryClient.setQueryData<Submission[] | undefined>(
         ["admin", "submissions"],
         (current) =>
-          current ? current.filter((s) => s.id !== submission.id) : [],
+          current ? current.filter((item) => item.id !== submission.id) : [],
       );
       toast.success("Submission deleted");
-    } catch (e) {
+    } catch (error) {
       toast.error(
-        e instanceof Error ? e.message : "Unable to delete submission.",
+        error instanceof Error ? error.message : "Unable to delete submission.",
       );
     } finally {
       setUpdatingId(null);
@@ -172,8 +182,8 @@ export default function AdminSubmissions() {
         >
           {submissionsQuery.isFetching && (
             <Loader2 className="h-4 w-4 animate-spin" />
-          )}{" "}
-          Sync now
+          )}
+          <span className="ml-2">Sync now</span>
         </Button>
       </header>
 
@@ -183,36 +193,44 @@ export default function AdminSubmissions() {
             <div>
               <CardTitle>All submissions</CardTitle>
               <CardDescription>
-                Showing {filtered.length} of {submissions.length} total
-                submissions.
+                Showing {filtered.length} of {submissions.length} total submissions.
               </CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-5">
-          <div className="flex items-center gap-2">
-            <div className="relative w-full max-w-md">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="relative w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(event) => setSearchTerm(event.target.value)}
                 placeholder="Search by name, email, or message"
                 className="pl-9"
               />
             </div>
+            <div className="flex items-center gap-2 md:hidden">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setIsZoomed((prev) => !prev)}
+              >
+                {isZoomed ? "Standard text" : "Zoom text"}
+              </Button>
+            </div>
           </div>
-          <div className="overflow-hidden rounded-lg border">
-            <div className="max-h-[620px] overflow-auto">
+
+          <div className="rounded-lg border">
+            <div className="hidden max-h-[620px] overflow-auto md:block">
               <table className="min-w-full divide-y divide-border text-sm">
-                <thead className="bg-muted/60 text-left uppercase text-xs text-muted-foreground">
+                <thead className="bg-muted/60 text-left text-xs uppercase text-muted-foreground">
                   <tr>
                     <th className="px-4 py-3 font-semibold">Submitted</th>
                     <th className="px-4 py-3 font-semibold">Contact</th>
                     <th className="px-4 py-3 font-semibold">Inquiry</th>
                     <th className="px-4 py-3 font-semibold">Status</th>
-                    <th className="px-4 py-3 font-semibold text-right">
-                      Actions
-                    </th>
+                    <th className="px-4 py-3 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-white">
@@ -240,10 +258,11 @@ export default function AdminSubmissions() {
                   ) : (
                     filtered.map((submission) => {
                       const createdAt = new Date(submission.createdAt);
-                      const submittedLabel = `${format(createdAt, "MMM d, yyyy HH:mm")}`;
+                      const submittedLabel = format(createdAt, "MMM d, yyyy HH:mm");
                       const relativeLabel = formatDistanceToNow(createdAt, {
                         addSuffix: true,
                       });
+
                       return (
                         <tr key={submission.id} className="align-top">
                           <td className="px-4 py-4 text-sm text-muted-foreground">
@@ -290,7 +309,7 @@ export default function AdminSubmissions() {
                             </p>
                           </td>
                           <td className="px-4 py-4">
-                            <StatusBadge submission={submission} />
+                            <SubmissionStatusBadge submission={submission} />
                           </td>
                           <td className="px-4 py-4 text-right">
                             <div className="flex items-center justify-end gap-2">
@@ -304,8 +323,9 @@ export default function AdminSubmissions() {
                                 {updatingId === submission.id && (
                                   <Loader2 className="h-4 w-4 animate-spin" />
                                 )}
-                                Mark as{" "}
-                                {submission.reviewed ? "new" : "reviewed"}
+                                <span className="ml-2">
+                                  Mark as {submission.reviewed ? "new" : "reviewed"}
+                                </span>
                               </Button>
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
@@ -314,7 +334,8 @@ export default function AdminSubmissions() {
                                     size="sm"
                                     disabled={updatingId === submission.id}
                                   >
-                                    <Trash2 className="h-4 w-4" /> Delete
+                                    <Trash2 className="h-4 w-4" />
+                                    <span className="ml-2">Delete</span>
                                   </Button>
                                 </AlertDialogTrigger>
                                 <AlertDialogContent>
@@ -323,15 +344,12 @@ export default function AdminSubmissions() {
                                       Delete this submission?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                      This action cannot be undone. This will
-                                      permanently remove the selected
-                                      submission.
+                                      This action cannot be undone. This will permanently
+                                      remove the selected submission.
                                     </AlertDialogDescription>
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>
-                                    <AlertDialogCancel>
-                                      Cancel
-                                    </AlertDialogCancel>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
                                     <AlertDialogAction
                                       onClick={() => handleDelete(submission)}
                                     >
@@ -349,9 +367,166 @@ export default function AdminSubmissions() {
                 </tbody>
               </table>
             </div>
+            <SubmissionListMobile
+              submissions={filtered}
+              loading={submissionsQuery.isLoading}
+              updatingId={updatingId}
+              onToggleReviewed={handleToggleReviewed}
+              onDelete={handleDelete}
+              isZoomed={isZoomed}
+            />
           </div>
         </CardContent>
       </Card>
     </section>
+  );
+}
+
+type SubmissionListMobileProps = {
+  submissions: Submission[];
+  loading: boolean;
+  updatingId: number | null;
+  onToggleReviewed: (submission: Submission) => void;
+  onDelete: (submission: Submission) => void;
+  isZoomed: boolean;
+};
+
+function SubmissionListMobile({
+  submissions,
+  loading,
+  updatingId,
+  onToggleReviewed,
+  onDelete,
+  isZoomed,
+}: SubmissionListMobileProps) {
+  if (loading) {
+    return (
+      <div className="flex min-h-[200px] items-center justify-center bg-white p-6 text-muted-foreground md:hidden">
+        <div className="flex items-center gap-3">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <span>Loading submissions...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (submissions.length === 0) {
+    return (
+      <div className="bg-white p-6 text-center text-sm text-muted-foreground md:hidden">
+        No submissions match the current filters.
+      </div>
+    );
+  }
+
+  return (
+    <div className="md:hidden">
+      <div className="divide-y divide-border bg-white">
+        {submissions.map((submission) => {
+          const createdAt = new Date(submission.createdAt);
+          const submittedLabel = format(createdAt, "MMM d, yyyy HH:mm");
+          const relativeLabel = formatDistanceToNow(createdAt, {
+            addSuffix: true,
+          });
+
+          return (
+            <article
+              key={submission.id}
+              className={cn(
+                "flex flex-col gap-3",
+                isZoomed
+                  ? "p-5 text-sm leading-6"
+                  : "p-4 text-[13px] leading-5"
+              )}
+            >
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="space-y-1">
+                  <p className="font-semibold text-slate-900">{submission.name}</p>
+                  <div className="flex items-center gap-1 text-muted-foreground">
+                    <Mail className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground/70" />
+                    <span className="break-all">{submission.email}</span>
+                  </div>
+                  {submission.phone && (
+                    <p className="text-muted-foreground/80">{submission.phone}</p>
+                  )}
+                </div>
+                <SubmissionStatusBadge submission={submission} />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="secondary">{labelForType(submission)}</Badge>
+                {submission.service && (
+                  <span className="text-muted-foreground">
+                    {formatService(submission.service)}
+                  </span>
+                )}
+              </div>
+
+              <div
+                className={cn(
+                  "rounded-md bg-muted/40 px-3 py-2 text-muted-foreground",
+                  isZoomed ? "max-h-none" : "max-h-32 overflow-y-auto"
+                )}
+              >
+                <p className="whitespace-pre-line">{submission.message}</p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
+                <span className="text-[0.75em] uppercase tracking-wide text-muted-foreground/70">
+                  Submitted
+                </span>
+                <span className="font-medium text-slate-900">{submittedLabel}</span>
+                <span className="text-muted-foreground/70">{relativeLabel}</span>
+              </div>
+
+              <Separator />
+
+              <div className="flex flex-col gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => onToggleReviewed(submission)}
+                  disabled={updatingId === submission.id}
+                >
+                  {updatingId === submission.id && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Mark as {submission.reviewed ? "new" : "reviewed"}
+                </Button>
+
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      className="w-full"
+                      disabled={updatingId === submission.id}
+                    >
+                      <Trash2 className="mr-2 h-4 w-4" /> Delete
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Delete this submission?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently remove the
+                        selected submission.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={() => onDelete(submission)}>
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
   );
 }
