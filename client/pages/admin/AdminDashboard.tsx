@@ -7,6 +7,7 @@ import {
   Loader2,
   Mail,
   Search,
+  Trash2,
   Users,
 } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -33,7 +34,19 @@ import {
   getSubmissions,
   isAuthed,
   updateSubmissionStatus,
+  deleteSubmission,
 } from "@/lib/submissions";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 type InquiryFilter = "all" | "service" | "consultation" | "general";
 type StatusFilter = "all" | "new" | "reviewed";
@@ -233,7 +246,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+    <section className="mx-auto flex w-full max-w-6xl flex-col gap-10">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-slate-900 md:text-3xl">
