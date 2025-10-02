@@ -226,6 +226,13 @@ export async function updateSubmissionStatus(
   return mapSubmission(data);
 }
 
+export async function deleteSubmission(id: number) {
+  await apiFetch<void>(`/api/requests/${id}/`, {
+    method: "DELETE",
+    expectJson: false,
+  });
+}
+
 export function clearAuth() {
   setToken(null);
 }
