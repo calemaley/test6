@@ -254,7 +254,8 @@ export default function AdminDashboard() {
       await deleteSubmission(submission.id);
       queryClient.setQueryData<Submission[] | undefined>(
         ["admin", "submissions"],
-        (current) => (current ? current.filter((s) => s.id !== submission.id) : []),
+        (current) =>
+          current ? current.filter((s) => s.id !== submission.id) : [],
       );
       toast.success("Submission deleted");
     } catch (error) {
@@ -299,7 +300,6 @@ export default function AdminDashboard() {
         totalAdmins={adminUsers.length}
         loading={submissionsQuery.isLoading && submissions.length === 0}
       />
-
     </section>
   );
 }
@@ -611,7 +611,8 @@ function SubmissionRow({
               <AlertDialogHeader>
                 <AlertDialogTitle>Delete this submission?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently remove the selected submission.
+                  This action cannot be undone. This will permanently remove the
+                  selected submission.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -681,7 +682,6 @@ function FilterPill({
     </button>
   );
 }
-
 
 function labelForType(submission: Submission) {
   switch (submission.normalizedType) {
