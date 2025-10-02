@@ -56,7 +56,10 @@ export default function AdminLogin() {
       toast.success("Welcome back, Admin");
       navigate("/admin-rank/dashboard", { replace: true });
     } catch (error) {
-      const message = parseAuthError(error, "Invalid credentials. Please try again.");
+      const message = parseAuthError(
+        error,
+        "Invalid credentials. Please try again.",
+      );
       setFormError(message);
       toast.error(message);
     } finally {
@@ -76,8 +79,8 @@ export default function AdminLogin() {
               Welcome back
             </CardTitle>
             <CardDescription className="text-base">
-              Sign in to access the JBRANKY operations console and manage new leads
-              in real-time.
+              Sign in to access the JBRANKY operations console and manage new
+              leads in real-time.
             </CardDescription>
           </div>
         </CardHeader>
@@ -98,7 +101,9 @@ export default function AdminLogin() {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <span className="text-xs text-muted-foreground">Minimum 8 characters</span>
+                <span className="text-xs text-muted-foreground">
+                  Minimum 8 characters
+                </span>
               </div>
               <Input
                 id="password"
@@ -129,7 +134,10 @@ export default function AdminLogin() {
           </form>
           <p className="mt-6 text-sm text-muted-foreground">
             Need an account?{" "}
-            <Link to="signup" className="font-medium text-primary hover:underline">
+            <Link
+              to="signup"
+              className="font-medium text-primary hover:underline"
+            >
               Create one now
             </Link>
             .

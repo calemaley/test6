@@ -11,12 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  format,
-  formatDistanceToNow,
-  isThisWeek,
-  isToday,
-} from "date-fns";
+import { format, formatDistanceToNow, isThisWeek, isToday } from "date-fns";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
@@ -192,7 +187,8 @@ export default function AdminDashboard() {
         return true;
       }
 
-      const haystack = `${submission.name} ${submission.email} ${submission.message} ${submission.service ?? ""}`.toLowerCase();
+      const haystack =
+        `${submission.name} ${submission.email} ${submission.message} ${submission.service ?? ""}`.toLowerCase();
       return haystack.includes(normalizedQuery);
     });
   }, [sortedSubmissions, typeFilter, statusFilter, searchTerm]);
@@ -200,7 +196,9 @@ export default function AdminDashboard() {
   const reviewRate = metrics.total
     ? Math.round((metrics.reviewed / metrics.total) * 100)
     : 0;
-  const activeAdmins = adminUsers.filter((user) => user.is_active ?? true).length;
+  const activeAdmins = adminUsers.filter(
+    (user) => user.is_active ?? true,
+  ).length;
   const latestSubmission = sortedSubmissions[0] ?? null;
 
   const handleToggleReviewed = async (submission: Submission) => {
@@ -287,7 +285,10 @@ export default function AdminDashboard() {
         />
 
         <aside className="space-y-6">
-          <LatestLeadCard submission={latestSubmission} loading={submissionsQuery.isLoading} />
+          <LatestLeadCard
+            submission={latestSubmission}
+            loading={submissionsQuery.isLoading}
+          />
           <UsersCard
             users={adminUsers}
             loading={adminUsersQuery.isLoading}
@@ -482,7 +483,9 @@ function SubmissionsPanel({
                   <th className="px-4 py-3 font-semibold">Contact</th>
                   <th className="px-4 py-3 font-semibold">Inquiry</th>
                   <th className="px-4 py-3 font-semibold">Status</th>
-                  <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                  <th className="px-4 py-3 font-semibold text-right">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-white">
@@ -490,7 +493,10 @@ function SubmissionsPanel({
                   <TableLoadingState />
                 ) : showEmptyState ? (
                   <tr>
-                    <td colSpan={5} className="px-6 py-10 text-center text-muted-foreground">
+                    <td
+                      colSpan={5}
+                      className="px-6 py-10 text-center text-muted-foreground"
+                    >
                       No submissions match the current filters.
                     </td>
                   </tr>
@@ -558,7 +564,10 @@ function SubmissionRow({
             </span>
           )}
         </div>
-        <p className="mt-2 max-w-xs truncate text-sm text-muted-foreground" title={submission.message}>
+        <p
+          className="mt-2 max-w-xs truncate text-sm text-muted-foreground"
+          title={submission.message}
+        >
           {submission.message}
         </p>
       </td>
@@ -647,7 +656,9 @@ function LatestLeadCard({
       <CardHeader>
         <CardTitle>Latest lead</CardTitle>
         <CardDescription>
-          {submission ? "Most recent inbound inquiry." : "New leads appear here."}
+          {submission
+            ? "Most recent inbound inquiry."
+            : "New leads appear here."}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -661,12 +672,16 @@ function LatestLeadCard({
               <p className="text-lg font-semibold text-slate-900">
                 {submission.name}
               </p>
-              <p className="text-sm text-muted-foreground">{submission.email}</p>
+              <p className="text-sm text-muted-foreground">
+                {submission.email}
+              </p>
             </div>
             <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
               <Badge variant="secondary">{labelForType(submission)}</Badge>
               {submission.service && (
-                <Badge variant="outline">{formatService(submission.service)}</Badge>
+                <Badge variant="outline">
+                  {formatService(submission.service)}
+                </Badge>
               )}
             </div>
             <Separator />
@@ -704,7 +719,9 @@ function UsersCard({
       <CardHeader className="flex flex-row items-start justify-between">
         <div>
           <CardTitle>Admin team</CardTitle>
-          <CardDescription>Accounts with access to this console.</CardDescription>
+          <CardDescription>
+            Accounts with access to this console.
+          </CardDescription>
         </div>
         {fetching && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
       </CardHeader>
@@ -740,7 +757,9 @@ function UserRow({ user }: { user: AdminUser }) {
     <div className="rounded-lg border border-border bg-muted/30 p-4">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-slate-900">{user.username}</p>
+          <p className="text-sm font-semibold text-slate-900">
+            {user.username}
+          </p>
           <p className="text-xs text-muted-foreground">{user.email}</p>
         </div>
         <Badge
@@ -754,7 +773,9 @@ function UserRow({ user }: { user: AdminUser }) {
           {user.is_active === false ? "Inactive" : "Active"}
         </Badge>
       </div>
-      <p className="mt-3 text-xs text-muted-foreground">Last login: {lastLoginLabel}</p>
+      <p className="mt-3 text-xs text-muted-foreground">
+        Last login: {lastLoginLabel}
+      </p>
     </div>
   );
 }

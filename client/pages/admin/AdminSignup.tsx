@@ -97,8 +97,8 @@ export default function AdminSignup() {
               Create admin account
             </CardTitle>
             <CardDescription className="text-base">
-              Invite trusted team members and centralize your communications in one
-              secure console.
+              Invite trusted team members and centralize your communications in
+              one secure console.
             </CardDescription>
           </div>
         </CardHeader>
