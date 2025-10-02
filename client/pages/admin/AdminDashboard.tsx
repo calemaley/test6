@@ -312,6 +312,7 @@ export default function AdminDashboard() {
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           onToggleReviewed={handleToggleReviewed}
+          onDelete={handleDelete}
           updatingId={updatingId}
         />
 
