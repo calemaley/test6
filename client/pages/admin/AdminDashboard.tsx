@@ -244,7 +244,7 @@ interface MetricCardProps {
   value: string;
   helper: string;
   icon: LucideIcon;
-  loading: boolean;
+  loading?: boolean;
 }
 
 function MetricCard({
@@ -252,7 +252,7 @@ function MetricCard({
   value,
   helper,
   icon: Icon,
-  loading,
+  loading = false,
 }: MetricCardProps) {
   return (
     <Card className="border-none bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
