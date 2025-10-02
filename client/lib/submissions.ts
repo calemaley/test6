@@ -17,6 +17,16 @@ export interface Submission {
   reviewed: boolean;
 }
 
+export interface AdminUser {
+  id: number;
+  email: string;
+  username: string;
+  first_name?: string;
+  last_name?: string;
+  last_login?: string | null;
+  is_active?: boolean;
+}
+
 const AUTH_KEY = "jbranky:admin:token";
 const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000").replace(/\/$/, "");
 
@@ -138,6 +148,25 @@ export async function logout() {
 
 export async function fetchCurrentUser() {
   return apiFetch("/auth/users/me/", { method: "GET" });
+}
+
+export interface RegisterAdminPayload {
+  email: string;
+  username: string;
+  password: string;
+  re_password: string;
+}
+
+export async function registerAdmin(payload: RegisterAdminPayload) {
+  return apiFetch<AdminUser>("/auth/users/", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    auth: false,
+  });
+}
+
+export async function getAdminUsers(): Promise<AdminUser[]> {
+  return apiFetch<AdminUser[]>("/auth/users/", { method: "GET" });
 }
 
 export interface CreateSubmissionPayload {
