@@ -137,7 +137,7 @@ export default function AdminDashboard() {
   const activeAdmins = countActiveAdmins(adminUsers);
 
   return (
-    <section className="mx-auto flex w-full max-w-none flex-col gap-10 lg:max-w-6xl">
+    <section className="mx-auto flex w-full max-w-full flex-col gap-10">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-slate-900 md:text-3xl">
