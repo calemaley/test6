@@ -245,6 +245,25 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDelete = async (submission: Submission) => {
+    if (updatingId) return;
+    setUpdatingId(submission.id);
+    try {
+      await deleteSubmission(submission.id);
+      queryClient.setQueryData<Submission[] | undefined>(
+        ["admin", "submissions"],
+        (current) => (current ? current.filter((s) => s.id !== submission.id) : []),
+      );
+      toast.success("Submission deleted");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unable to delete submission.";
+      toast.error(message);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-10">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
