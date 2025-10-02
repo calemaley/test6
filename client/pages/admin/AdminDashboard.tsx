@@ -445,6 +445,7 @@ function SubmissionsPanel({
   searchTerm: string;
   onSearchChange: (value: string) => void;
   onToggleReviewed: (submission: Submission) => void;
+  onDelete: (submission: Submission) => void;
   updatingId: number | null;
 }) {
   const showEmptyState = !loading && items.length === 0;
