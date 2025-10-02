@@ -1,5 +1,10 @@
 export type InquiryType = "service" | "consultation" | "general";
-export type SubmissionStatus = "new" | "reviewed" | "unreviewed" | "pending" | string;
+export type SubmissionStatus =
+  | "new"
+  | "reviewed"
+  | "unreviewed"
+  | "pending"
+  | string;
 
 type NormalizedType = InquiryType | "other";
 
@@ -28,7 +33,9 @@ export interface AdminUser {
 }
 
 const AUTH_KEY = "jbranky:admin:token";
-const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000").replace(/\/$/, "");
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000"
+).replace(/\/$/, "");
 
 interface ApiRequest {
   id: number;
@@ -62,7 +69,10 @@ function setToken(token: string | null) {
   } catch {}
 }
 
-async function apiFetch<T = unknown>(path: string, opts: FetchOptions = {}): Promise<T> {
+async function apiFetch<T = unknown>(
+  path: string,
+  opts: FetchOptions = {},
+): Promise<T> {
   const { auth = true, expectJson = true, headers, ...init } = opts;
   const url = `${API_BASE}${path}`;
   const reqHeaders = new Headers(headers ?? {});
@@ -84,7 +94,8 @@ async function apiFetch<T = unknown>(path: string, opts: FetchOptions = {}): Pro
     let detail = res.statusText;
     try {
       const data = await res.json();
-      detail = typeof data === "string" ? data : data.detail ?? JSON.stringify(data);
+      detail =
+        typeof data === "string" ? data : (data.detail ?? JSON.stringify(data));
     } catch {}
     throw new Error(detail || `Request failed (${res.status})`);
   }
@@ -100,7 +111,8 @@ function normalizeType(type: string | null | undefined): NormalizedType {
   if (!type) return "other";
   const lower = type.toLowerCase();
   if (lower.includes("service") || lower === "service") return "service";
-  if (lower.includes("consult") || lower === "consultation") return "consultation";
+  if (lower.includes("consult") || lower === "consultation")
+    return "consultation";
   if (lower.includes("general")) return "general";
   return (lower as NormalizedType) ?? "other";
 }
@@ -139,7 +151,10 @@ export async function login(username: string, password: string) {
 
 export async function logout() {
   try {
-    await apiFetch("/auth/token/logout/", { method: "POST", expectJson: false });
+    await apiFetch("/auth/token/logout/", {
+      method: "POST",
+      expectJson: false,
+    });
   } catch {
     // ignore logout failures but still clear token
   }
@@ -194,11 +209,16 @@ export async function saveSubmission(payload: CreateSubmissionPayload) {
 }
 
 export async function getSubmissions(): Promise<Submission[]> {
-  const data = await apiFetch<ApiRequest[]>("/api/requests/", { method: "GET" });
+  const data = await apiFetch<ApiRequest[]>("/api/requests/", {
+    method: "GET",
+  });
   return data.map(mapSubmission);
 }
 
-export async function updateSubmissionStatus(id: number, status: SubmissionStatus) {
+export async function updateSubmissionStatus(
+  id: number,
+  status: SubmissionStatus,
+) {
   const data = await apiFetch<ApiRequest>(`/api/requests/${id}/`, {
     method: "PATCH",
     body: JSON.stringify({ status }),

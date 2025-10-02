@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
-import {
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  ShieldCheck,
-  X,
-} from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

@@ -24,7 +24,9 @@ export default function AdminAuthLayout() {
             <p className="text-xs uppercase tracking-[0.35em] text-primary/70">
               Admin Portal
             </p>
-            <h1 className="mt-4 text-3xl font-semibold">JBRANKY Control Center</h1>
+            <h1 className="mt-4 text-3xl font-semibold">
+              JBRANKY Control Center
+            </h1>
             <p className="mt-3 text-sm text-white/70">
               Secure access for managing submissions, team members, and client
               communication.
