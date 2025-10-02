@@ -247,7 +247,13 @@ interface MetricCardProps {
   loading: boolean;
 }
 
-function MetricCard({ label, value, helper, icon: Icon, loading }: MetricCardProps) {
+function MetricCard({
+  label,
+  value,
+  helper,
+  icon: Icon,
+  loading,
+}: MetricCardProps) {
   return (
     <Card className="border-none bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
