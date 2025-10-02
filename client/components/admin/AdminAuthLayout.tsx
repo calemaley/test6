@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import SnakeCursor from "@/components/site/cursors/SnakeCursor";
 
 import { isAuthed } from "@/lib/submissions";
 
@@ -14,6 +15,7 @@ export default function AdminAuthLayout() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      <SnakeCursor />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 right-[-20%] h-[520px] w-[520px] rounded-full bg-primary/25 blur-3xl" />
         <div className="absolute bottom-[-24%] left-[-16%] h-[460px] w-[460px] rounded-full bg-indigo-500/20 blur-3xl" />
