@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Activity,
   CheckCircle2,
@@ -300,29 +300,6 @@ export default function AdminDashboard() {
         loading={submissionsQuery.isLoading && submissions.length === 0}
       />
 
-      <div className="grid gap-6 xl:grid-cols-[2fr_1fr]">
-        <SubmissionsPanel
-          items={filteredSubmissions}
-          totalItems={sortedSubmissions.length}
-          onRefresh={() => submissionsQuery.refetch()}
-          loading={submissionsQuery.isLoading}
-          fetching={submissionsQuery.isFetching}
-          typeFilter={typeFilter}
-          onTypeFilterChange={setTypeFilter}
-          statusFilter={statusFilter}
-          onStatusFilterChange={setStatusFilter}
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          onToggleReviewed={handleToggleReviewed}
-          onDelete={handleDelete}
-          updatingId={updatingId}
-        />
-
-        <aside className="space-y-6">
-          <LatestLeadCard submission={latestSubmission} loading={submissionsQuery.isLoading} />
-          <UsersCard users={adminUsers} loading={adminUsersQuery.isLoading} fetching={adminUsersQuery.isFetching} />
-        </aside>
-      </div>
     </section>
   );
 }
@@ -349,12 +326,14 @@ function OverviewMetrics({
           : "No new inquiries this week",
       value: metrics.total.toLocaleString(),
       icon: Activity,
+      to: "/admin-rank/dashboard/recent",
     },
     {
       label: "Review rate",
       helper: `${metrics.reviewed} marked as reviewed`,
       value: `${reviewRate}%`,
       icon: CheckCircle2,
+      to: "/admin-rank/dashboard/recent?status=reviewed",
     },
     {
       label: "New today",
@@ -364,19 +343,23 @@ function OverviewMetrics({
           : "All submissions are reviewed",
       value: metrics.today.toLocaleString(),
       icon: Clock3,
+      to: "/admin-rank/dashboard/new-today",
     },
     {
       label: "Active admins",
       helper: `${totalAdmins} team member${totalAdmins === 1 ? "" : "s"}`,
       value: activeAdmins.toString(),
       icon: Users,
+      to: "/admin-rank/dashboard/active-admins",
     },
   ];
 
   return (
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       {cards.map((card) => (
-        <MetricCard key={card.label} {...card} loading={loading} />
+        <Link key={card.label} to={(card as any).to} className="block">
+          <MetricCard {...card} loading={loading} />
+        </Link>
       ))}
     </div>
   );
