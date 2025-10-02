@@ -22,6 +22,9 @@ import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminSignup from "./pages/admin/AdminSignup";
+import AdminAuthLayout from "./components/admin/AdminAuthLayout";
+import AdminAppLayout from "./components/admin/AdminAppLayout";
 
 const queryClient = new QueryClient();
 
@@ -47,10 +50,16 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<Article />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin-rank" element={<AdminLogin />} />
-            <Route path="/admin-rank/dashboard" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route path="/admin-rank" element={<AdminAuthLayout />}>
+            <Route index element={<AdminLogin />} />
+            <Route path="signup" element={<AdminSignup />} />
+            <Route path="*" element={<AdminLogin />} />
+          </Route>
+          <Route path="/admin-rank/dashboard" element={<AdminAppLayout />}>
+            <Route index element={<AdminDashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
