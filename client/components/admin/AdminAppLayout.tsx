@@ -38,11 +38,6 @@ const NAV_LINKS: Array<{ to: string; label: string; icon: LucideIcon }> = [
     label: "Active admins",
     icon: Users,
   },
-  {
-    to: "/admin-rank/dashboard/team",
-    label: "Admin team",
-    icon: Users,
-  },
 ];
 
 export default function AdminAppLayout() {
