@@ -47,6 +47,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import LatestLeadCard from "./components/LatestLeadCard";
+import UsersCard from "./components/UsersCard";
 
 type InquiryFilter = "all" | "service" | "consultation" | "general";
 type StatusFilter = "all" | "new" | "reviewed";
@@ -317,15 +319,8 @@ export default function AdminDashboard() {
         />
 
         <aside className="space-y-6">
-          <LatestLeadCard
-            submission={latestSubmission}
-            loading={submissionsQuery.isLoading}
-          />
-          <UsersCard
-            users={adminUsers}
-            loading={adminUsersQuery.isLoading}
-            fetching={adminUsersQuery.isFetching}
-          />
+          <LatestLeadCard submission={latestSubmission} loading={submissionsQuery.isLoading} />
+          <UsersCard users={adminUsers} loading={adminUsersQuery.isLoading} fetching={adminUsersQuery.isFetching} />
         </aside>
       </div>
     </section>
@@ -704,141 +699,6 @@ function FilterPill({
   );
 }
 
-function LatestLeadCard({
-  submission,
-  loading,
-}: {
-  submission: Submission | null;
-  loading: boolean;
-}) {
-  return (
-    <Card className="border-none bg-white shadow-sm">
-      <CardHeader>
-        <CardTitle>Latest lead</CardTitle>
-        <CardDescription>
-          {submission
-            ? "Most recent inbound inquiry."
-            : "New leads appear here."}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {loading ? (
-          <div className="flex items-center justify-center py-12 text-muted-foreground">
-            <Loader2 className="h-5 w-5 animate-spin" />
-          </div>
-        ) : submission ? (
-          <div className="space-y-4">
-            <div>
-              <p className="text-lg font-semibold text-slate-900">
-                {submission.name}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {submission.email}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <Badge variant="secondary">{labelForType(submission)}</Badge>
-              {submission.service && (
-                <Badge variant="outline">
-                  {formatService(submission.service)}
-                </Badge>
-              )}
-            </div>
-            <Separator />
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {submission.message}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {formatDistanceToNow(new Date(submission.createdAt), {
-                addSuffix: true,
-              })}
-            </p>
-          </div>
-        ) : (
-          <p className="py-8 text-sm text-muted-foreground">
-            You are all caught up. Invite prospects to reach out via the contact
-            page to see their messages here.
-          </p>
-        )}
-      </CardContent>
-    </Card>
-  );
-}
-
-function UsersCard({
-  users,
-  loading,
-  fetching,
-}: {
-  users: AdminUser[];
-  loading: boolean;
-  fetching: boolean;
-}) {
-  return (
-    <Card className="border-none bg-white shadow-sm">
-      <CardHeader className="flex flex-row items-start justify-between">
-        <div>
-          <CardTitle>Admin team</CardTitle>
-          <CardDescription>
-            Accounts with access to this console.
-          </CardDescription>
-        </div>
-        {fetching && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
-      </CardHeader>
-      <CardContent>
-        {loading ? (
-          <div className="flex items-center justify-center py-12 text-muted-foreground">
-            <Loader2 className="h-5 w-5 animate-spin" />
-          </div>
-        ) : users.length === 0 ? (
-          <p className="py-8 text-sm text-muted-foreground">
-            No admins found. Share the signup link to onboard your team.
-          </p>
-        ) : (
-          <ScrollArea className="max-h-[420px] pr-2">
-            <div className="space-y-4">
-              {users.map((user) => (
-                <UserRow key={user.id} user={user} />
-              ))}
-            </div>
-          </ScrollArea>
-        )}
-      </CardContent>
-    </Card>
-  );
-}
-
-function UserRow({ user }: { user: AdminUser }) {
-  const lastLoginLabel = user.last_login
-    ? formatDistanceToNow(new Date(user.last_login), { addSuffix: true })
-    : "No activity recorded";
-
-  return (
-    <div className="rounded-lg border border-border bg-muted/30 p-4">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold text-slate-900">
-            {user.username}
-          </p>
-          <p className="text-xs text-muted-foreground">{user.email}</p>
-        </div>
-        <Badge
-          variant={user.is_active === false ? "outline" : "secondary"}
-          className={cn(
-            user.is_active === false
-              ? "border-amber-300 text-amber-600"
-              : "bg-emerald-100 text-emerald-700",
-          )}
-        >
-          {user.is_active === false ? "Inactive" : "Active"}
-        </Badge>
-      </div>
-      <p className="mt-3 text-xs text-muted-foreground">
-        Last login: {lastLoginLabel}
-      </p>
-    </div>
-  );
-}
 
 function labelForType(submission: Submission) {
   switch (submission.normalizedType) {

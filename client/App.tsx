@@ -22,6 +22,8 @@ import Sollatek from "./pages/services/Sollatek";
 import Layout from "./components/site/Layout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLatestLead from "./pages/admin/AdminLatestLead";
+import AdminTeam from "./pages/admin/AdminTeam";
 import AdminSignup from "./pages/admin/AdminSignup";
 import AdminAuthLayout from "./components/admin/AdminAuthLayout";
 import AdminAppLayout from "./components/admin/AdminAppLayout";
@@ -60,6 +62,8 @@ const App = () => (
           </Route>
           <Route path="/admin-rank/dashboard" element={<AdminAppLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="latest-lead" element={<AdminLatestLead />} />
+            <Route path="team" element={<AdminTeam />} />
           </Route>
         </Routes>
       </BrowserRouter>
