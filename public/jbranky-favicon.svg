@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JBRANKY emblem">
+  <defs>
+    <linearGradient id="jbranky-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0050A0" />
+      <stop offset="100%" stop-color="#71BF44" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.25)" />
+    </filter>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#jbranky-gradient)" filter="url(#shadow)" />
+  <path
+    d="M32 16c-7.732 0-14 6.268-14 14s6.268 14 14 14 14-6.268 14-14"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M36 18l-9 12h9l-8 16"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
