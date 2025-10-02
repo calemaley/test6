@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
-import { Activity, CheckCircle2, Clock3, Users } from "lucide-react";
+import { Activity, CheckCircle2, Clock3, Loader2, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { isThisWeek, isToday } from "date-fns";
 import { toast } from "sonner";
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/card";
 import {
   AdminUser,
-  Submission,
   getAdminUsers,
   getSubmissions,
   isAuthed,
@@ -155,7 +155,7 @@ export default function AdminDashboard() {
             disabled={submissionsQuery.isFetching}
           >
             {submissionsQuery.isFetching && (
-              <Activity className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
             )}
             Refresh data
           </Button>
