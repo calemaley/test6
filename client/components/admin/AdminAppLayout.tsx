@@ -134,7 +134,7 @@ export default function AdminAppLayout() {
             Sign out
           </Button>
         </header>
-        <main className="flex-1 overflow-y-auto bg-slate-50 px-6 py-10 md:px-8 lg:px-12">
+        <main className="flex-1 overflow-y-auto overflow-x-auto bg-slate-50 px-6 py-10 md:px-8 lg:px-12">
           <Outlet />
         </main>
       </div>
