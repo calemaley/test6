@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserPlus } from "lucide-react";
+import { Loader2, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,16 @@ import {
 } from "@/components/ui/card";
 import { login, registerAdmin } from "@/lib/submissions";
 
+function parseSignupError(error: unknown, fallback: string) {
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+  if (typeof error === "string" && error.length > 0) {
+    return error;
+  }
+  return fallback;
+}
+
 export default function AdminSignup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -22,24 +32,32 @@ export default function AdminSignup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  const onSubmit = async (event: React.FormEvent) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedEmail = email.trim();
     const trimmedUsername = username.trim();
+    setFormError(null);
 
     if (!trimmedEmail || !trimmedUsername) {
-      toast.error("Please provide an email address and username.");
+      const message = "Please provide a work email and username.";
+      setFormError(message);
+      toast.error(message);
       return;
     }
 
     if (password.length < 8) {
-      toast.error("Password must be at least 8 characters long.");
+      const message = "Password must be at least 8 characters long.";
+      setFormError(message);
+      toast.error(message);
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match. Please try again.");
+      const message = "Passwords do not match. Please try again.";
+      setFormError(message);
+      toast.error(message);
       return;
     }
 
@@ -56,12 +74,12 @@ export default function AdminSignup() {
       await login(trimmedUsername, password);
       navigate("/admin-rank/dashboard", { replace: true });
     } catch (error) {
-      console.error(error);
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Unable to create account. Please try again.",
+      const message = parseSignupError(
+        error,
+        "Unable to create account. Please try again.",
       );
+      setFormError(message);
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -79,8 +97,8 @@ export default function AdminSignup() {
               Create admin account
             </CardTitle>
             <CardDescription className="text-base">
-              Invite trusted team members and centralize your communications in
-              one secure console.
+              Invite trusted team members and centralize your communications in one
+              secure console.
             </CardDescription>
           </div>
         </CardHeader>
@@ -95,6 +113,7 @@ export default function AdminSignup() {
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="name@company.com"
                 autoComplete="email"
+                disabled={loading}
                 required
               />
             </div>
@@ -106,6 +125,7 @@ export default function AdminSignup() {
                 onChange={(event) => setUsername(event.target.value)}
                 placeholder="operations lead"
                 autoComplete="username"
+                disabled={loading}
                 required
               />
             </div>
@@ -118,6 +138,7 @@ export default function AdminSignup() {
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="••••••••"
                 autoComplete="new-password"
+                disabled={loading}
                 required
               />
             </div>
@@ -130,11 +151,24 @@ export default function AdminSignup() {
                 onChange={(event) => setConfirmPassword(event.target.value)}
                 placeholder="••••••••"
                 autoComplete="new-password"
+                disabled={loading}
                 required
               />
             </div>
+            {formError && (
+              <p className="rounded-md border border-destructive/20 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                {formError}
+              </p>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating your account..." : "Create account"}
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Creating your account...
+                </span>
+              ) : (
+                "Create account"
+              )}
             </Button>
           </form>
           <p className="mt-6 text-sm text-muted-foreground">
