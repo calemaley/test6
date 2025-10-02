@@ -212,10 +212,12 @@ export default function AdminDashboard() {
       const updated = await updateSubmissionStatus(submission.id, nextStatus);
       queryClient.setQueryData<Submission[] | undefined>(
         ["admin", "submissions"],
-        (current) =>
-          (current ?? []).map((item) =>
+        (current) => {
+          if (!current) return [updated];
+          return current.map((item) =>
             item.id === updated.id ? updated : item,
-          ),
+          );
+        },
       );
       toast.success(
         nextStatus === "reviewed"
