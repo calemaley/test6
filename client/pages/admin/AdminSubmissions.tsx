@@ -60,11 +60,7 @@ function formatService(value: string) {
   }
 }
 
-function SubmissionStatusBadge({
-  submission,
-}: {
-  submission: Submission;
-}) {
+function SubmissionStatusBadge({ submission }: { submission: Submission }) {
   if (submission.reviewed) {
     return (
       <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">
@@ -193,7 +189,8 @@ export default function AdminSubmissions() {
             <div>
               <CardTitle>All submissions</CardTitle>
               <CardDescription>
-                Showing {filtered.length} of {submissions.length} total submissions.
+                Showing {filtered.length} of {submissions.length} total
+                submissions.
               </CardDescription>
             </div>
           </div>
@@ -230,7 +227,9 @@ export default function AdminSubmissions() {
                     <th className="px-4 py-3 font-semibold">Contact</th>
                     <th className="px-4 py-3 font-semibold">Inquiry</th>
                     <th className="px-4 py-3 font-semibold">Status</th>
-                    <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                    <th className="px-4 py-3 font-semibold text-right">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-white">
@@ -258,7 +257,10 @@ export default function AdminSubmissions() {
                   ) : (
                     filtered.map((submission) => {
                       const createdAt = new Date(submission.createdAt);
-                      const submittedLabel = format(createdAt, "MMM d, yyyy HH:mm");
+                      const submittedLabel = format(
+                        createdAt,
+                        "MMM d, yyyy HH:mm",
+                      );
                       const relativeLabel = formatDistanceToNow(createdAt, {
                         addSuffix: true,
                       });
@@ -324,7 +326,8 @@ export default function AdminSubmissions() {
                                   <Loader2 className="h-4 w-4 animate-spin" />
                                 )}
                                 <span className="ml-2">
-                                  Mark as {submission.reviewed ? "new" : "reviewed"}
+                                  Mark as{" "}
+                                  {submission.reviewed ? "new" : "reviewed"}
                                 </span>
                               </Button>
                               <AlertDialog>
@@ -344,12 +347,15 @@ export default function AdminSubmissions() {
                                       Delete this submission?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                      This action cannot be undone. This will permanently
-                                      remove the selected submission.
+                                      This action cannot be undone. This will
+                                      permanently remove the selected
+                                      submission.
                                     </AlertDialogDescription>
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogCancel>
+                                      Cancel
+                                    </AlertDialogCancel>
                                     <AlertDialogAction
                                       onClick={() => handleDelete(submission)}
                                     >
@@ -435,18 +441,22 @@ function SubmissionListMobile({
                 "flex flex-col gap-3",
                 isZoomed
                   ? "p-5 text-sm leading-6"
-                  : "p-4 text-[13px] leading-5"
+                  : "p-4 text-[13px] leading-5",
               )}
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="space-y-1">
-                  <p className="font-semibold text-slate-900">{submission.name}</p>
+                  <p className="font-semibold text-slate-900">
+                    {submission.name}
+                  </p>
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <Mail className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground/70" />
                     <span className="break-all">{submission.email}</span>
                   </div>
                   {submission.phone && (
-                    <p className="text-muted-foreground/80">{submission.phone}</p>
+                    <p className="text-muted-foreground/80">
+                      {submission.phone}
+                    </p>
                   )}
                 </div>
                 <SubmissionStatusBadge submission={submission} />
@@ -464,7 +474,7 @@ function SubmissionListMobile({
               <div
                 className={cn(
                   "rounded-md bg-muted/40 px-3 py-2 text-muted-foreground",
-                  isZoomed ? "max-h-none" : "max-h-32 overflow-y-auto"
+                  isZoomed ? "max-h-none" : "max-h-32 overflow-y-auto",
                 )}
               >
                 <p className="whitespace-pre-line">{submission.message}</p>
@@ -474,8 +484,12 @@ function SubmissionListMobile({
                 <span className="text-[0.75em] uppercase tracking-wide text-muted-foreground/70">
                   Submitted
                 </span>
-                <span className="font-medium text-slate-900">{submittedLabel}</span>
-                <span className="text-muted-foreground/70">{relativeLabel}</span>
+                <span className="font-medium text-slate-900">
+                  {submittedLabel}
+                </span>
+                <span className="text-muted-foreground/70">
+                  {relativeLabel}
+                </span>
               </div>
 
               <Separator />
@@ -508,10 +522,12 @@ function SubmissionListMobile({
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Delete this submission?</AlertDialogTitle>
+                      <AlertDialogTitle>
+                        Delete this submission?
+                      </AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. This will permanently remove the
-                        selected submission.
+                        This action cannot be undone. This will permanently
+                        remove the selected submission.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
