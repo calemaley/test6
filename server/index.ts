@@ -5,6 +5,7 @@ import { handleDemo } from "./routes/demo";
 import {
   appendChatbotMessage,
   createChatbotSession,
+  getChatbotSession,
   listChatbotSessions,
   updateChatbotSession,
 } from "./routes/chatbot-sessions";
