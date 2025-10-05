@@ -97,6 +97,7 @@ export function createServer() {
 
   // Chatbot session routes
   app.get("/api/chatbot-sessions", listChatbotSessions);
+  app.get("/api/chatbot-sessions/:id", getChatbotSession);
   app.post("/api/chatbot-sessions", createChatbotSession);
   app.post("/api/chatbot-sessions/:id/messages", appendChatbotMessage);
   app.patch("/api/chatbot-sessions/:id", updateChatbotSession);
