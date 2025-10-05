@@ -193,7 +193,7 @@ export default function JbrankyChatbot() {
         setSession(existing);
         setMessages(existing.messages);
         setPhase("chat");
-        setQuickReplies(DEFAULT_QUICK_ACTIONS);
+        setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
       } catch {
         persistSessionId(null);
         setPhase("tutorial");
