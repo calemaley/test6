@@ -89,6 +89,12 @@ export async function appendChatbotMessage(
   });
 }
 
+export async function getChatbotSession(
+  sessionId: string,
+): Promise<ChatbotSession> {
+  return request<ChatbotSession>(`/${sessionId}`, { method: "GET" });
+}
+
 export async function updateChatbotSession(
   sessionId: string,
   payload: Partial<Omit<ChatbotSession, "id" | "messages" | "createdAt" | "updatedAt">> & {
