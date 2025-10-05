@@ -94,6 +94,12 @@ export function createServer() {
     }
   });
 
+  // Chatbot session routes
+  app.get("/api/chatbot-sessions", listChatbotSessions);
+  app.post("/api/chatbot-sessions", createChatbotSession);
+  app.post("/api/chatbot-sessions/:id/messages", appendChatbotMessage);
+  app.patch("/api/chatbot-sessions/:id", updateChatbotSession);
+
   // Example API routes
   app.get("/api/ping", (_req, res) => {
     const ping = process.env.PING_MESSAGE ?? "ping";
