@@ -1,7 +1,9 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import SnakeCursor from "./cursors/SnakeCursor";
+import JbrankyChatbot from "./chatbot/JbrankyChatbot";
 
 export default function Layout() {
   return (
@@ -12,6 +14,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <JbrankyChatbot />
     </div>
   );
 }
