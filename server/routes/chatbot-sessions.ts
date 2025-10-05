@@ -66,6 +66,21 @@ export const listChatbotSessions: RequestHandler = async (_req, res) => {
   res.json(sorted);
 };
 
+export const getChatbotSession: RequestHandler = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    res.status(400).json({ detail: "Missing session id" });
+    return;
+  }
+  const sessions = await readSessions();
+  const session = sessions.find((item) => item.id === id);
+  if (!session) {
+    res.status(404).json({ detail: "Session not found" });
+    return;
+  }
+  res.json(session);
+};
+
 export const createChatbotSession: RequestHandler = async (req, res) => {
   const { visitorName, visitorEmail, visitorPhone, originPath, metadata } =
     req.body ?? {};
