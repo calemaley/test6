@@ -1,16 +1,27 @@
 import type { RequestHandler } from "express";
 
 const DEFAULTS = {
-  openai: { endpoint: "https://api.openai.com/v1/chat/completions", model: "gpt-3.5-turbo" },
-  groq: { endpoint: "https://api.groq.com/openai/v1/chat/completions", model: "llama-3.1-8b-instant" },
-  openrouter: { endpoint: "https://openrouter.ai/api/v1/chat/completions", model: "openrouter/auto" },
+  openai: {
+    endpoint: "https://api.openai.com/v1/chat/completions",
+    model: "gpt-3.5-turbo",
+  },
+  groq: {
+    endpoint: "https://api.groq.com/openai/v1/chat/completions",
+    model: "llama-3.1-8b-instant",
+  },
+  openrouter: {
+    endpoint: "https://openrouter.ai/api/v1/chat/completions",
+    model: "openrouter/auto",
+  },
 } as const;
 
 function pickProvider(explicit?: string | null) {
   const preferred = explicit?.toLowerCase();
-  if (preferred === "openai" && process.env.OPENAI_API_KEY) return "openai" as const;
+  if (preferred === "openai" && process.env.OPENAI_API_KEY)
+    return "openai" as const;
   if (preferred === "groq" && process.env.GROQ_API_KEY) return "groq" as const;
-  if (preferred === "openrouter" && process.env.OPENROUTER_API_KEY) return "openrouter" as const;
+  if (preferred === "openrouter" && process.env.OPENROUTER_API_KEY)
+    return "openrouter" as const;
   if (process.env.GROQ_API_KEY) return "groq" as const;
   if (process.env.OPENROUTER_API_KEY) return "openrouter" as const;
   if (process.env.OPENAI_API_KEY) return "openai" as const;
@@ -27,7 +38,12 @@ export const chatCompletion: RequestHandler = async (req, res) => {
 
     const chosen = pickProvider(typeof provider === "string" ? provider : null);
     if (!chosen) {
-      res.status(501).json({ detail: "No AI provider configured. Set GROQ_API_KEY, OPENROUTER_API_KEY, or OPENAI_API_KEY in environment." });
+      res
+        .status(501)
+        .json({
+          detail:
+            "No AI provider configured. Set GROQ_API_KEY, OPENROUTER_API_KEY, or OPENAI_API_KEY in environment.",
+        });
       return;
     }
 
@@ -39,7 +55,10 @@ export const chatCompletion: RequestHandler = async (req, res) => {
           : process.env.OPENAI_API_KEY;
 
     const endpoint = DEFAULTS[chosen].endpoint;
-    const selectedModel = typeof model === "string" && model.trim().length > 0 ? model : DEFAULTS[chosen].model;
+    const selectedModel =
+      typeof model === "string" && model.trim().length > 0
+        ? model
+        : DEFAULTS[chosen].model;
 
     const upstream = await fetch(endpoint, {
       method: "POST",
@@ -47,7 +66,10 @@ export const chatCompletion: RequestHandler = async (req, res) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${key}`,
         ...(chosen === "openrouter"
-          ? { "HTTP-Referer": "https://builder.io", "X-Title": "Fusion Starter" }
+          ? {
+              "HTTP-Referer": "https://builder.io",
+              "X-Title": "Fusion Starter",
+            }
           : {}),
       },
       body: JSON.stringify({

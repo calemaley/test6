@@ -44,5 +44,56 @@
         "intent": "callback_request"
       }
     ]
+  },
+  {
+    "id": "f968ee14-6f9d-4d2a-acae-86ec2fece800",
+    "visitorName": "caleb",
+    "visitorEmail": "peterparker@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T09:52:35.933Z",
+    "updatedAt": "2025-10-06T09:54:09.404Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true
+    },
+    "lastIntent": "general_inquiry",
+    "messages": [
+      {
+        "id": "d63ebf70-7291-44a2-9310-fbf53b1b9e12",
+        "sender": "bot",
+        "content": "Hydropower Plant Solutions: Feasibility, EPC delivery, and lifetime O&M support for small to mid-scale plants.\n• Hydrological feasibility studies and environmental impact assessments\n• Engineering, procurement, and construction covering civil and electro-mechanical works\n\nLarge Power & Medium-Voltage: Design, build, commission, and safeguard substations and grid interconnections from 11kV to 132kV.\n• Design and build 11kV–132kV substations, cabling, grounding, and protection schemes\n• Primary and secondary injection testing, relay programming, FAT/SAT, and commissioning\n\nSollatek Protection & Power Quality: Authorised Sollatek partner supplying AVS, stabilizers, and surge protection with 5-year warranty.\n• AVS 30 automatic voltage switchers and TV Guard surge protection\n• Single and three-phase automatic voltage regulators and stabilizers",
+        "createdAt": "2025-10-06T09:53:04.950Z",
+        "intent": "services_overview"
+      },
+      {
+        "id": "e570f618-1a37-490c-a7d1-bda42d46f73d",
+        "sender": "bot",
+        "content": "You can reach us on 0726502349 or Jbrankyltd8@gmail.com. We respond within 1 business day.",
+        "createdAt": "2025-10-06T09:53:31.723Z",
+        "intent": "contact_info"
+      },
+      {
+        "id": "44a795a5-8d25-4bef-b2f1-580b2a03eb5b",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:53:37.206Z",
+        "intent": "callback_request"
+      },
+      {
+        "id": "3f3037f7-3c19-4a6b-9f11-7f1314b162ca",
+        "sender": "visitor",
+        "content": "i called eearlier its the client",
+        "createdAt": "2025-10-06T09:54:00.444Z",
+        "intent": "general_inquiry"
+      },
+      {
+        "id": "1d6993cd-d7a4-42f5-ab40-ce48f56b7708",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:54:09.404Z",
+        "intent": "general_inquiry"
+      }
+    ]
   }
 ]

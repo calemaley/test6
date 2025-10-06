@@ -919,7 +919,8 @@ export default function JbrankyChatbot() {
             className="hidden md:inline-flex relative items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-lg shadow-primary/30"
             onClick={() => setIsOpen(true)}
           >
-            <MessageCircle className="h-4 w-4" /> Chat with {companyInfo.botName}
+            <MessageCircle className="h-4 w-4" /> Chat with{" "}
+            {companyInfo.botName}
           </Button>
         </>
       )}

@@ -1,4 +1,7 @@
-export type AiMessage = { role: "system" | "user" | "assistant"; content: string };
+export type AiMessage = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
 
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -8,7 +11,10 @@ async function handle<T>(res: Response): Promise<T> {
   return (await res.json()) as T;
 }
 
-export async function chatWithAI(messages: AiMessage[], options?: { model?: string; provider?: "openrouter" | "groq" | "openai" }) {
+export async function chatWithAI(
+  messages: AiMessage[],
+  options?: { model?: string; provider?: "openrouter" | "groq" | "openai" },
+) {
   const res = await fetch("/api/ai/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
