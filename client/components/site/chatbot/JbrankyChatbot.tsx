@@ -465,7 +465,9 @@ export default function JbrankyChatbot() {
         break;
       }
       case "link": {
-        window.open(reply.payload.href, "_blank", "noopener");
+        if (payload.type === "link") {
+          window.open(payload.href, "_blank", "noopener");
+        }
         break;
       }
       default:
