@@ -615,7 +615,7 @@ export default function JbrankyChatbot() {
       );
       if (matchedArticle) {
         await pushMessage("bot", matchedArticle.answer, BOT_INTENTS.GENERAL);
-        setQuickReplies(DEFAULT_QUICK_ACTIONS);
+        setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         setProcessing(false);
         return;
       }
@@ -625,7 +625,7 @@ export default function JbrankyChatbot() {
         `Here's what I can help with:\n• Service details for hydropower, medium-voltage, and Sollatek solutions\n• Booking consultations or site surveys\n• Sharing company contacts and response times\n• Capturing project requirements for our engineers.\nIf you'd like a human to call you, just let me know!`,
         BOT_INTENTS.GENERAL,
       );
-      setQuickReplies(DEFAULT_QUICK_ACTIONS);
+      setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
     } finally {
       setProcessing(false);
     }
