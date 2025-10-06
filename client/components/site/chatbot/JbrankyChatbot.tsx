@@ -403,7 +403,7 @@ export default function JbrankyChatbot() {
           setQuickReplies((prev) => [
             ...DEFAULT_QUICK_ACTIONS.map((item) => ({ ...item })),
             {
-              id: `request-${reply.payload.serviceId}`,
+              id: `request-${payload.serviceId}`,
               label: `Request ${details.heading}`,
               payload: {
                 type: "start_submission",
