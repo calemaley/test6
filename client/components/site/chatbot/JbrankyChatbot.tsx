@@ -399,7 +399,7 @@ export default function JbrankyChatbot() {
             BOT_INTENTS.SERVICE_DETAIL,
           );
           setQuickReplies((prev) => [
-            ...DEFAULT_QUICK_ACTIONS,
+            ...DEFAULT_QUICK_ACTIONS.map((item) => ({ ...item })),
             {
               id: `request-${reply.payload.serviceId}`,
               label: `Request ${details.heading}`,
