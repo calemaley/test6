@@ -26,6 +26,7 @@ import {
 import { saveSubmission } from "@/lib/submissions";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { chatWithAI, type AiMessage } from "@/lib/ai";
 
 const SESSION_STORAGE_KEY = "jbranky:chatbot:session";
 const DEFAULT_QUICK_ACTIONS: QuickReply[] = [
@@ -634,6 +635,34 @@ export default function JbrankyChatbot() {
         setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         setProcessing(false);
         return;
+      }
+
+      // AI fallback if configured on the server
+      try {
+        const history: AiMessage[] = [
+          {
+            role: "system",
+            content:
+              `You are ${companyInfo.botName}, a helpful assistant for ${companyInfo.companyName}. Be concise, friendly, and grounded in the following services: ` +
+              companyInfo.services.map((s) => s.title).join(", ") +
+              `. Only answer relevant to the company context. If unsure, suggest contacting ${companyInfo.contact.phone} or ${companyInfo.contact.email}.`,
+          },
+          ...messages.slice(-8).map<AiMessage>((m) => ({
+            role: m.sender === "visitor" ? "user" : "assistant",
+            content: m.content,
+          })),
+          { role: "user", content: text },
+        ];
+
+        const ai = await chatWithAI(history).catch(() => null);
+        if (ai?.content && ai.content.trim()) {
+          await pushMessage("bot", ai.content.trim(), BOT_INTENTS.GENERAL);
+          setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
+          setProcessing(false);
+          return;
+        }
+      } catch {
+        // ignore AI errors and fall back
       }
 
       await pushMessage(
