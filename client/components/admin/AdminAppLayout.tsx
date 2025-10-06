@@ -39,6 +39,11 @@ const NAV_LINKS: Array<{ to: string; label: string; icon: LucideIcon }> = [
     label: "Active admins",
     icon: Users,
   },
+  {
+    to: "/admin-rank/dashboard/chatbot-sessions",
+    label: "Chatbot sessions",
+    icon: MessageSquare,
+  },
 ];
 
 export default function AdminAppLayout() {
