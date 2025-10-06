@@ -68,6 +68,7 @@ const App = () => (
             <Route path="recent" element={<AdminSubmissions />} />
             <Route path="new-today" element={<AdminNewToday />} />
             <Route path="active-admins" element={<AdminActiveAdmins />} />
+            <Route path="chatbot-sessions" element={<AdminChatbotSessions />} />
             <Route path="team" element={<AdminTeam />} />
           </Route>
         </Routes>
