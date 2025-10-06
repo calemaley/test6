@@ -386,7 +386,7 @@ export default function JbrankyChatbot() {
             `You can reach us on ${companyInfo.contact.phone} or ${companyInfo.contact.email}. ${companyInfo.contact.responseTime}`,
             BOT_INTENTS.CONTACT,
           );
-          setQuickReplies(DEFAULT_QUICK_ACTIONS);
+          setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         }
         break;
       }
