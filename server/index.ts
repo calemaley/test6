@@ -104,7 +104,6 @@ export function createServer() {
   app.patch("/api/chatbot-sessions/:id", updateChatbotSession);
 
   // AI routes
-  const { chatCompletion } = await import("./routes/ai");
   app.post("/api/ai/chat", chatCompletion);
 
   // Example API routes
