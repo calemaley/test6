@@ -21,5 +21,28 @@
         "intent": "services_overview"
       }
     ]
+  },
+  {
+    "id": "0cb77148-c1cd-499e-bc6f-5356345583d5",
+    "visitorName": "caleb",
+    "visitorEmail": "calemale360@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T09:43:13.906Z",
+    "updatedAt": "2025-10-06T09:43:14.670Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true
+    },
+    "lastIntent": "callback_request",
+    "messages": [
+      {
+        "id": "c447581e-b633-4ef2-b792-7307f670e1bb",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:43:14.670Z",
+        "intent": "callback_request"
+      }
+    ]
   }
 ]
