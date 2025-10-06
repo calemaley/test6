@@ -392,7 +392,8 @@ export default function JbrankyChatbot() {
         break;
       }
       case "service_detail": {
-        const details = formatServiceDetails(reply.payload.serviceId);
+        if (payload.type !== "service_detail") break;
+        const details = formatServiceDetails(payload.serviceId);
         if (details) {
           await pushMessage(
             "bot",
