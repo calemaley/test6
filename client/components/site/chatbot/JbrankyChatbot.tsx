@@ -756,7 +756,7 @@ export default function JbrankyChatbot() {
             </header>
 
             {!isCollapsed && (
-              <div className="flex h-[65vh] sm:h-[520px] md:h-[560px] flex-col bg-white">
+              <div className="flex h-[65vh] sm:h-[520px] md:h-[560px] flex-col bg-white min-h-0">
                 {phase === "tutorial" && (
                   <div className="flex flex-1 flex-col gap-4 p-4">
                     <div className="rounded-xl bg-primary/5 p-4">
