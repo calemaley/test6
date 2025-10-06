@@ -456,7 +456,7 @@ export default function JbrankyChatbot() {
         break;
       }
       case "reset": {
-        setQuickReplies(DEFAULT_QUICK_ACTIONS);
+        setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         setSubmissionFlow(null);
         break;
       }
