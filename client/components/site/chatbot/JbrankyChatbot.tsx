@@ -656,7 +656,11 @@ export default function JbrankyChatbot() {
   };
 
   const renderMessages = () => (
-    <div ref={containerRef} className="flex-1 overflow-y-auto pr-1">
+    <div
+      ref={containerRef}
+      className="flex-1 overflow-y-auto pr-1 overscroll-contain -mr-1"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
       <div className="space-y-3">
         {messages.map((message) => (
           <ChatBubble key={message.id} message={message} />
@@ -671,7 +675,10 @@ export default function JbrankyChatbot() {
   );
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-3">
+    <div
+      className="fixed right-4 z-[ seventy ] flex flex-col items-end space-y-3"
+      style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -680,7 +687,7 @@ export default function JbrankyChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[340px] max-w-[90vw] overflow-hidden rounded-2xl border border-primary/20 bg-white shadow-2xl"
+            className="w-[360px] max-w-[92vw] overflow-hidden rounded-2xl border border-primary/20 bg-white shadow-2xl"
           >
             <header className="flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
               <div>
@@ -720,7 +727,7 @@ export default function JbrankyChatbot() {
             </header>
 
             {!isCollapsed && (
-              <div className="flex h-[460px] flex-col bg-white">
+              <div className="flex h-[65vh] sm:h-[520px] md:h-[560px] flex-col bg-white">
                 {phase === "tutorial" && (
                   <div className="flex flex-1 flex-col gap-4 p-4">
                     <div className="rounded-xl bg-primary/5 p-4">
