@@ -864,7 +864,7 @@ export default function JbrankyChatbot() {
                     )}
                     <form
                       onSubmit={handleSubmit}
-                      className="relative mt-auto flex items-end gap-2"
+                      className="sticky bottom-0 left-0 right-0 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-t pt-2 mt-auto flex items-end gap-2"
                     >
                       <Textarea
                         value={inputValue}
