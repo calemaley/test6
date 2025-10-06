@@ -34,7 +34,9 @@ import SectionReveal from "@/components/site/SectionReveal";
 
 export default function Contact() {
   const params = new URLSearchParams(window.location.search);
-  const preType = (params.get("type") as "service" | "consultation" | "general" | null) ?? "service";
+  const preType =
+    (params.get("type") as "service" | "consultation" | "general" | null) ??
+    "service";
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {

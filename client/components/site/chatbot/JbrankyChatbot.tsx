@@ -560,7 +560,8 @@ export default function JbrankyChatbot() {
           metadata: {
             bookedConsultation: flow.type === "consultation" ? true : undefined,
             requestedCallback: flow.type === "callback" ? true : undefined,
-            requestedService: flow.type === "service" ? (flow.serviceId ?? null) : undefined,
+            requestedService:
+              flow.type === "service" ? (flow.serviceId ?? null) : undefined,
           },
           lastIntent:
             flow.type === "service"
