@@ -283,7 +283,7 @@ export default function JbrankyChatbot() {
       setPhase("chat");
       setMessages([]);
       await sendBotIntro(newSession, payload.visitorName);
-      setQuickReplies(DEFAULT_QUICK_ACTIONS);
+      setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to start chat session.");
     }
