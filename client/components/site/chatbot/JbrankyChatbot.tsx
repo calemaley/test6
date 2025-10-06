@@ -688,7 +688,7 @@ export default function JbrankyChatbot() {
     <div
       ref={containerRef}
       className="flex-1 overflow-y-auto pr-1 overscroll-contain -mr-1"
-      style={{ WebkitOverflowScrolling: "touch" }}
+      style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
     >
       <div className="space-y-3">
         {messages.map((message) => (
