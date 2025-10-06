@@ -616,6 +616,12 @@ export default function JbrankyChatbot() {
 
       if (intent === BOT_INTENTS.CALLBACK) {
         setSubmissionFlow({ type: "callback" });
+        if (session) {
+          await updateChatbotSession(session.id, {
+            metadata: { requestedCallback: true },
+            lastIntent: BOT_INTENTS.CALLBACK,
+          });
+        }
         await pushMessage(
           "bot",
           "Absolutely. Tell me the best time or any context so the right engineer calls you back.",
