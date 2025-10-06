@@ -845,7 +845,7 @@ export default function JbrankyChatbot() {
                 )}
 
                 {phase === "chat" && (
-                  <div className="flex flex-1 flex-col gap-3 p-4">
+                  <div className="flex flex-1 flex-col gap-3 p-4 min-h-0">
                     {renderMessages()}
                     {quickReplies.length > 0 && (
                       <div className="flex flex-wrap gap-2">
