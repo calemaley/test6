@@ -21,5 +21,167 @@
         "intent": "services_overview"
       }
     ]
+  },
+  {
+    "id": "0cb77148-c1cd-499e-bc6f-5356345583d5",
+    "visitorName": "caleb",
+    "visitorEmail": "calemale360@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T09:43:13.906Z",
+    "updatedAt": "2025-10-06T09:43:14.670Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true
+    },
+    "lastIntent": "callback_request",
+    "messages": [
+      {
+        "id": "c447581e-b633-4ef2-b792-7307f670e1bb",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:43:14.670Z",
+        "intent": "callback_request"
+      }
+    ]
+  },
+  {
+    "id": "f968ee14-6f9d-4d2a-acae-86ec2fece800",
+    "visitorName": "caleb",
+    "visitorEmail": "peterparker@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T09:52:35.933Z",
+    "updatedAt": "2025-10-06T09:54:09.404Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true
+    },
+    "lastIntent": "general_inquiry",
+    "messages": [
+      {
+        "id": "d63ebf70-7291-44a2-9310-fbf53b1b9e12",
+        "sender": "bot",
+        "content": "Hydropower Plant Solutions: Feasibility, EPC delivery, and lifetime O&M support for small to mid-scale plants.\n• Hydrological feasibility studies and environmental impact assessments\n• Engineering, procurement, and construction covering civil and electro-mechanical works\n\nLarge Power & Medium-Voltage: Design, build, commission, and safeguard substations and grid interconnections from 11kV to 132kV.\n• Design and build 11kV–132kV substations, cabling, grounding, and protection schemes\n• Primary and secondary injection testing, relay programming, FAT/SAT, and commissioning\n\nSollatek Protection & Power Quality: Authorised Sollatek partner supplying AVS, stabilizers, and surge protection with 5-year warranty.\n• AVS 30 automatic voltage switchers and TV Guard surge protection\n• Single and three-phase automatic voltage regulators and stabilizers",
+        "createdAt": "2025-10-06T09:53:04.950Z",
+        "intent": "services_overview"
+      },
+      {
+        "id": "e570f618-1a37-490c-a7d1-bda42d46f73d",
+        "sender": "bot",
+        "content": "You can reach us on 0726502349 or Jbrankyltd8@gmail.com. We respond within 1 business day.",
+        "createdAt": "2025-10-06T09:53:31.723Z",
+        "intent": "contact_info"
+      },
+      {
+        "id": "44a795a5-8d25-4bef-b2f1-580b2a03eb5b",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:53:37.206Z",
+        "intent": "callback_request"
+      },
+      {
+        "id": "3f3037f7-3c19-4a6b-9f11-7f1314b162ca",
+        "sender": "visitor",
+        "content": "i called eearlier its the client",
+        "createdAt": "2025-10-06T09:54:00.444Z",
+        "intent": "general_inquiry"
+      },
+      {
+        "id": "1d6993cd-d7a4-42f5-ab40-ce48f56b7708",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T09:54:09.404Z",
+        "intent": "general_inquiry"
+      }
+    ]
+  },
+  {
+    "id": "8476d55f-4922-4a52-a9c5-a2049cf8612f",
+    "visitorName": "caleb",
+    "visitorEmail": "calemale360@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T10:51:34.562Z",
+    "updatedAt": "2025-10-06T10:51:35.257Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true,
+      "requestedCallback": false,
+      "bookedConsultation": false,
+      "requestedService": null,
+      "actions": []
+    },
+    "lastIntent": null,
+    "messages": []
+  },
+  {
+    "id": "74c1f4c0-a70c-49e7-9581-e00e0903d1c7",
+    "visitorName": "caleb",
+    "visitorEmail": "calemale360@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T10:51:34.760Z",
+    "updatedAt": "2025-10-06T10:53:19.705Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true,
+      "requestedCallback": false,
+      "bookedConsultation": true,
+      "requestedService": null,
+      "actions": []
+    },
+    "lastIntent": "general_inquiry",
+    "messages": [
+      {
+        "id": "58213e03-3fc4-40a9-b2c1-bc3d164d76db",
+        "sender": "bot",
+        "content": "Opening consultation form. I’ve pre-filled your details.",
+        "createdAt": "2025-10-06T10:51:37.942Z",
+        "intent": "consultation_booking"
+      },
+      {
+        "id": "5fa1c7bc-86dd-4ab4-ad7a-241ebcb89cff",
+        "sender": "bot",
+        "content": "Please share a short description so I can alert the right specialist.",
+        "createdAt": "2025-10-06T10:52:55.978Z",
+        "intent": "general_inquiry"
+      },
+      {
+        "id": "4cf626e3-9c9a-4e62-a473-08da40301968",
+        "sender": "bot",
+        "content": "Great! Which service are you interested in? Choose one below or type the name.",
+        "createdAt": "2025-10-06T10:52:58.619Z",
+        "intent": "service_detail"
+      },
+      {
+        "id": "f71565c2-1a90-4bae-988e-f32b6b943713",
+        "sender": "bot",
+        "content": "Noted: Large Power & Medium-Voltage. Could you describe your project or needs so we prepare the right response?",
+        "createdAt": "2025-10-06T10:53:02.475Z",
+        "intent": "service_detail"
+      },
+      {
+        "id": "3a9081ff-bad6-4b31-92bd-89e493c88680",
+        "sender": "bot",
+        "content": "Noted: Sollatek Protection & Power Quality. Could you describe your project or needs so we prepare the right response?",
+        "createdAt": "2025-10-06T10:53:06.241Z",
+        "intent": "service_detail"
+      },
+      {
+        "id": "8c807aa9-31a0-4099-abc3-149a26090ce8",
+        "sender": "bot",
+        "content": "Noted: Hydropower Plant Solutions. Could you describe your project or needs so we prepare the right response?",
+        "createdAt": "2025-10-06T10:53:16.896Z",
+        "intent": "service_detail"
+      },
+      {
+        "id": "0f44a50e-f098-4289-81f2-47d6cb23015b",
+        "sender": "visitor",
+        "content": "jnods",
+        "createdAt": "2025-10-06T10:53:19.705Z",
+        "intent": "general_inquiry"
+      }
+    ]
   }
 ]

@@ -8,7 +8,9 @@ import JbrankyChatbot from "./chatbot/JbrankyChatbot";
 export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <SnakeCursor />
+      <div className="hidden md:block">
+        <SnakeCursor />
+      </div>
       <SiteHeader />
       <main className="flex-1">
         <Outlet />

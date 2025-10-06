@@ -26,6 +26,8 @@ import {
 import { saveSubmission } from "@/lib/submissions";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { chatWithAI, type AiMessage } from "@/lib/ai";
+import { useNavigate } from "react-router-dom";
 
 const SESSION_STORAGE_KEY = "jbranky:chatbot:session";
 const DEFAULT_QUICK_ACTIONS: QuickReply[] = [
@@ -163,6 +165,7 @@ function formatServiceDetails(serviceId: string) {
 }
 
 export default function JbrankyChatbot() {
+  const navigate = useNavigate();
   const [phase, setPhase] = useState<ChatPhase>("tutorial");
   const [tutorialIndex, setTutorialIndex] = useState(0);
   const [leadDraft, setLeadDraft] = useState<DraftLead>({
@@ -444,6 +447,24 @@ export default function JbrankyChatbot() {
               payload: { type: "select_service", serviceId: service.id },
             })),
           );
+        } else if (type === "consultation") {
+          await updateChatbotSession(session!.id, {
+            metadata: { bookedConsultation: true },
+            lastIntent: BOT_INTENTS.CONSULTATION,
+          });
+          const q = new URLSearchParams({
+            type: "consultation",
+            name: session!.visitorName,
+            email: session!.visitorEmail,
+            phone: session!.visitorPhone,
+          });
+          navigate(`/contact?${q.toString()}`);
+          await pushMessage(
+            "bot",
+            "Opening consultation form. I’ve pre-filled your details.",
+            BOT_INTENTS.CONSULTATION,
+          );
+          setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         } else {
           await pushMessage(
             "bot",
@@ -534,6 +555,24 @@ export default function JbrankyChatbot() {
 
     try {
       await saveSubmission(payload);
+      try {
+        await updateChatbotSession(session.id, {
+          metadata: {
+            bookedConsultation: flow.type === "consultation" ? true : undefined,
+            requestedCallback: flow.type === "callback" ? true : undefined,
+            requestedService:
+              flow.type === "service" ? (flow.serviceId ?? null) : undefined,
+          },
+          lastIntent:
+            flow.type === "service"
+              ? BOT_INTENTS.SERVICE_DETAIL
+              : flow.type === "consultation"
+                ? BOT_INTENTS.CONSULTATION
+                : flow.type === "callback"
+                  ? BOT_INTENTS.CALLBACK
+                  : BOT_INTENTS.GENERAL,
+        });
+      } catch {}
       await pushMessage(
         "bot",
         "Thanks! I've logged this for our team. Expect a response within one business day.",
@@ -595,6 +634,12 @@ export default function JbrankyChatbot() {
 
       if (intent === BOT_INTENTS.CALLBACK) {
         setSubmissionFlow({ type: "callback" });
+        if (session) {
+          await updateChatbotSession(session.id, {
+            metadata: { requestedCallback: true },
+            lastIntent: BOT_INTENTS.CALLBACK,
+          });
+        }
         await pushMessage(
           "bot",
           "Absolutely. Tell me the best time or any context so the right engineer calls you back.",
@@ -636,6 +681,34 @@ export default function JbrankyChatbot() {
         return;
       }
 
+      // AI fallback if configured on the server
+      try {
+        const history: AiMessage[] = [
+          {
+            role: "system",
+            content:
+              `You are ${companyInfo.botName}, a helpful assistant for ${companyInfo.companyName}. Be concise, friendly, and grounded in the following services: ` +
+              companyInfo.services.map((s) => s.title).join(", ") +
+              `. Only answer relevant to the company context. If unsure, suggest contacting ${companyInfo.contact.phone} or ${companyInfo.contact.email}.`,
+          },
+          ...messages.slice(-8).map<AiMessage>((m) => ({
+            role: m.sender === "visitor" ? "user" : "assistant",
+            content: m.content,
+          })),
+          { role: "user", content: text },
+        ];
+
+        const ai = await chatWithAI(history).catch(() => null);
+        if (ai?.content && ai.content.trim()) {
+          await pushMessage("bot", ai.content.trim(), BOT_INTENTS.GENERAL);
+          setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
+          setProcessing(false);
+          return;
+        }
+      } catch {
+        // ignore AI errors and fall back
+      }
+
       await pushMessage(
         "bot",
         `Here's what I can help with:\n• Service details for hydropower, medium-voltage, and Sollatek solutions\n• Booking consultations or site surveys\n• Sharing company contacts and response times\n• Capturing project requirements for our engineers.\nIf you'd like a human to call you, just let me know!`,
@@ -656,7 +729,11 @@ export default function JbrankyChatbot() {
   };
 
   const renderMessages = () => (
-    <div ref={containerRef} className="flex-1 overflow-y-auto pr-1">
+    <div
+      ref={containerRef}
+      className="flex-1 overflow-y-auto pr-1 overscroll-contain -mr-1"
+      style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+    >
       <div className="space-y-3">
         {messages.map((message) => (
           <ChatBubble key={message.id} message={message} />
@@ -671,7 +748,10 @@ export default function JbrankyChatbot() {
   );
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-3">
+    <div
+      className="fixed inset-x-3 md:inset-auto right-4 z-[70] flex flex-col items-end space-y-3"
+      style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -680,9 +760,9 @@ export default function JbrankyChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[340px] max-w-[90vw] overflow-hidden rounded-2xl border border-primary/20 bg-white shadow-2xl"
+            className="w-full md:w-[360px] max-w-[calc(100vw-1.5rem)] md:max-w-[92vw] overflow-hidden rounded-t-2xl md:rounded-2xl border border-primary/20 bg-white shadow-2xl"
           >
-            <header className="flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
+            <header className="sticky top-0 z-10 flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
               <div>
                 <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-white/90">
                   <Sparkles className="h-4 w-4" /> {companyInfo.botName}
@@ -720,9 +800,9 @@ export default function JbrankyChatbot() {
             </header>
 
             {!isCollapsed && (
-              <div className="flex h-[460px] flex-col bg-white">
+              <div className="flex h-[65vh] sm:h-[520px] md:h-[560px] flex-col bg-white min-h-0">
                 {phase === "tutorial" && (
-                  <div className="flex flex-1 flex-col gap-4 p-4">
+                  <div className="flex flex-1 flex-col gap-4 p-4 min-h-0">
                     <div className="rounded-xl bg-primary/5 p-4">
                       <div className="mb-2 flex items-center gap-2 text-primary">
                         <Info className="h-4 w-4" />
@@ -754,7 +834,7 @@ export default function JbrankyChatbot() {
                 )}
 
                 {phase === "lead" && (
-                  <div className="flex flex-1 flex-col gap-3 p-4">
+                  <div className="flex flex-1 flex-col gap-3 p-4 min-h-0">
                     <div className="rounded-xl bg-muted/40 p-3 text-sm text-muted-foreground">
                       Before we begin, could you share your contact details?
                       We'll use them to follow up with tailored advice.
@@ -809,7 +889,7 @@ export default function JbrankyChatbot() {
                 )}
 
                 {phase === "chat" && (
-                  <div className="flex flex-1 flex-col gap-3 p-4">
+                  <div className="flex flex-1 flex-col gap-3 p-4 min-h-0">
                     {renderMessages()}
                     {quickReplies.length > 0 && (
                       <div className="flex flex-wrap gap-2">
@@ -828,7 +908,7 @@ export default function JbrankyChatbot() {
                     )}
                     <form
                       onSubmit={handleSubmit}
-                      className="relative mt-auto flex items-end gap-2"
+                      className="sticky bottom-0 left-0 right-0 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-t pt-2 mt-auto flex items-end gap-2"
                     >
                       <Textarea
                         value={inputValue}
@@ -870,12 +950,23 @@ export default function JbrankyChatbot() {
       </AnimatePresence>
 
       {!isOpen && (
-        <Button
-          className="relative flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-lg shadow-primary/30"
-          onClick={() => setIsOpen(true)}
-        >
-          <MessageCircle className="h-4 w-4" /> Chat with {companyInfo.botName}
-        </Button>
+        <>
+          <Button
+            className="md:hidden h-12 w-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30"
+            size="icon"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open chat"
+          >
+            <MessageCircle className="h-5 w-5" />
+          </Button>
+          <Button
+            className="hidden md:inline-flex relative items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-lg shadow-primary/30"
+            onClick={() => setIsOpen(true)}
+          >
+            <MessageCircle className="h-4 w-4" /> Chat with{" "}
+            {companyInfo.botName}
+          </Button>
+        </>
       )}
     </div>
   );
@@ -921,7 +1012,12 @@ function ChatBubble({ message }: ChatBubbleProps) {
             {line}
           </p>
         ))}
-        <p className="mt-2 text-[10px] uppercase tracking-wide text-white/70">
+        <p
+          className={cn(
+            "mt-2 text-[10px] uppercase tracking-wide",
+            isVisitor ? "text-white/70" : "text-foreground/60",
+          )}
+        >
           {new Date(message.createdAt).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",

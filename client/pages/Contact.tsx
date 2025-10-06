@@ -24,7 +24,7 @@ import { saveSubmission } from "@/lib/submissions";
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().optional(),
+  phone: z.string().min(7, "Phone number is required"),
   type: z.enum(["service", "consultation", "general"]),
   service: z.string().optional(),
   message: z.string().min(10),
@@ -33,9 +33,20 @@ const schema = z.object({
 import SectionReveal from "@/components/site/SectionReveal";
 
 export default function Contact() {
+  const params = new URLSearchParams(window.location.search);
+  const preType =
+    (params.get("type") as "service" | "consultation" | "general" | null) ??
+    "service";
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: { type: "service" },
+    defaultValues: {
+      type: preType,
+      name: params.get("name") ?? "",
+      email: params.get("email") ?? "",
+      phone: params.get("phone") ?? "",
+      service: params.get("service") ?? undefined,
+      message: params.get("message") ?? "",
+    },
   });
 
   const watchType = form.watch("type");

@@ -9,6 +9,7 @@ import {
   listChatbotSessions,
   updateChatbotSession,
 } from "./routes/chatbot-sessions";
+import { chatCompletion } from "./routes/ai";
 
 export function createServer() {
   const app = express();
@@ -101,6 +102,9 @@ export function createServer() {
   app.post("/api/chatbot-sessions", createChatbotSession);
   app.post("/api/chatbot-sessions/:id/messages", appendChatbotMessage);
   app.patch("/api/chatbot-sessions/:id", updateChatbotSession);
+
+  // AI routes
+  app.post("/api/ai/chat", chatCompletion);
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {

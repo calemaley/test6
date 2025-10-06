@@ -5,7 +5,10 @@ type SnakeCursorProps = {
   color?: string;
 };
 
-export default function SnakeCursor({ segments = 14, color = "#16a34a" }: SnakeCursorProps) {
+export default function SnakeCursor({
+  segments = 14,
+  color = "#16a34a",
+}: SnakeCursorProps) {
   const target = useRef({ x: 0, y: 0 });
   const pts = useRef<Array<{ x: number; y: number }>>([]);
   const dots = useRef<HTMLSpanElement[]>([]);
@@ -65,7 +68,7 @@ export default function SnakeCursor({ segments = 14, color = "#16a34a" }: SnakeC
   }, [segments]);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[60]">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[90]">
       {nodes.map((_, i) => (
         <span
           // eslint-disable-next-line react/no-array-index-key
