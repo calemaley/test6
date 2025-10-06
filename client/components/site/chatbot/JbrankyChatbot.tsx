@@ -676,7 +676,7 @@ export default function JbrankyChatbot() {
 
   return (
     <div
-      className="fixed right-4 z-[ seventy ] flex flex-col items-end space-y-3"
+      className="fixed right-4 z-[70] flex flex-col items-end space-y-3"
       style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
     >
       <AnimatePresence>
