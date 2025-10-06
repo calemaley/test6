@@ -555,6 +555,23 @@ export default function JbrankyChatbot() {
 
     try {
       await saveSubmission(payload);
+      try {
+        await updateChatbotSession(session.id, {
+          metadata: {
+            bookedConsultation: flow.type === "consultation" ? true : undefined,
+            requestedCallback: flow.type === "callback" ? true : undefined,
+            requestedService: flow.type === "service" ? (flow.serviceId ?? null) : undefined,
+          },
+          lastIntent:
+            flow.type === "service"
+              ? BOT_INTENTS.SERVICE_DETAIL
+              : flow.type === "consultation"
+                ? BOT_INTENTS.CONSULTATION
+                : flow.type === "callback"
+                  ? BOT_INTENTS.CALLBACK
+                  : BOT_INTENTS.GENERAL,
+        });
+      } catch {}
       await pushMessage(
         "bot",
         "Thanks! I've logged this for our team. Expect a response within one business day.",
