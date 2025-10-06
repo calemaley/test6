@@ -381,7 +381,7 @@ export default function JbrankyChatbot() {
             },
           ]);
         }
-        if (reply.payload.topic === "contact") {
+        if (payload.topic === "contact") {
           await pushMessage(
             "bot",
             `You can reach us on ${companyInfo.contact.phone} or ${companyInfo.contact.email}. ${companyInfo.contact.responseTime}`,
