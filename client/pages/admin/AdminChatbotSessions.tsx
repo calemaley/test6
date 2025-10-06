@@ -1,7 +1,14 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { format, formatDistanceToNow } from "date-fns";
-import { AlertTriangle, Bot, MessageCircle, RefreshCw, Search, User } from "lucide-react";
+import {
+  AlertTriangle,
+  Bot,
+  MessageCircle,
+  RefreshCw,
+  Search,
+  User,
+} from "lucide-react";
 
 import { listChatbotSessions, type ChatbotSession } from "@/lib/chatbot";
 import { Badge } from "@/components/ui/badge";
@@ -32,7 +39,8 @@ export default function AdminChatbotSessions() {
     const term = searchTerm.trim().toLowerCase();
     if (!term) return sessions;
     return sessions.filter((session) => {
-      const haystack = `${session.visitorName} ${session.visitorEmail} ${session.visitorPhone} ${session.lastIntent ?? ""}`.toLowerCase();
+      const haystack =
+        `${session.visitorName} ${session.visitorEmail} ${session.visitorPhone} ${session.lastIntent ?? ""}`.toLowerCase();
       return haystack.includes(term);
     });
   }, [sessions, searchTerm]);
@@ -40,7 +48,10 @@ export default function AdminChatbotSessions() {
   const selectedSession = useMemo(() => {
     if (!filteredSessions.length) return null;
     if (selectedId) {
-      return filteredSessions.find((session) => session.id === selectedId) ?? filteredSessions[0];
+      return (
+        filteredSessions.find((session) => session.id === selectedId) ??
+        filteredSessions[0]
+      );
     }
     return filteredSessions[0];
   }, [filteredSessions, selectedId]);
@@ -57,7 +68,8 @@ export default function AdminChatbotSessions() {
             Chatbot sessions
           </h1>
           <p className="text-sm text-muted-foreground md:text-base">
-            Review conversations captured by the JBRANKY Bot and follow up on leads.
+            Review conversations captured by the JBRANKY Bot and follow up on
+            leads.
           </p>
         </div>
         <Button
@@ -66,7 +78,9 @@ export default function AdminChatbotSessions() {
           onClick={() => sessionsQuery.refetch()}
           disabled={sessionsQuery.isFetching}
         >
-          {sessionsQuery.isFetching && <RefreshCw className="mr-2 h-4 w-4 animate-spin" />}
+          {sessionsQuery.isFetching && (
+            <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+          )}
           Refresh
         </Button>
       </header>
@@ -79,7 +93,8 @@ export default function AdminChatbotSessions() {
                 <MessageCircle className="h-4 w-4 text-primary" /> Sessions
               </CardTitle>
               <CardDescription>
-                {filteredSessions.length} conversation{filteredSessions.length === 1 ? "" : "s"} recorded.
+                {filteredSessions.length} conversation
+                {filteredSessions.length === 1 ? "" : "s"} recorded.
               </CardDescription>
             </div>
             <div className="relative">
@@ -106,9 +121,12 @@ export default function AdminChatbotSessions() {
                 <ul className="divide-y divide-border">
                   {filteredSessions.map((session) => {
                     const created = new Date(session.createdAt);
-                    const relative = formatDistanceToNow(new Date(session.updatedAt), {
-                      addSuffix: true,
-                    });
+                    const relative = formatDistanceToNow(
+                      new Date(session.updatedAt),
+                      {
+                        addSuffix: true,
+                      },
+                    );
                     const isActive = selectedSession?.id === session.id;
                     return (
                       <li key={session.id}>
@@ -125,7 +143,13 @@ export default function AdminChatbotSessions() {
                               <p className="text-sm font-semibold text-slate-900">
                                 {session.visitorName}
                               </p>
-                              <Badge variant={session.metadata.leadCaptured ? "default" : "outline"}>
+                              <Badge
+                                variant={
+                                  session.metadata.leadCaptured
+                                    ? "default"
+                                    : "outline"
+                                }
+                              >
                                 Lead
                               </Badge>
                             </div>
@@ -133,7 +157,9 @@ export default function AdminChatbotSessions() {
                               {session.visitorEmail}
                             </p>
                             <div className="flex items-center justify-between text-[11px] text-muted-foreground/70">
-                              <span>{format(created, "MMM d, yyyy HH:mm")}</span>
+                              <span>
+                                {format(created, "MMM d, yyyy HH:mm")}
+                              </span>
                               <span>Updated {relative}</span>
                             </div>
                           </div>
@@ -177,16 +203,26 @@ export default function AdminChatbotSessions() {
                   <div className="rounded-lg border bg-muted/20 p-4 text-sm">
                     <div className="flex items-center gap-2 text-slate-900">
                       <User className="h-4 w-4" />
-                      <span className="font-medium">{selectedSession.visitorName}</span>
+                      <span className="font-medium">
+                        {selectedSession.visitorName}
+                      </span>
                     </div>
-                    <p className="mt-2 text-muted-foreground">{selectedSession.visitorEmail}</p>
-                    <p className="text-muted-foreground">{selectedSession.visitorPhone}</p>
+                    <p className="mt-2 text-muted-foreground">
+                      {selectedSession.visitorEmail}
+                    </p>
+                    <p className="text-muted-foreground">
+                      {selectedSession.visitorPhone}
+                    </p>
                     <p className="mt-3 text-xs text-muted-foreground/80">
-                      Tutorial completed: {selectedSession.metadata.tutorialCompleted ? "Yes" : "No"}
+                      Tutorial completed:{" "}
+                      {selectedSession.metadata.tutorialCompleted
+                        ? "Yes"
+                        : "No"}
                     </p>
                     {selectedSession.lastIntent && (
                       <p className="text-xs text-muted-foreground/80">
-                        Last intent detected: {humanizeIntent(selectedSession.lastIntent)}
+                        Last intent detected:{" "}
+                        {humanizeIntent(selectedSession.lastIntent)}
                       </p>
                     )}
                     {selectedSession.originPath && (
@@ -221,7 +257,12 @@ export default function AdminChatbotSessions() {
                                   ? "JBRANKY Bot"
                                   : "System"}
                             </span>
-                            <span>{format(new Date(message.createdAt), "MMM d, yyyy HH:mm")}</span>
+                            <span>
+                              {format(
+                                new Date(message.createdAt),
+                                "MMM d, yyyy HH:mm",
+                              )}
+                            </span>
                           </div>
                           <p className="whitespace-pre-wrap text-sm text-slate-900">
                             {message.content}

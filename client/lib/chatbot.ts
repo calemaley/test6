@@ -98,7 +98,10 @@ export async function getChatbotSession(
 export async function updateChatbotSession(
   sessionId: string,
   payload: Partial<
-    Omit<ChatbotSession, "id" | "messages" | "createdAt" | "updatedAt" | "metadata">
+    Omit<
+      ChatbotSession,
+      "id" | "messages" | "createdAt" | "updatedAt" | "metadata"
+    >
   > & {
     metadata?: Partial<ChatbotSession["metadata"]>;
   },

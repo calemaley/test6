@@ -57,18 +57,20 @@ const DEFAULT_QUICK_ACTIONS: QuickReply[] = [
 ];
 
 type ChatPhase = "tutorial" | "lead" | "chat";
-type SubmissionFlow =
-  | null
-  | {
-      type: "service" | "consultation" | "callback" | "general";
-      serviceId?: string;
-    };
+type SubmissionFlow = null | {
+  type: "service" | "consultation" | "callback" | "general";
+  serviceId?: string;
+};
 
 type QuickReply = {
   id: string;
   label: string;
   payload:
-    | { type: "knowledge"; topic: "services" | "contact" | "faq"; extra?: string }
+    | {
+        type: "knowledge";
+        topic: "services" | "contact" | "faq";
+        extra?: string;
+      }
     | { type: "service_detail"; serviceId: string }
     | { type: "start_submission"; submissionType: SubmissionFlow["type"] }
     | { type: "select_service"; serviceId: string }
@@ -134,7 +136,9 @@ function getServiceByKeyword(text: string) {
     const slug = service.title.toLowerCase();
     if (lowered.includes(slug)) return true;
     if (service.id === "medium-voltage") {
-      return lowered.includes("medium voltage") || lowered.includes("medium-voltage");
+      return (
+        lowered.includes("medium voltage") || lowered.includes("medium-voltage")
+      );
     }
     if (service.id === "sollatek") {
       return lowered.includes("sollatek") || lowered.includes("protection");
@@ -149,7 +153,9 @@ function getServiceByKeyword(text: string) {
 function formatServiceDetails(serviceId: string) {
   const service = companyInfo.services.find((item) => item.id === serviceId);
   if (!service) return null;
-  const highlightList = service.highlights.map((item) => `• ${item}`).join("\n");
+  const highlightList = service.highlights
+    .map((item) => `• ${item}`)
+    .join("\n");
   return {
     heading: `${service.title}`,
     body: `${service.shortDescription}\n${highlightList}\n\nExplore more: ${service.route}`,
@@ -164,11 +170,13 @@ export default function JbrankyChatbot() {
     email: "",
     phone: "",
   });
-  const [leadErrors, setLeadErrors] = useState<Record<keyof DraftLead, string>>({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  const [leadErrors, setLeadErrors] = useState<Record<keyof DraftLead, string>>(
+    {
+      name: "",
+      email: "",
+      phone: "",
+    },
+  );
   const [session, setSession] = useState<ChatbotSession | null>(null);
   const [messages, setMessages] = useState<ChatbotMessage[]>([]);
   const [isOpen, setIsOpen] = useState(true);
@@ -176,7 +184,9 @@ export default function JbrankyChatbot() {
   const [inputValue, setInputValue] = useState("");
   const [processing, setProcessing] = useState(false);
   const [submissionFlow, setSubmissionFlow] = useState<SubmissionFlow>(null);
-  const [quickReplies, setQuickReplies] = useState<QuickReply[]>(DEFAULT_QUICK_ACTIONS);
+  const [quickReplies, setQuickReplies] = useState<QuickReply[]>(
+    DEFAULT_QUICK_ACTIONS,
+  );
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -285,7 +295,11 @@ export default function JbrankyChatbot() {
       await sendBotIntro(newSession, payload.visitorName);
       setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unable to start chat session.");
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Unable to start chat session.",
+      );
     }
   };
 
@@ -298,7 +312,7 @@ export default function JbrankyChatbot() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Unable to refresh chatbot history."
+          : "Unable to refresh chatbot history.",
       );
     }
   };
@@ -320,16 +334,15 @@ export default function JbrankyChatbot() {
       });
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Unable to sync chatbot message."
+        error instanceof Error
+          ? error.message
+          : "Unable to sync chatbot message.",
       );
     }
     return message;
   };
 
-  const sendBotIntro = async (
-    activeSession: ChatbotSession,
-    name: string,
-  ) => {
+  const sendBotIntro = async (activeSession: ChatbotSession, name: string) => {
     await pushMessage(
       "bot",
       `Hi ${name}, I'm ${companyInfo.botName}. I'm here to guide you through ${companyInfo.companyName}.` +
@@ -496,10 +509,7 @@ export default function JbrankyChatbot() {
     return BOT_INTENTS.GENERAL;
   };
 
-  const handleSubmission = async (
-    flow: SubmissionFlow,
-    details: string,
-  ) => {
+  const handleSubmission = async (flow: SubmissionFlow, details: string) => {
     if (!flow || !session) return;
     const payload = {
       name: session.visitorName,
@@ -515,7 +525,7 @@ export default function JbrankyChatbot() {
               : "General chatbot",
       service:
         flow.type === "service"
-          ? flow.serviceId ?? "unspecified"
+          ? (flow.serviceId ?? "unspecified")
           : flow.type === "consultation"
             ? "consultation"
             : null,
@@ -535,7 +545,7 @@ export default function JbrankyChatbot() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Unable to capture your request. Please try again."
+          : "Unable to capture your request. Please try again.",
       );
     }
   };
@@ -690,7 +700,11 @@ export default function JbrankyChatbot() {
                   className="h-8 w-8 rounded-full text-white/80 hover:bg-white/20"
                   onClick={() => setIsCollapsed((prev) => !prev)}
                 >
-                  {isCollapsed ? <MessageCircle className="h-4 w-4" /> : <Minus className="h-4 w-4" />}
+                  {isCollapsed ? (
+                    <MessageCircle className="h-4 w-4" />
+                  ) : (
+                    <Minus className="h-4 w-4" />
+                  )}
                   <span className="sr-only">Toggle chat visibility</span>
                 </Button>
                 <Button
@@ -742,39 +756,53 @@ export default function JbrankyChatbot() {
                 {phase === "lead" && (
                   <div className="flex flex-1 flex-col gap-3 p-4">
                     <div className="rounded-xl bg-muted/40 p-3 text-sm text-muted-foreground">
-                      Before we begin, could you share your contact details? We'll use them to follow up with tailored advice.
+                      Before we begin, could you share your contact details?
+                      We'll use them to follow up with tailored advice.
                     </div>
                     <Input
                       placeholder="Full name"
                       value={leadDraft.name}
-                      onChange={(event) => handleLeadChange("name", event.target.value)}
+                      onChange={(event) =>
+                        handleLeadChange("name", event.target.value)
+                      }
                     />
                     {leadErrors.name && (
-                      <p className="text-xs text-destructive">{leadErrors.name}</p>
+                      <p className="text-xs text-destructive">
+                        {leadErrors.name}
+                      </p>
                     )}
                     <Input
                       placeholder="Email"
                       type="email"
                       value={leadDraft.email}
-                      onChange={(event) => handleLeadChange("email", event.target.value)}
+                      onChange={(event) =>
+                        handleLeadChange("email", event.target.value)
+                      }
                     />
                     {leadErrors.email && (
-                      <p className="text-xs text-destructive">{leadErrors.email}</p>
+                      <p className="text-xs text-destructive">
+                        {leadErrors.email}
+                      </p>
                     )}
                     <Input
                       placeholder="Phone"
                       value={leadDraft.phone}
-                      onChange={(event) => handleLeadChange("phone", event.target.value)}
+                      onChange={(event) =>
+                        handleLeadChange("phone", event.target.value)
+                      }
                     />
                     {leadErrors.phone && (
-                      <p className="text-xs text-destructive">{leadErrors.phone}</p>
+                      <p className="text-xs text-destructive">
+                        {leadErrors.phone}
+                      </p>
                     )}
                     <div className="mt-auto flex flex-col gap-2">
                       <Button onClick={startSession} disabled={!leadFormValid}>
                         Start chatting
                       </Button>
                       <p className="text-xs text-muted-foreground">
-                        We'll keep your session so our admin team can follow the conversation in the dashboard.
+                        We'll keep your session so our admin team can follow the
+                        conversation in the dashboard.
                       </p>
                     </div>
                   </div>
@@ -798,7 +826,10 @@ export default function JbrankyChatbot() {
                         ))}
                       </div>
                     )}
-                    <form onSubmit={handleSubmit} className="relative mt-auto flex items-end gap-2">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="relative mt-auto flex items-end gap-2"
+                    >
                       <Textarea
                         value={inputValue}
                         onChange={(event) => setInputValue(event.target.value)}
@@ -809,12 +840,18 @@ export default function JbrankyChatbot() {
                           if (event.key === "Enter" && !event.shiftKey) {
                             event.preventDefault();
                             if (!processing) {
-                              void handleSubmit(event as unknown as React.FormEvent);
+                              void handleSubmit(
+                                event as unknown as React.FormEvent,
+                              );
                             }
                           }
                         }}
                       />
-                      <Button type="submit" size="icon" disabled={processing || !inputValue.trim()}>
+                      <Button
+                        type="submit"
+                        size="icon"
+                        disabled={processing || !inputValue.trim()}
+                      >
                         <Send className="h-4 w-4" />
                         <span className="sr-only">Send message</span>
                       </Button>
@@ -866,7 +903,11 @@ function ChatBubble({ message }: ChatBubbleProps) {
         isVisitor ? "justify-end text-right" : "justify-start text-left",
       )}
     >
-      {!isVisitor && <div className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary/10">{icon}</div>}
+      {!isVisitor && (
+        <div className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary/10">
+          {icon}
+        </div>
+      )}
       <div
         className={cn(
           "max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
@@ -881,7 +922,10 @@ function ChatBubble({ message }: ChatBubbleProps) {
           </p>
         ))}
         <p className="mt-2 text-[10px] uppercase tracking-wide text-white/70">
-          {new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          {new Date(message.createdAt).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </p>
       </div>
       {isVisitor && (

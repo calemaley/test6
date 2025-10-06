@@ -1,0 +1,25 @@
+[
+  {
+    "id": "a007be96-9973-46c2-bf1b-7d5979649e4f",
+    "visitorName": "Caleb",
+    "visitorEmail": "calemale360@gmail.com",
+    "visitorPhone": "0792881220",
+    "createdAt": "2025-10-06T09:09:48.612Z",
+    "updatedAt": "2025-10-06T09:10:13.683Z",
+    "originPath": "/",
+    "metadata": {
+      "tutorialCompleted": true,
+      "leadCaptured": true
+    },
+    "lastIntent": "services_overview",
+    "messages": [
+      {
+        "id": "be60c83d-ba3a-4432-83ba-5efb7a603433",
+        "sender": "bot",
+        "content": "Hydropower Plant Solutions: Feasibility, EPC delivery, and lifetime O&M support for small to mid-scale plants.\n• Hydrological feasibility studies and environmental impact assessments\n• Engineering, procurement, and construction covering civil and electro-mechanical works\n\nLarge Power & Medium-Voltage: Design, build, commission, and safeguard substations and grid interconnections from 11kV to 132kV.\n• Design and build 11kV–132kV substations, cabling, grounding, and protection schemes\n• Primary and secondary injection testing, relay programming, FAT/SAT, and commissioning\n\nSollatek Protection & Power Quality: Authorised Sollatek partner supplying AVS, stabilizers, and surge protection with 5-year warranty.\n• AVS 30 automatic voltage switchers and TV Guard surge protection\n• Single and three-phase automatic voltage regulators and stabilizers",
+        "createdAt": "2025-10-06T09:10:13.683Z",
+        "intent": "services_overview"
+      }
+    ]
+  }
+]
