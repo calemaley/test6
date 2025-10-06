@@ -351,9 +351,10 @@ export default function JbrankyChatbot() {
 
   const handleQuickReply = async (reply: QuickReply) => {
     setQuickReplies((prev) => prev.filter((item) => item.id !== reply.id));
-    switch (reply.payload.type) {
+    const payload = reply.payload;
+    switch (payload.type) {
       case "knowledge": {
-        if (reply.payload.topic === "services") {
+        if (payload.topic === "services") {
           const overview = companyInfo.services
             .map(
               (service) =>
