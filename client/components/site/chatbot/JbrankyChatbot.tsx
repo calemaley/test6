@@ -716,7 +716,7 @@ export default function JbrankyChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[360px] max-w-[92vw] overflow-hidden rounded-2xl border border-primary/20 bg-white shadow-2xl"
+            className="w-full md:w-[360px] max-w-[calc(100vw-1.5rem)] md:max-w-[92vw] overflow-hidden rounded-t-2xl md:rounded-2xl border border-primary/20 bg-white shadow-2xl"
           >
             <header className="flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
               <div>
