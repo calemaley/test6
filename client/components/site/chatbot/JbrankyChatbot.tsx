@@ -906,12 +906,22 @@ export default function JbrankyChatbot() {
       </AnimatePresence>
 
       {!isOpen && (
-        <Button
-          className="relative flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-lg shadow-primary/30"
-          onClick={() => setIsOpen(true)}
-        >
-          <MessageCircle className="h-4 w-4" /> Chat with {companyInfo.botName}
-        </Button>
+        <>
+          <Button
+            className="md:hidden h-12 w-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30"
+            size="icon"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open chat"
+          >
+            <MessageCircle className="h-5 w-5" />
+          </Button>
+          <Button
+            className="hidden md:inline-flex relative items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-lg shadow-primary/30"
+            onClick={() => setIsOpen(true)}
+          >
+            <MessageCircle className="h-4 w-4" /> Chat with {companyInfo.botName}
+          </Button>
+        </>
       )}
     </div>
   );
