@@ -447,6 +447,24 @@ export default function JbrankyChatbot() {
               payload: { type: "select_service", serviceId: service.id },
             })),
           );
+        } else if (type === "consultation") {
+          await updateChatbotSession(session!.id, {
+            metadata: { bookedConsultation: true },
+            lastIntent: BOT_INTENTS.CONSULTATION,
+          });
+          const q = new URLSearchParams({
+            type: "consultation",
+            name: session!.visitorName,
+            email: session!.visitorEmail,
+            phone: session!.visitorPhone,
+          });
+          navigate(`/contact?${q.toString()}`);
+          await pushMessage(
+            "bot",
+            "Opening consultation form. I’ve pre-filled your details.",
+            BOT_INTENTS.CONSULTATION,
+          );
+          setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         } else {
           await pushMessage(
             "bot",
