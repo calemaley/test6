@@ -415,7 +415,8 @@ export default function JbrankyChatbot() {
         break;
       }
       case "start_submission": {
-        const type = reply.payload.submissionType;
+        if (payload.type !== "start_submission") break;
+        const type = payload.submissionType;
         setSubmissionFlow({ type });
         if (type === "service") {
           await pushMessage(
