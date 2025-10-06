@@ -718,7 +718,7 @@ export default function JbrankyChatbot() {
             transition={{ duration: 0.2 }}
             className="w-full md:w-[360px] max-w-[calc(100vw-1.5rem)] md:max-w-[92vw] overflow-hidden rounded-t-2xl md:rounded-2xl border border-primary/20 bg-white shadow-2xl"
           >
-            <header className="flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
+            <header className="sticky top-0 z-10 flex items-start justify-between bg-gradient-to-r from-primary to-secondary px-4 py-3 text-white">
               <div>
                 <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-white/90">
                   <Sparkles className="h-4 w-4" /> {companyInfo.botName}
