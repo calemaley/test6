@@ -524,7 +524,7 @@ export default function JbrankyChatbot() {
         BOT_INTENTS.THANK_YOU,
       );
       setSubmissionFlow(null);
-      setQuickReplies(DEFAULT_QUICK_ACTIONS);
+      setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
     } catch (error) {
       toast.error(
         error instanceof Error
