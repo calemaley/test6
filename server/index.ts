@@ -9,6 +9,7 @@ import {
   listChatbotSessions,
   updateChatbotSession,
 } from "./routes/chatbot-sessions";
+import { chatCompletion } from "./routes/ai";
 
 export function createServer() {
   const app = express();
