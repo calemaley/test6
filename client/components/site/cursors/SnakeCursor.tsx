@@ -65,7 +65,7 @@ export default function SnakeCursor({ segments = 14, color = "#16a34a" }: SnakeC
   }, [segments]);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[60]">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[90]">
       {nodes.map((_, i) => (
         <span
           // eslint-disable-next-line react/no-array-index-key
