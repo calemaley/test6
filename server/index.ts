@@ -102,6 +102,10 @@ export function createServer() {
   app.post("/api/chatbot-sessions/:id/messages", appendChatbotMessage);
   app.patch("/api/chatbot-sessions/:id", updateChatbotSession);
 
+  // AI routes
+  const { chatCompletion } = await import("./routes/ai");
+  app.post("/api/ai/chat", chatCompletion);
+
   // Example API routes
   app.get("/api/ping", (_req, res) => {
     const ping = process.env.PING_MESSAGE ?? "ping";
