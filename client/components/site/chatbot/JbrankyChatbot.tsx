@@ -27,6 +27,7 @@ import { saveSubmission } from "@/lib/submissions";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { chatWithAI, type AiMessage } from "@/lib/ai";
+import { useNavigate } from "react-router-dom";
 
 const SESSION_STORAGE_KEY = "jbranky:chatbot:session";
 const DEFAULT_QUICK_ACTIONS: QuickReply[] = [
