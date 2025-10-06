@@ -165,6 +165,7 @@ function formatServiceDetails(serviceId: string) {
 }
 
 export default function JbrankyChatbot() {
+  const navigate = useNavigate();
   const [phase, setPhase] = useState<ChatPhase>("tutorial");
   const [tutorialIndex, setTutorialIndex] = useState(0);
   const [leadDraft, setLeadDraft] = useState<DraftLead>({
