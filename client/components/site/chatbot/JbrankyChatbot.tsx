@@ -605,7 +605,7 @@ export default function JbrankyChatbot() {
           `You can reach us directly on ${companyInfo.contact.phone}, email ${companyInfo.contact.email}, or request a call back here.`,
           BOT_INTENTS.CONTACT,
         );
-        setQuickReplies(DEFAULT_QUICK_ACTIONS);
+        setQuickReplies([...DEFAULT_QUICK_ACTIONS]);
         setProcessing(false);
         return;
       }
