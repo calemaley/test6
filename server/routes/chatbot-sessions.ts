@@ -27,6 +27,14 @@ export interface ChatbotSessionRecord {
   metadata: {
     tutorialCompleted: boolean;
     leadCaptured: boolean;
+    requestedCallback?: boolean;
+    bookedConsultation?: boolean;
+    requestedService?: string | null;
+    actions?: Array<{
+      type: "consultation" | "callback" | "service" | "general";
+      at: string;
+      payload?: Record<string, unknown>;
+    }>;
   };
   lastIntent?: string | null;
   messages: ChatbotMessage[];
@@ -101,6 +109,10 @@ export const createChatbotSession: RequestHandler = async (req, res) => {
     metadata: {
       tutorialCompleted: Boolean(metadata?.tutorialCompleted ?? false),
       leadCaptured: true,
+      requestedCallback: false,
+      bookedConsultation: false,
+      requestedService: null,
+      actions: [],
     },
     lastIntent: null,
     messages: [],
@@ -166,13 +178,11 @@ export const updateChatbotSession: RequestHandler = async (req, res) => {
   const { metadata, lastIntent, visitorEmail, visitorName, visitorPhone } =
     req.body ?? {};
 
-  if (metadata) {
+  if (metadata && typeof metadata === "object") {
     session.metadata = {
       ...session.metadata,
-      tutorialCompleted:
-        metadata.tutorialCompleted ?? session.metadata.tutorialCompleted,
-      leadCaptured: metadata.leadCaptured ?? session.metadata.leadCaptured,
-    };
+      ...metadata,
+    } as ChatbotSessionRecord["metadata"];
   }
 
   if (typeof lastIntent === "string" || lastIntent === null) {
