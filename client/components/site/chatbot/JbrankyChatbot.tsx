@@ -957,7 +957,12 @@ function ChatBubble({ message }: ChatBubbleProps) {
             {line}
           </p>
         ))}
-        <p className="mt-2 text-[10px] uppercase tracking-wide text-white/70">
+        <p
+          className={cn(
+            "mt-2 text-[10px] uppercase tracking-wide",
+            isVisitor ? "text-white/70" : "text-foreground/60",
+          )}
+        >
           {new Date(message.createdAt).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
