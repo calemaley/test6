@@ -790,7 +790,7 @@ export default function JbrankyChatbot() {
                 )}
 
                 {phase === "lead" && (
-                  <div className="flex flex-1 flex-col gap-3 p-4">
+                  <div className="flex flex-1 flex-col gap-3 p-4 min-h-0">
                     <div className="rounded-xl bg-muted/40 p-3 text-sm text-muted-foreground">
                       Before we begin, could you share your contact details?
                       We'll use them to follow up with tailored advice.
