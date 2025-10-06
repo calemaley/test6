@@ -441,8 +441,9 @@ export default function JbrankyChatbot() {
         break;
       }
       case "select_service": {
-        setSubmissionFlow({ type: "service", serviceId: reply.payload.serviceId });
-        const details = formatServiceDetails(reply.payload.serviceId);
+        if (payload.type !== "select_service") break;
+        setSubmissionFlow({ type: "service", serviceId: payload.serviceId });
+        const details = formatServiceDetails(payload.serviceId);
         if (details) {
           await pushMessage(
             "bot",
